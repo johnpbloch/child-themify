@@ -10,9 +10,9 @@
  * Note: Do note change the name of this file. PHPUnit will automatically fire this file when run.
  *
  */
- 
+
 $GLOBALS['wp_tests_options'] = array(
-	'active_plugins' => array( 'your-plugin/your-plugin.php' ),
+	'active_plugins' => array( 'child-themify/child-themify.php' ),
 );
 
 require dirname( __FILE__ ) . '/wordpress-tests/bootstrap.php';
