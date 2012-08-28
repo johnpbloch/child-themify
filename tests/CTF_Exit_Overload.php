@@ -13,4 +13,8 @@ class CTF_Exit_Overload {
 		return end( self::$messages );
 	}
 
+	public static function count() {
+		return count( self::$messages );
+	}
+
 }
