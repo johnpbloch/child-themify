@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Bootstrap the testing environment
  * Uses wordpress tests (http://github.com/nb/wordpress-tests/) which uses PHPUnit
@@ -10,6 +11,8 @@
  * Note: Do note change the name of this file. PHPUnit will automatically fire this file when run.
  *
  */
+require dirname( __FILE__ ) . '/CTF_Exit_Overload.php';
+set_exit_overload( array( 'CTF_Exit_Overload', 'handler' ) );
 
 $GLOBALS['wp_tests_options'] = array(
 	'active_plugins' => array( 'child-themify/child-themify.php' ),
