@@ -9,8 +9,15 @@ class WP_Test_CTF_Permissions extends WP_UnitTestCase {
 		$this->users = array( );
 		/* @var $userFactory WP_UnitTest_Factory_For_User */
 		$userFactory = $this->factory->user;
-		for($x = 0;$x < 3;$x++){
-			$user = $userFactory->create_and_get();
+		for ( $x = 0; $x < 3; $x++ ) {
+			$user = null;
+			while ( !$user ) {
+				$user = $userFactory->create();
+				if ( !is_scalar( $user ) ) {
+					$user = null;
+				}
+			}
+			$user = new WP_User( $user );
 			$user->remove_all_caps();
 			$this->users[] = $user;
 		}

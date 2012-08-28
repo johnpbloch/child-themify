@@ -27,7 +27,7 @@ class WP_Test_CTF_Interface extends WP_UnitTestCase {
 		$this->assertNotContains( '<h2>Connection Information</h2>', $contents );
 	}
 
-	public function test_filesystem_use( $method ) {
+	public function test_filesystem_use() {
 		remove_all_filters( 'request_filesystem_credentials', 169 );
 		add_filter( 'request_filesystem_credentials', '__return_false', 169 );
 		foreach ( array( 'ssh', 'ftpext', 'ftpsockets' ) as $method ) {
