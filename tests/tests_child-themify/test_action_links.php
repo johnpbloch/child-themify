@@ -26,6 +26,7 @@ class WP_Test_CTF_Action_Links extends WP_UnitTestCase {
 		if ( is_multisite() ) {
 			grant_super_admin( $this->user->ID );
 		}
+		wp_set_current_user( $this->user->ID );
 		$this->theme = wp_get_theme();
 	}
 
