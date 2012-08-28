@@ -82,4 +82,27 @@ class WP_Test_CTF_Permissions extends WP_UnitTestCase {
 		}
 	}
 
+	/**
+	 * @runInSeparateProcess
+	 */
+	public function test_disallow_file_mods() {
+		if ( defined( 'DISALLOW_FILE_MODS' ) ) {
+			$this->markTestSkipped( "Can't test for constants if they're already defined" );
+			return;
+		}
+		$workingUser = is_multisite() ? 2 : 1;
+		wp_set_current_user( $this->users[$workingUser]->ID );
+		$count = CTF_Exit_Overload::count();
+		CTF_Babymaker::getTested();
+		$this->assertEquals( $count, CTF_Exit_Overload::count() );
+		define( 'DISALLOW_FILE_EDIT', true );
+		$count = CTF_Exit_Overload::count();
+		CTF_Babymaker::getTested();
+		$this->assertEquals( $count, CTF_Exit_Overload::count() );
+		define( 'DISALLOW_FILE_MODS', true );
+		$count = CTF_Exit_Overload::count();
+		CTF_Babymaker::getTested();
+		$this->assertNotEquals( $count, CTF_Exit_Overload::count() );
+	}
+
 }
