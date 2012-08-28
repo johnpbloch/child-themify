@@ -3,11 +3,10 @@
 class WP_Test_CTF_Permissions extends WP_UnitTestCase {
 
 	protected $users = array( );
-	protected $themes = array( );
 
 	public function setUp() {
 		parent::setUp();
-		$this->themes = $this->users = array( );
+		$this->users = array( );
 		$users = $this->factory->user->create_many( 3 );
 		foreach ( $users as $user ) {
 			$user = get_user_by( 'ID', $user );
@@ -18,13 +17,6 @@ class WP_Test_CTF_Permissions extends WP_UnitTestCase {
 		if ( is_multisite() ) {
 			grant_super_admin( $this->users[2]->ID );
 		}
-	}
-
-	public function tearDown() {
-		foreach ( $this->themes as $themePath ) {
-			_rmdir( $themePath );
-		}
-		parent::tearDown();
 	}
 
 	public function test_multisite() {
@@ -38,6 +30,7 @@ class WP_Test_CTF_Permissions extends WP_UnitTestCase {
 			$exits = CTF_Exit_Overload::count();
 			wp_set_current_user( $this->users[$x]->ID );
 			$_GET['_ctf_nonce'] = wp_create_nonce( 'child_themify_' . $current_theme_slug );
+			$_GET['theme'] = $current_theme_slug;
 			CTF_Babymaker::getTested();
 			switch ( $x ) {
 				case 0:
@@ -65,6 +58,7 @@ class WP_Test_CTF_Permissions extends WP_UnitTestCase {
 			$exits = CTF_Exit_Overload::count();
 			wp_set_current_user( $this->users[$x]->ID );
 			$_GET['_ctf_nonce'] = wp_create_nonce( 'child_themify_' . $current_theme_slug );
+			$_GET['theme'] = $current_theme_slug;
 			CTF_Babymaker::getTested();
 			switch ( $x ) {
 				case 0:
@@ -90,8 +84,12 @@ class WP_Test_CTF_Permissions extends WP_UnitTestCase {
 			$this->markTestSkipped( "Can't test for constants if they're already defined" );
 			return;
 		}
+		$current_theme = wp_get_theme();
+		$current_theme_slug = basename( $current_theme->stylesheet_dir );
 		$workingUser = is_multisite() ? 2 : 1;
 		wp_set_current_user( $this->users[$workingUser]->ID );
+		$_GET['_ctf_nonce'] = wp_create_nonce( 'child_themify_' . $current_theme_slug );
+		$_GET['theme'] = $current_theme_slug;
 		$count = CTF_Exit_Overload::count();
 		CTF_Babymaker::getTested();
 		$this->assertEquals( $count, CTF_Exit_Overload::count() );
