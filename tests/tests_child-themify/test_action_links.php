@@ -14,7 +14,7 @@ class WP_Test_CTF_Action_Links extends WP_UnitTestCase {
 
 	public function setUp() {
 		parent::setUp();
-		$this->user = $this->factory->users->create();
+		$this->user = $this->factory->users->create_and_get();
 		$this->user->add_cap( 'install_themes' );
 		if ( is_multisite() ) {
 			grant_super_admin( $this->user->ID );
