@@ -43,7 +43,6 @@ class WP_Test_CTF_Permissions extends WP_UnitTestCase {
 			switch ( $x ) {
 				case 0:
 				case 1:
-					$this->assertNotEmpty( CTF_Exit_Overload::message() );
 					$this->assertNotEquals( $exits, CTF_Exit_Overload::count() );
 					break;
 				case 2:
@@ -61,6 +60,29 @@ class WP_Test_CTF_Permissions extends WP_UnitTestCase {
 	public function test_single() {
 		if ( is_multisite() ) {
 			$this->markTestSkipped( 'No need to test single installs on multisite' );
+		}
+		$current_theme = wp_get_theme();
+		$current_theme_slug = basename( $current_theme->stylesheet_dir );
+		for ( $x = 0; $x < 3; $x++ ) {
+			$exits = CTF_Exit_Overload::count();
+			wp_set_auth_cookie( $this->users[$x]->ID );
+			wp_set_current_user( $this->users[$x]->ID );
+			$_GET['_ctf_nonce'] = wp_create_nonce( 'child_themify_' . $current_theme_slug );
+			CTF_Babymaker::getTested();
+			switch ( $x ) {
+				case 0:
+				case 2:
+					$this->assertNotEquals( $exits, CTF_Exit_Overload::count() );
+					break;
+				case 1:
+					$this->assertEquals( $exits, CTF_Exit_Overload::count() );
+					break;
+				default:
+					$this->fail( "What is this I don't even" );
+					break;
+			}
+			$GLOBALS['current_user'] = null;
+			wp_clear_auth_cookie();
 		}
 	}
 
