@@ -16,16 +16,36 @@ class CTF_Babymaker {
 
 	}
 
-	public static function getLink() {
-
+	public static function getLink( $theme_name ) {
+		$theme = wp_get_theme( $theme_name );
+		// If the current user can't install a theme, the theme doesn't exist
+		if ( !current_user_can( 'install_themes' ) || !$theme->exists() || $theme->parent() ) {
+			return '';
+		}
+		$args = array(
+			'action' => 'child-themify',
+			'theme' => $theme_name,
+			'_ctf_nonce' => wp_create_nonce( "child_themify_$theme_name" ),
+		);
+		$baseLink = is_multisite() ? network_admin_url( 'themes.php' ) : admin_url( 'themes.php' );
+		return add_query_arg( $args, $baseLink );
 	}
 
-	public static function moodLighting() {
-
+	public static function moodLighting( array $links, $theme ) {
+		if ( !($theme instanceof WP_Theme) ) {
+			$theme = wp_get_theme( $theme );
+		}
+		if ( !current_user_can( 'install_themes' ) || !$theme->exists() || $theme->parent() ) {
+			return $links;
+		}
+		$link = self::getLink( $theme->get_stylesheet() );
+		$html = "<a href=\"$link\">Create a child theme</a>";
+		$links['child-themify'] = $html;
+		return $links;
 	}
 
 	public static function procreate() {
-		
+
 	}
 
 }
