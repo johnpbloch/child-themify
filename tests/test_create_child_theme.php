@@ -26,7 +26,7 @@ class WP_Test_Create_Child_Theme extends WP_UnitTestCase {
 
 	public function tearDown() {
 		$themeDir = $this->theme->get_stylesheet_directory();
-		`rm -r $themeDir`;
+		_rmdir( $themeDir );
 		parent::tearDown();
 	}
 
