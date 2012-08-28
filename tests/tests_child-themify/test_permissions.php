@@ -36,7 +36,6 @@ class WP_Test_CTF_Permissions extends WP_UnitTestCase {
 		$current_theme_slug = basename( $current_theme->stylesheet_dir );
 		for ( $x = 0; $x < 3; $x++ ) {
 			$exits = CTF_Exit_Overload::count();
-			wp_set_auth_cookie( $this->users[$x]->ID );
 			wp_set_current_user( $this->users[$x]->ID );
 			$_GET['_ctf_nonce'] = wp_create_nonce( 'child_themify_' . $current_theme_slug );
 			CTF_Babymaker::getTested();
@@ -52,8 +51,7 @@ class WP_Test_CTF_Permissions extends WP_UnitTestCase {
 					$this->fail( "What is this I don't even" );
 					break;
 			}
-			$GLOBALS['current_user'] = null;
-			wp_clear_auth_cookie();
+			wp_set_current_user( 0 );
 		}
 	}
 
@@ -65,7 +63,6 @@ class WP_Test_CTF_Permissions extends WP_UnitTestCase {
 		$current_theme_slug = basename( $current_theme->stylesheet_dir );
 		for ( $x = 0; $x < 3; $x++ ) {
 			$exits = CTF_Exit_Overload::count();
-			wp_set_auth_cookie( $this->users[$x]->ID );
 			wp_set_current_user( $this->users[$x]->ID );
 			$_GET['_ctf_nonce'] = wp_create_nonce( 'child_themify_' . $current_theme_slug );
 			CTF_Babymaker::getTested();
@@ -81,8 +78,7 @@ class WP_Test_CTF_Permissions extends WP_UnitTestCase {
 					$this->fail( "What is this I don't even" );
 					break;
 			}
-			$GLOBALS['current_user'] = null;
-			wp_clear_auth_cookie();
+			wp_set_current_user( 0 );
 		}
 	}
 
