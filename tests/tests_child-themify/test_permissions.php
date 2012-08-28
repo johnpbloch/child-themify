@@ -14,7 +14,7 @@ class WP_Test_CTF_Permissions extends WP_UnitTestCase {
 			$user->remove_all_caps();
 			$this->users[] = $user;
 		}
-		$this->users[1]->add_cap( 'edit_themes' );
+		$this->users[1]->add_cap( 'install_themes' );
 		if ( is_multisite() ) {
 			grant_super_admin( $this->users[2]->ID );
 		}
