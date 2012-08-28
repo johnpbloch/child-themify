@@ -7,7 +7,7 @@ class WP_Test_CTF_Permissions extends WP_UnitTestCase {
 
 	public function setUp() {
 		parent::setUp();
-		$this->themes = array( );
+		$this->themes = $this->users = array( );
 		$users = $this->factory->user->create_many( 3 );
 		foreach ( $users as $user ) {
 			$user = get_user_by( 'ID', $user );
