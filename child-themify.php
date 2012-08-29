@@ -8,8 +8,8 @@
 
 class CTF_Babymaker {
 
-	public static function getTested() {
-		
+	protected static function nonce( $theme ) {
+		return wp_create_nonce( "child_themify_$theme" );
 	}
 
 	public static function showInterface() {
@@ -25,7 +25,7 @@ class CTF_Babymaker {
 		$args = array(
 			'action' => 'child-themify',
 			'theme' => $theme_name,
-			'_ctf_nonce' => wp_create_nonce( "child_themify_$theme_name" ),
+			'_ctf_nonce' => self::nonce( $theme_name ),
 		);
 		$baseLink = is_multisite() ? network_admin_url( 'themes.php' ) : admin_url( 'themes.php' );
 		return add_query_arg( $args, $baseLink );
