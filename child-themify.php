@@ -9,7 +9,11 @@
 class CTF_Babymaker {
 
 	protected static function nonce( $theme ) {
-		return wp_create_nonce( "child_themify_$theme" );
+		return wp_create_nonce( self::nonce_name( $theme ) );
+	}
+
+	protected static function nonce_name( $theme ) {
+		return "child_themify_$theme";
 	}
 
 	public static function showInterface() {
