@@ -8,6 +8,11 @@
 
 class CTF_Babymaker {
 
+	/**
+	 * Check the user's capabilities and validate the nonce
+	 * 
+	 * Kills script execution if either of those tests fail
+	 */
 	public static function getTested() {
 		$theme = empty( $_GET['theme'] ) ? '' : $_GET['theme'];
 		if ( !self::fertile() ) {
@@ -32,6 +37,12 @@ class CTF_Babymaker {
 		
 	}
 
+	/**
+	 * Get the link to create a child theme from a theme
+	 * 
+	 * @param string $theme_name The template theme's directory
+	 * @return string The url to create a child theme
+	 */
 	public static function getLink( $theme_name ) {
 		$theme = wp_get_theme( $theme_name );
 		// If the current user can't install a theme, the theme doesn't exist
@@ -47,6 +58,13 @@ class CTF_Babymaker {
 		return add_query_arg( $args, $baseLink );
 	}
 
+	/**
+	 * Add the link for creating a child theme to the theme action links
+	 *
+	 * @param array $links
+	 * @param string|WP_Theme $theme
+	 * @return array An array of action links
+	 */
 	public static function moodLighting( array $links, $theme ) {
 		if ( !($theme instanceof WP_Theme) ) {
 			$theme = wp_get_theme( $theme );
