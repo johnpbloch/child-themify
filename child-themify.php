@@ -8,6 +8,14 @@
 
 class CTF_Babymaker {
 
+	public static function getTested() {
+		$theme = empty( $_GET['theme'] ) ? '' : $_GET['theme'];
+		if ( current_user_can( 'install_themes' ) ) {
+			wp_die( 'You do not have permission to do that!' );
+		}
+		check_admin_referer( self::nonce_name( $theme ), '_ctf_nonce' );
+	}
+
 	protected static function nonce( $theme ) {
 		return wp_create_nonce( self::nonce_name( $theme ) );
 	}
