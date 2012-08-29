@@ -9,11 +9,11 @@
 class CTF_Babymaker {
 
 	public static function getTested() {
-
+		
 	}
 
 	public static function showInterface() {
-
+		
 	}
 
 	public static function getLink( $theme_name ) {
@@ -44,8 +44,39 @@ class CTF_Babymaker {
 		return $links;
 	}
 
-	public static function procreate() {
+	/**
+	 * Runs the actual child theme creation functionality
+	 * 
+	 * @global WP_Filesystem_Base $wp_filesystem
+	 * @param string $new_theme
+	 * @param WP_Theme $template
+	 * @throws Exception If the global filesystem object isn't available
+	 */
+	public static function procreate( $new_theme, WP_Theme $template ) {
+		global $wp_filesystem;
+		if ( !($wp_filesystem instanceof WP_Filesystem_Base) ) {
+			if ( !WP_Filesystem() ) {
+				throw new Exception( 'Could not access the filesystem!' );
+			}
+		}
+		$oldStylesheet = $template->get_stylesheet();
+		$oldName = $template->name;
+		$new_theme_directory = trailingslashit( get_theme_root() ) . sanitize_file_name( $new_theme );
+		$wp_filesystem->mkdir( $new_theme_directory );
+		$newStylesheet = trailingslashit( $new_theme_directory ) . 'style.css';
+		$wp_filesystem->touch( $newStylesheet );
+		$stylesheetContents = <<<EOF
+/*
+Theme Name: $oldName Child
+Version: 1.0
+Description: A child theme of $oldName
+Template: $oldStylesheet
+*/
 
+@import url("../$oldStylesheet/style.css")
+
+EOF;
+		$wp_filesystem->put_contents( $newStylesheet, $stylesheetContents );
 	}
 
 }
