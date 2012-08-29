@@ -9,13 +9,19 @@ env:
  - WP_VERSION=3.4.1 WP_MULTISITE=0
  - WP_VERSION=3.4.1 WP_MULTISITE=1
 
+before_install:
+  - git clone https://github.com/sebastianbergmann/php-test-helpers.git
+  - cd php-test-helpers
+  - phpize && ./configure && make && make install
+  - cd ../
+  - export JPHP_INI=`php --ini | grep "Loaded Configuration" | sed -e "s|.*:\s*||"`
+  - export JXDB=`php --ini | grep "xdebug" | sed -e "s/.*:\s*//" -e "s/,.*//"`
+  - if [ $JXDB -a -f $JXDB ]; then sed -i='' -e "s/^/;/g" $JXDB; fi
+  - if [[ ! `cat $JPHP_INI | grep 'test_helpers.so'` ]]; then echo "extension=test_helpers.so" >> $JPHP_INI; fi
+
 before_script:
-  - pear config-set auto_discover 1
-  - pear channel-discover pear.phpunit.de
-  - pecl install phpunit/test_helpers
-  - echo "zend_extension=\"$(php -i | grep 'extension_dir' | sed -e 's/extension_dir => \//\//g' -e 's/ => .*$//g')/test_helpers.so\"" >> `php --ini | grep "Loaded Configuration" | sed -e "s|.*:\s*||"`
   - wget https://raw.github.com/johnpbloch/wordpress-plugin-tests/setup/setup.sh
   - sh setup.sh
   - cd ../tests
 
-script: phpunit All
+script: phpunit -c phpunit.xml All
