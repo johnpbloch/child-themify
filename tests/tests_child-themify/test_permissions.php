@@ -6,6 +6,7 @@ class WP_Test_CTF_Permissions extends WP_UnitTestCase {
 
 	public function setUp() {
 		parent::setUp();
+		ob_start();
 		$this->users = array( );
 		/* @var $userFactory WP_UnitTest_Factory_For_User */
 		$userFactory = $this->factory->user;
@@ -25,6 +26,11 @@ class WP_Test_CTF_Permissions extends WP_UnitTestCase {
 		if ( is_multisite() ) {
 			grant_super_admin( $this->users[2]->ID );
 		}
+	}
+
+	public function tearDown() {
+		parent::tearDown();
+		ob_end_clean();
 	}
 
 	public function test_multisite() {
