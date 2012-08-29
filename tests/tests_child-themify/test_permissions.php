@@ -65,7 +65,7 @@ class WP_Test_CTF_Permissions extends WP_UnitTestCase {
 		for ( $x = 0; $x < 3; $x++ ) {
 			$exits = CTF_Exit_Overload::count();
 			wp_set_current_user( $this->users[$x]->ID );
-			$_GET['_ctf_nonce'] = wp_create_nonce( 'child_themify_' . $current_theme_slug );
+			$_GET['_ctf_nonce'] = $_REQUEST['_ctf_nonce'] = wp_create_nonce( 'child_themify_' . $current_theme_slug );
 			$_GET['theme'] = $current_theme_slug;
 			CTF_Babymaker::getTested();
 			switch ( $x ) {
@@ -96,7 +96,7 @@ class WP_Test_CTF_Permissions extends WP_UnitTestCase {
 		$current_theme_slug = basename( $current_theme->stylesheet_dir );
 		$workingUser = is_multisite() ? 2 : 1;
 		wp_set_current_user( $this->users[$workingUser]->ID );
-		$_GET['_ctf_nonce'] = wp_create_nonce( 'child_themify_' . $current_theme_slug );
+		$_GET['_ctf_nonce'] = $_REQUEST['_ctf_nonce'] = wp_create_nonce( 'child_themify_' . $current_theme_slug );
 		$_GET['theme'] = $current_theme_slug;
 		$count = CTF_Exit_Overload::count();
 		CTF_Babymaker::getTested();
