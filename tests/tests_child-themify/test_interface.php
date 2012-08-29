@@ -17,6 +17,15 @@ class WP_Test_CTF_Interface extends WP_UnitTestCase {
 	public function setUp() {
 		parent::setUp();
 		self::$method = 'direct';
+		$theme = wp_get_theme();
+		$_GET['theme'] = $_REQUEST['theme'] = $theme->get_stylesheet();
+		$user = $this->factory->user->create();
+		$user = new WP_User( $user );
+		$user->add_cap( 'install_themes' );
+		if ( is_multisite() ) {
+			grant_super_admin( $user->ID );
+		}
+		wp_set_current_user($user->ID);
 	}
 
 	public function test_output() {
