@@ -10,10 +10,14 @@ class CTF_Babymaker {
 
 	public static function getTested() {
 		$theme = empty( $_GET['theme'] ) ? '' : $_GET['theme'];
-		if ( current_user_can( 'install_themes' ) ) {
+		if ( !self::fertile() ) {
 			wp_die( 'You do not have permission to do that!' );
 		}
 		check_admin_referer( self::nonce_name( $theme ), '_ctf_nonce' );
+	}
+
+	protected static function fertile() {
+		return current_user_can( 'install_themes' );
 	}
 
 	protected static function nonce( $theme ) {
@@ -31,7 +35,7 @@ class CTF_Babymaker {
 	public static function getLink( $theme_name ) {
 		$theme = wp_get_theme( $theme_name );
 		// If the current user can't install a theme, the theme doesn't exist
-		if ( !current_user_can( 'install_themes' ) || !$theme->exists() || $theme->parent() ) {
+		if ( !self::fertile() || !$theme->exists() || $theme->parent() ) {
 			return '';
 		}
 		$args = array(
@@ -47,7 +51,7 @@ class CTF_Babymaker {
 		if ( !($theme instanceof WP_Theme) ) {
 			$theme = wp_get_theme( $theme );
 		}
-		if ( !current_user_can( 'install_themes' ) || !$theme->exists() || $theme->parent() ) {
+		if ( !self::fertile() || !$theme->exists() || $theme->parent() ) {
 			return $links;
 		}
 		$link = self::getLink( $theme->get_stylesheet() );
