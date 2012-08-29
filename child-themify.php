@@ -1,5 +1,4 @@
 <?php
-
 /*
  * Plugin Name: Child Themify
  * Description: Enables the quick creation of child themes from any non-child theme you have installed.
@@ -34,7 +33,41 @@ class CTF_Babymaker {
 	}
 
 	public static function showInterface() {
-		
+		$theme = empty( $_GET['theme'] ) ? '' : $_GET['theme'];
+		$theme = wp_get_theme( $theme );
+		if ( self::checkCreds() ) {
+			return;
+		}
+		?>
+		<div class="wrap">
+			<h2>Create a child theme from <?php echo esc_html( $theme->name ); ?></h2>
+			<form method="post" action="<?php echo esc_url( self::getLink( $theme->get_stylesheet() ) ); ?>">
+				<label>Name your child (theme)</label><br>
+				<input type="text" name="new_theme" />
+				<?php submit_button( 'Let\'s get it on!' ); ?>
+			</form>
+		</div>
+		<?php
+	}
+
+	protected static function checkCreds() {
+		if ( empty( $_POST ) ) {
+			return false;
+		}
+		self::getTested();
+		$theme = empty( $_GET['theme'] ) ? '' : $_GET['theme'];
+		$theme = wp_get_theme( $theme );
+		$url = self::getLink( $theme );
+		if ( ($creds = request_filesystem_credentials( $url, '', false, get_theme_root(), array( 'new_theme' ) )) === false ) {
+			return true;
+		}
+		echo 'here';
+		if ( !WP_Filesystem( $creds, get_theme_root() ) ) {
+			request_filesystem_credentials( $url, '', true, get_theme_root(), array( 'new_theme' ) );
+			return true;
+		}
+		$newThemeName = sanitize_file_name( $_POST['new_theme'] );
+		self::procreate( $newThemeName, $theme );
 	}
 
 	/**
@@ -114,3 +147,4 @@ EOF;
 	}
 
 }
+
