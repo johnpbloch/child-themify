@@ -17,15 +17,16 @@ class WP_Test_CTF_Interface extends WP_UnitTestCase {
 	public function setUp() {
 		parent::setUp();
 		self::$method = 'direct';
-		$theme = wp_get_theme();
-		$_GET['theme'] = $_REQUEST['theme'] = $theme->get_stylesheet();
 		$user = $this->factory->user->create();
 		$user = new WP_User( $user );
 		$user->add_cap( 'install_themes' );
 		if ( is_multisite() ) {
 			grant_super_admin( $user->ID );
 		}
-		wp_set_current_user($user->ID);
+		wp_set_current_user( $user->ID );
+		$theme = wp_get_theme();
+		$_GET['theme'] = $_REQUEST['theme'] = $theme->get_stylesheet();
+		$_GET['_ctf_nonce'] = $_REQUEST['_ctf_nonce'] = wp_create_nonce( 'child_themify_' . $theme->get_stylesheet() );
 	}
 
 	public function test_output() {
@@ -37,8 +38,8 @@ class WP_Test_CTF_Interface extends WP_UnitTestCase {
 	}
 
 	public function test_filesystem_use() {
-		remove_all_filters( 'request_filesystem_credentials', 169 );
-		add_filter( 'request_filesystem_credentials', '__return_false', 169 );
+		$_POST['new_theme'] = 'dummyvalue';
+		remove_all_filters( 'request_filesystem_credentials' );
 		foreach ( array( 'ssh', 'ftpext', 'ftpsockets' ) as $method ) {
 			self::$method = $method;
 			ob_start();
