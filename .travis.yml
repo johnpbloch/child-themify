@@ -6,8 +6,8 @@ php:
   - 5.4
 
 env:
- - WP_VERSION=3.4.1 WP_MULTISITE=0
- - WP_VERSION=3.4.1 WP_MULTISITE=1
+ - WP_VERSION=3.4.2 WP_MULTISITE=0
+ - WP_VERSION=3.4.2 WP_MULTISITE=1
 
 before_install:
   - git clone https://github.com/sebastianbergmann/php-test-helpers.git
