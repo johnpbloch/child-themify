@@ -6,8 +6,8 @@ php:
   - 5.4
 
 env:
- - WP_VERSION=3.4.2 WP_MULTISITE=0
- - WP_VERSION=3.4.2 WP_MULTISITE=1
+ - WP_VERSION=3.4.2 WP_MULTISITE=0 WP_CORE_DIR=/tmp/wordpress WP_TESTS_DIR=/tmp/wordpress-tests
+ - WP_VERSION=3.4.2 WP_MULTISITE=1 WP_CORE_DIR=/tmp/wordpress WP_TESTS_DIR=/tmp/wordpress-tests
 
 before_install:
   - git clone https://github.com/sebastianbergmann/php-test-helpers.git
