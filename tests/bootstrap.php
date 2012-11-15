@@ -18,4 +18,4 @@ $GLOBALS['wp_tests_options'] = array(
 	'active_plugins' => array( 'child-themify/child-themify.php' ),
 );
 
-require dirname( __FILE__ ) . '/wordpress-tests/bootstrap.php';
+require dirname( __FILE__ ) . '/wordpress-tests/includes/bootstrap.php';
