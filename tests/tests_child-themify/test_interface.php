@@ -17,6 +17,7 @@ class WP_Test_CTF_Interface extends WP_UnitTestCase {
 	public function setUp() {
 		parent::setUp();
 		self::$method = 'direct';
+		set_current_screen('index');
 		$user = $this->factory->user->create();
 		$user = new WP_User( $user );
 		$user->add_cap( 'install_themes' );
