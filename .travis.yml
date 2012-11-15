@@ -20,7 +20,7 @@ before_install:
   - if [[ ! `cat $JPHP_INI | grep 'test_helpers.so'` ]]; then echo "extension=test_helpers.so" >> $JPHP_INI; fi
 
 before_script:
-  - wget https://raw.github.com/johnpbloch/wordpress-plugin-tests/setup/setup.sh
+  - wget https://raw.github.com/benbalter/wordpress-plugin-tests/setup/setup.sh
   - sh setup.sh
   - cd ../tests
 
