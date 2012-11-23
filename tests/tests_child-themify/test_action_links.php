@@ -45,15 +45,11 @@ class WP_Test_CTF_Action_Links extends WP_UnitTestCase {
 		$this->assertEquals( $link, CTF_Babymaker::getLink( $theme_slug ) );
 	}
 
-	/**
-	 * @runInSeparateProcess
-	 */
 	public function test_get_link_network() {
 		if ( !is_multisite() ) {
 			$this->markTestSkipped();
 			return;
 		}
-		define( 'WP_NETWORK_ADMIN', true );
 		$theme_slug = $this->theme->get_stylesheet();
 		$args = array(
 			'action' => 'child-themify',
