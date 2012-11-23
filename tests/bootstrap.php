@@ -11,6 +11,11 @@
  * Note: Do note change the name of this file. PHPUnit will automatically fire this file when run.
  *
  */
+
+if( file_exists( dirname( __FILE__ ) . '/local-bootstrap.php' ) ) {
+	require_once( dirname( __FILE__ ) . '/local-bootstrap.php' );
+}
+
 require dirname( __FILE__ ) . '/CTF_Exit_Overload.php';
 set_exit_overload( array( 'CTF_Exit_Overload', 'handler' ) );
 

@@ -1,1 +1,2 @@
 tests/wordpress-tests
+tests/local-bootstrap.php
