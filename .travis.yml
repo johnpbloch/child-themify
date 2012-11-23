@@ -23,5 +23,3 @@ before_script:
   - wget https://raw.github.com/benbalter/wordpress-plugin-tests/setup/setup.sh
   - sh setup.sh
   - cd /tmp/wordpress/wp-content/plugins/child-themify/tests
-
-script: phpunit
