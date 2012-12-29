@@ -145,9 +145,20 @@ EOF;
 		$wp_filesystem->put_contents( $newStylesheet, $stylesheetContents );
 	}
 
+	public static function load_themes_page() {
+		if ( empty( $_GET['action'] ) || $_GET['action'] != 'child-themify' ) {
+			return;
+		}
+		require ABSPATH . 'wp-admin/admin-header.php';
+		self::showInterface();
+		require ABSPATH . 'wp-admin/admin-footer.php';
+		exit;
+	}
+
 	public static function init() {
 		load_plugin_textdomain( 'child-themify', false, basename( dirname( __FILE__ ) ) . '/languages' );
 		add_filter( 'theme_action_links', array( 'CTF_Babymaker', 'moodLighting' ), 10, 2 );
+		add_action( 'load-themes.php', array( 'CTF_Babymaker', 'load_themes_page' ) );
 	}
 
 }
