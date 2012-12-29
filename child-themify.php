@@ -15,7 +15,7 @@ class CTF_Babymaker {
 	public static function getTested() {
 		$theme = empty( $_GET['theme'] ) ? '' : $_GET['theme'];
 		if ( !self::fertile() ) {
-			wp_die( 'You do not have permission to do that!' );
+			wp_die( __( 'You do not have permission to do that!', 'child-themify' ) );
 		}
 		check_admin_referer( self::nonce_name( $theme ), '_ctf_nonce' );
 	}
@@ -40,11 +40,11 @@ class CTF_Babymaker {
 		}
 		?>
 		<div class="wrap">
-			<h2>Create a child theme from <?php echo esc_html( $theme->name ); ?></h2>
+			<h2><?php esc_html( sprintf( _x( 'Create a child theme from %s', 'The placeholder is for a theme\'s name', 'child-themify' ), $theme->name ) ); ?></h2>
 			<form method="post" action="<?php echo esc_url( self::getLink( $theme->get_stylesheet() ) ); ?>">
-				<label>Name your child (theme)</label><br>
+				<label><?php esc_html_e( 'Name your child theme', 'child-themify' ); ?></label><br>
 				<input type="text" name="new_theme" />
-				<?php submit_button( 'Let\'s get it on!' ); ?>
+				<?php submit_button( __( "Let's get it on!", 'child-themify' ) ); ?>
 			</form>
 		</div>
 		<?php
@@ -106,7 +106,7 @@ class CTF_Babymaker {
 			return $links;
 		}
 		$link = self::getLink( $theme->get_stylesheet() );
-		$html = "<a href=\"$link\">Create a child theme</a>";
+		$html = sprintf( "<a href=\"$link\">%s</a>", __( 'Create a child theme', 'child-themify' ) );
 		$links['child-themify'] = $html;
 		return $links;
 	}
@@ -123,7 +123,7 @@ class CTF_Babymaker {
 		global $wp_filesystem;
 		if ( !($wp_filesystem instanceof WP_Filesystem_Base) ) {
 			if ( !WP_Filesystem() ) {
-				throw new Exception( 'Could not access the filesystem!' );
+				throw new Exception( __( 'Could not access the filesystem!', 'child-themify' ) );
 			}
 		}
 		$oldStylesheet = $template->get_stylesheet();
@@ -146,5 +146,11 @@ EOF;
 		$wp_filesystem->put_contents( $newStylesheet, $stylesheetContents );
 	}
 
+	public static function init() {
+		load_plugin_textdomain( 'child-themify', false, basename( dirname( __FILE__ ) ) . '/languages' );
+	}
+
 }
+
+add_action( 'init', array( 'CTF_Babymaker', 'init' ) );
 
