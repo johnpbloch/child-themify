@@ -147,6 +147,7 @@ EOF;
 
 	public static function init() {
 		load_plugin_textdomain( 'child-themify', false, basename( dirname( __FILE__ ) ) . '/languages' );
+		add_filter( 'theme_action_links', array( 'CTF_Babymaker', 'moodLighting' ), 10, 2 );
 	}
 
 }
