@@ -61,7 +61,6 @@ class CTF_Babymaker {
 		if ( ($creds = request_filesystem_credentials( $url, '', false, get_theme_root(), array( 'new_theme' ) )) === false ) {
 			return true;
 		}
-		echo 'here';
 		if ( !WP_Filesystem( $creds, get_theme_root() ) ) {
 			request_filesystem_credentials( $url, '', true, get_theme_root(), array( 'new_theme' ) );
 			return true;
