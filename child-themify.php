@@ -40,7 +40,7 @@ class CTF_Babymaker {
 		}
 		?>
 		<div class="wrap">
-			<h2><?php esc_html( sprintf( _x( 'Create a child theme from %s', 'The placeholder is for a theme\'s name', 'child-themify' ), $theme->name ) ); ?></h2>
+			<h2><?php echo esc_html( sprintf( _x( 'Create a child theme from %s', 'The placeholder is for a theme\'s name', 'child-themify' ), $theme->name ) ); ?></h2>
 			<form method="post" action="<?php echo esc_url( self::getLink( $theme->get_stylesheet() ) ); ?>">
 				<label><?php esc_html_e( 'Name your child theme', 'child-themify' ); ?></label><br>
 				<input type="text" name="new_theme" />
