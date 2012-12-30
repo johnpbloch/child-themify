@@ -38,6 +38,7 @@ class CTF_Babymaker {
 		if ( self::checkCreds() ) {
 			return;
 		}
+		settings_errors();
 		?>
 		<div class="wrap">
 			<h2><?php echo esc_html( sprintf( _x( 'Create a child theme from %s', 'The placeholder is for a theme\'s name', 'child-themify' ), $theme->name ) ); ?></h2>
