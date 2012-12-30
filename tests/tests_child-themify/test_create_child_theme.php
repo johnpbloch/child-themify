@@ -18,7 +18,7 @@ class WP_Test_Create_Child_Theme extends WP_UnitTestCase {
 		$new_theme_name = sanitize_file_name( $new_theme_name );
 		$this->assertFalse( $current_theme->parent() );
 		CTF_BabyMaker::procreate( $new_theme_name, $current_theme );
-		$this->theme = wp_get_theme( $new_theme_name );
+		$this->theme = wp_get_theme( sanitize_file_name( strtolower( $new_theme_name ) ) );
 		$this->assertTrue( $this->theme->exists() );
 		$this->assertEquals( $this->theme->parent()->get_stylesheet(), $current_theme->get_stylesheet() );
 		$files = $this->theme->get_files();
