@@ -66,8 +66,7 @@ class CTF_Babymaker {
 			request_filesystem_credentials( $url, '', true, get_theme_root(), array( 'new_theme' ) );
 			return true;
 		}
-		$newThemeName = sanitize_file_name( $_POST['new_theme'] );
-		self::procreate( $newThemeName, $theme );
+		self::procreate( $_POST['new_theme'], $theme );
 	}
 
 	/**
@@ -128,7 +127,7 @@ class CTF_Babymaker {
 		}
 		$oldStylesheet = $template->get_stylesheet();
 		$oldName = $template->name;
-		$new_theme_directory = trailingslashit( get_theme_root() ) . sanitize_file_name( $new_theme );
+		$new_theme_directory = trailingslashit( get_theme_root() ) . sanitize_file_name( strtolower( $new_theme ) );
 		$wp_filesystem->mkdir( $new_theme_directory );
 		$newStylesheet = trailingslashit( $new_theme_directory ) . 'style.css';
 		$wp_filesystem->touch( $newStylesheet );
