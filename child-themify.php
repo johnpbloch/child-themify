@@ -144,6 +144,7 @@ Template: $oldStylesheet
 
 EOF;
 		$wp_filesystem->put_contents( $newStylesheet, $stylesheetContents );
+		add_settings_error( '', 'child-themify', __( 'Your child theme was created successfully.', 'child-themify' ), 'updated' );
 	}
 
 	public static function load_themes_page() {
