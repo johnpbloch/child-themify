@@ -133,7 +133,7 @@ class CTF_Babymaker {
 		$wp_filesystem->touch( $newStylesheet );
 		$stylesheetContents = <<<EOF
 /*
-Theme Name: $oldName Child
+Theme Name: $new_theme
 Version: 1.0
 Description: A child theme of $oldName
 Template: $oldStylesheet
