@@ -148,12 +148,26 @@ EOF;
 
 	public static function load_themes_page() {
 		if ( empty( $_GET['action'] ) || $_GET['action'] != 'child-themify' ) {
+			if ( !is_multisite() ) {
+				add_action( 'admin_footer', array( 'CTF_Babymaker', 'link_current_theme') );
+			}
 			return;
 		}
 		require ABSPATH . 'wp-admin/admin-header.php';
 		self::showInterface();
 		require ABSPATH . 'wp-admin/admin-footer.php';
 		exit;
+	}
+
+	public static function link_current_theme() {
+		$theme = wp_get_theme();
+		$link = self::getLink( $theme->get_stylesheet() );
+		$filename = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? 'ctf.js' : 'ctf.min.js';
+		wp_enqueue_script( 'child-themify', plugins_url( $filename, __FILE__ ), array(), '1.0', true );
+		wp_localize_script( 'child-themify', 'childThemify', array(
+			'createAChildTheme' => __( 'Create a child theme', 'child-themify' ),
+			'link' => $link,
+		));
 	}
 
 	public static function init() {
