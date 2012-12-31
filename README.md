@@ -8,21 +8,27 @@ To run tests locally, first, set up the WP testing framework: [http://make.wordp
 
 Then, add some environment variables to your `.bashrc` file:
 
-    export WP_TESTS_DIR=~/wordpress-tests
-    export WP_CORE_DIR=~/path/to/wordpress-core
+```bash
+export WP_TESTS_DIR=~/wordpress-tests
+export WP_CORE_DIR=~/path/to/wordpress-core
+```
 
 Finally, run the tests:
 
-    cd /path/to/child-themify/tests
-    phpunit
+```bash
+cd /path/to/child-themify/tests
+phpunit
+```
 
 If you want to run the tests in Multisite, set the environment variable for it:
 
-    export WP_MULTISITE=1
+```bash
+export WP_MULTISITE=1
+```
 
 I have a few shortcut aliases set up in my `.bashrc` file which you may want to use:
 
-```
+```bash
 alias testsingle="export WP_MULTISITE=0; phpunit"
 alias testmultisite="export WP_MULTISITE=1; phpunit"
 alias testall="export WP_MULTISITE=0; phpunit; export WP_MULTISITE=1; phpunit"
