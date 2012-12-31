@@ -48,7 +48,7 @@ class CTF_Babymaker {
 			<form method="post" action="<?php echo esc_url( self::getLink( $theme->get_stylesheet() ) ); ?>">
 				<label><?php esc_html_e( 'Name your child theme', 'child-themify' ); ?></label><br>
 				<input type="text" name="new_theme" />
-				<?php submit_button( __( "Let's get it on!", 'child-themify' ) ); ?>
+				<?php submit_button( __( "Let's go!", 'child-themify' ) ); ?>
 			</form>
 		</div>
 		<?php
