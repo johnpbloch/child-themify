@@ -142,7 +142,7 @@ Description: A child theme of $oldName
 Template: $oldStylesheet
 */
 
-@import url("../$oldStylesheet/style.css")
+@import url("../$oldStylesheet/style.css");
 
 EOF;
 		$wp_filesystem->put_contents( $newStylesheet, $stylesheetContents );
