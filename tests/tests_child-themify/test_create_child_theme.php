@@ -23,7 +23,12 @@ class WP_Test_Create_Child_Theme extends WP_UnitTestCase {
 		$this->assertEquals( $this->theme->parent()->get_stylesheet(), $current_theme->get_stylesheet() );
 		$files = $this->theme->get_files();
 		$this->assertEquals( count( $files ), 1 );
+
 		$themeDir = $this->theme->get_stylesheet_directory();
+		$themeContents = file_get_contents(trailingslashit($themeDir).'style.css');
+		$hasSemicolon = (false !== strpos($themeContents, "@import url(\"../{$this->theme->template}/style.css\");"));
+		$this->assertTrue($hasSemicolon);
+
 		_rmdir( $themeDir );
 	}
 
