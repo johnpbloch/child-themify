@@ -14,7 +14,11 @@
 		"composer/installers": "~1"
 	},
 	"require-dev"      : {
-		"10up/wp_mock"   : "dev-master",
-		"phpunit/phpunit": "~3.7@stable"
+		"10up/wp_mock"        : "dev-master",
+		"phpunit/phpunit"     : "~3.7@stable",
+		"johnpbloch/wordpress": "~3.8@stable"
+	},
+	"extra"            : {
+		"wordpress-install-dir": "vendor/johnpbloch/wordpress"
 	}
 }
