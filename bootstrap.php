@@ -1,26 +1,8 @@
 <?php
 
-/**
- * Bootstrap the testing environment
- * Uses wordpress tests (http://github.com/nb/wordpress-tests/) which uses PHPUnit
- * @package wordpress-plugin-tests
- *
- * Usage: change the below array to any plugin(s) you want activated during the tests
- *        value should be the path to the plugin relative to /wp-content/
- *
- * Note: Do note change the name of this file. PHPUnit will automatically fire this file when run.
- *
- */
-
-if( file_exists( dirname( __FILE__ ) . '/local-bootstrap.php' ) ) {
-	require_once( dirname( __FILE__ ) . '/local-bootstrap.php' );
+if ( ! file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
+	throw new Exception( 'You must install the project\'s dev dependencies with Composer before you can run the unit test suite!' );
 }
 
-require dirname( __FILE__ ) . '/CTF_Exit_Overload.php';
-set_exit_overload( array( 'CTF_Exit_Overload', 'handler' ) );
-
-$GLOBALS['wp_tests_options'] = array(
-	'active_plugins' => array( 'child-themify/child-themify.php' ),
-);
-
-require getenv( 'WP_TESTS_DIR' ) . '/includes/bootstrap.php';
+require_once __DIR__ . '/vendor/antecedent/patchwork/Patchwork.php';
+require_once __DIR__ . '/vendor/autoload.php';
