@@ -8,11 +8,11 @@
  * License: GPLv2 or later
  */
 
-class CTF_Babymaker {
+class Child_Themify {
 
 	/**
 	 * Check the user's capabilities and validate the nonce
-	 * 
+	 *
 	 * Kills script execution if either of those tests fail
 	 */
 	public static function getTested() {
@@ -74,7 +74,7 @@ class CTF_Babymaker {
 
 	/**
 	 * Get the link to create a child theme from a theme
-	 * 
+	 *
 	 * @param string $theme_name The template theme's directory
 	 * @return string The url to create a child theme
 	 */
@@ -115,7 +115,7 @@ class CTF_Babymaker {
 
 	/**
 	 * Runs the actual child theme creation functionality
-	 * 
+	 *
 	 * @global WP_Filesystem_Base $wp_filesystem
 	 * @param string $new_theme
 	 * @param WP_Theme $template
@@ -152,7 +152,7 @@ EOF;
 	public static function load_themes_page() {
 		if ( empty( $_GET['action'] ) || $_GET['action'] != 'child-themify' ) {
 			if ( !is_multisite() ) {
-				add_action( 'admin_footer', array( 'CTF_Babymaker', 'link_current_theme') );
+				add_action( 'admin_footer', array( 'Child_Themify', 'link_current_theme') );
 			}
 			return;
 		}
@@ -175,11 +175,11 @@ EOF;
 
 	public static function init() {
 		load_plugin_textdomain( 'child-themify', false, basename( dirname( __FILE__ ) ) . '/languages' );
-		add_filter( 'theme_action_links', array( 'CTF_Babymaker', 'moodLighting' ), 10, 2 );
-		add_action( 'load-themes.php', array( 'CTF_Babymaker', 'load_themes_page' ) );
+		add_filter( 'theme_action_links', array( 'Child_Themify', 'moodLighting' ), 10, 2 );
+		add_action( 'load-themes.php', array( 'Child_Themify', 'load_themes_page' ) );
 	}
 
 }
 
-add_action( 'init', array( 'CTF_Babymaker', 'init' ) );
+add_action( 'init', array( 'Child_Themify', 'init' ) );
 

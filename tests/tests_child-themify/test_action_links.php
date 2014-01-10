@@ -42,7 +42,7 @@ class WP_Test_CTF_Action_Links extends WP_UnitTestCase {
 			'_ctf_nonce' => wp_create_nonce( "child_themify_$theme_slug" ),
 		);
 		$link = add_query_arg( $args, admin_url( 'themes.php' ) );
-		$this->assertEquals( $link, CTF_Babymaker::getLink( $theme_slug ) );
+		$this->assertEquals( $link, Child_Themify::getLink( $theme_slug ) );
 	}
 
 	public function test_get_link_network() {
@@ -57,7 +57,7 @@ class WP_Test_CTF_Action_Links extends WP_UnitTestCase {
 			'_ctf_nonce' => wp_create_nonce( "child_themify_$theme_slug" ),
 		);
 		$link = add_query_arg( $args, network_admin_url( 'themes.php' ) );
-		$this->assertEquals( $link, CTF_Babymaker::getLink( $theme_slug ) );
+		$this->assertEquals( $link, Child_Themify::getLink( $theme_slug ) );
 	}
 
 	/**
@@ -65,13 +65,13 @@ class WP_Test_CTF_Action_Links extends WP_UnitTestCase {
 	 */
 	public function test_action_links() {
 		$theme_slug = $this->theme->get_stylesheet();
-		$links = CTF_Babymaker::moodLighting( array( ), $this->theme );
+		$links = Child_Themify::moodLighting( array( ), $this->theme );
 		$this->assertInternalType( 'array', $links );
 		$this->assertArrayHasKey( 'child-themify', $links );
-		$link = CTF_Babymaker::getLink( $theme_slug );
+		$link = Child_Themify::getLink( $theme_slug );
 		$this->assertContains( $link, $links['child-themify'] );
 		define( 'DISALLOW_FILE_MODS', true );
-		$links = CTF_Babymaker::moodLighting( array( ), $this->theme );
+		$links = Child_Themify::moodLighting( array( ), $this->theme );
 		$this->assertInternalType( 'array', $links );
 		$this->assertArrayNotHasKey( 'child-themify', $links );
 	}

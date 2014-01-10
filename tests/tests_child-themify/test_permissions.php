@@ -45,7 +45,7 @@ class WP_Test_CTF_Permissions extends WP_UnitTestCase {
 			wp_set_current_user( $this->users[$x]->ID );
 			$_GET['_ctf_nonce'] = $_REQUEST['_ctf_nonce'] = wp_create_nonce( 'child_themify_' . $current_theme_slug );
 			$_GET['theme'] = $current_theme_slug;
-			CTF_Babymaker::getTested();
+			Child_Themify::getTested();
 			switch ( $x ) {
 				case 0:
 				case 1:
@@ -73,7 +73,7 @@ class WP_Test_CTF_Permissions extends WP_UnitTestCase {
 			wp_set_current_user( $this->users[$x]->ID );
 			$_GET['_ctf_nonce'] = $_REQUEST['_ctf_nonce'] = wp_create_nonce( 'child_themify_' . $current_theme_slug );
 			$_GET['theme'] = $current_theme_slug;
-			CTF_Babymaker::getTested();
+			Child_Themify::getTested();
 			switch ( $x ) {
 				case 0:
 				case 2:
@@ -105,15 +105,15 @@ class WP_Test_CTF_Permissions extends WP_UnitTestCase {
 		$_GET['_ctf_nonce'] = $_REQUEST['_ctf_nonce'] = wp_create_nonce( 'child_themify_' . $current_theme_slug );
 		$_GET['theme'] = $current_theme_slug;
 		$count = CTF_Exit_Overload::count();
-		CTF_Babymaker::getTested();
+		Child_Themify::getTested();
 		$this->assertEquals( $count, CTF_Exit_Overload::count() );
 		define( 'DISALLOW_FILE_EDIT', true );
 		$count = CTF_Exit_Overload::count();
-		CTF_Babymaker::getTested();
+		Child_Themify::getTested();
 		$this->assertEquals( $count, CTF_Exit_Overload::count() );
 		define( 'DISALLOW_FILE_MODS', true );
 		$count = CTF_Exit_Overload::count();
-		CTF_Babymaker::getTested();
+		Child_Themify::getTested();
 		$this->assertNotEquals( $count, CTF_Exit_Overload::count() );
 	}
 

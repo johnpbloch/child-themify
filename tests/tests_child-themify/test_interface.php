@@ -32,7 +32,7 @@ class WP_Test_CTF_Interface extends WP_UnitTestCase {
 
 	public function test_output() {
 		ob_start();
-		CTF_Babymaker::showInterface();
+		Child_Themify::showInterface();
 		$contents = ob_get_clean();
 		$this->assertContains( 'child theme', strtolower( $contents ) );
 		$this->assertNotContains( '<h2>Connection Information</h2>', $contents );
@@ -44,7 +44,7 @@ class WP_Test_CTF_Interface extends WP_UnitTestCase {
 		foreach ( array( 'ssh', 'ftpext', 'ftpsockets' ) as $method ) {
 			self::$method = $method;
 			ob_start();
-			CTF_Babymaker::showInterface();
+			Child_Themify::showInterface();
 			$contents = ob_get_clean();
 			$this->assertContains( '<h2>Connection Information</h2>', $contents );
 			$this->assertNotContains( 'child theme', strtolower( $contents ) );
