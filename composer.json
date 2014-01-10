@@ -1,0 +1,16 @@
+{
+	"name"             : "johnpbloch/child-themify",
+	"description"      : "Create child themes with the click of a button",
+	"minimum-stability": "stable",
+	"license"          : "GPL-2.0+",
+	"type"             : "wordpress-plugin",
+	"authors"          : [
+		{
+			"name" : "John P. Bloch",
+			"email": "me@johnpbloch.com"
+		}
+	],
+	"require"          : {
+		"composer/installers": "~1"
+	}
+}
