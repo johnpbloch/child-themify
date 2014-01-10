@@ -65,13 +65,13 @@ class WP_Test_CTF_Action_Links extends WP_UnitTestCase {
 	 */
 	public function test_action_links() {
 		$theme_slug = $this->theme->get_stylesheet();
-		$links = Child_Themify::moodLighting( array( ), $this->theme );
+		$links = Child_Themify::addActionLink( array( ), $this->theme );
 		$this->assertInternalType( 'array', $links );
 		$this->assertArrayHasKey( 'child-themify', $links );
 		$link = Child_Themify::getLink( $theme_slug );
 		$this->assertContains( $link, $links['child-themify'] );
 		define( 'DISALLOW_FILE_MODS', true );
-		$links = Child_Themify::moodLighting( array( ), $this->theme );
+		$links = Child_Themify::addActionLink( array( ), $this->theme );
 		$this->assertInternalType( 'array', $links );
 		$this->assertArrayNotHasKey( 'child-themify', $links );
 	}
