@@ -1,7 +1,7 @@
 {
 	"name"             : "johnpbloch/child-themify",
 	"description"      : "Create child themes with the click of a button",
-	"minimum-stability": "stable",
+	"minimum-stability": "dev",
 	"license"          : "GPL-2.0+",
 	"type"             : "wordpress-plugin",
 	"authors"          : [
@@ -12,5 +12,9 @@
 	],
 	"require"          : {
 		"composer/installers": "~1"
+	},
+	"require-dev"      : {
+		"10up/wp_mock"   : "dev-master",
+		"phpunit/phpunit": "~3.7"
 	}
 }
