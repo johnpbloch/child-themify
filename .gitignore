@@ -3,3 +3,4 @@ tests/local-bootstrap.php
 readme.txt
 composer.lock
 vendor/
+phpunit.xml
