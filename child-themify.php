@@ -8,6 +8,9 @@
  * License: GPLv2 or later
  */
 
+define( 'CTF_PATH', WP_PLUGIN_DIR . '/' . basename( dirname( __FILE__ ) ) . '/' . basename( __FILE__ ) );
+define( 'CTF_URL', WP_PLUGIN_URL . '/' . basename( dirname( __FILE__ ) ) . '/' . basename( __FILE__ ) );
+
 class Child_Themify {
 
 	const VERSION = '1.0.1';
@@ -228,7 +231,7 @@ EOF;
 		$link     = $this->getLink( $theme );
 		$js       = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? 'js' : 'min.js';
 		$filename = "assets/js/child-themify.$js";
-		wp_enqueue_script( 'child-themify', plugins_url( $filename, __FILE__ ), array(), self::VERSION, true );
+		wp_enqueue_script( 'child-themify', plugins_url( $filename, CTF_PATH ), array( 'theme' ), self::VERSION, true );
 		wp_localize_script( 'child-themify', 'childThemify', array(
 			'createAChildTheme' => __( 'Create a child theme', 'child-themify' ),
 			'link'              => $link,
