@@ -1,4 +1,4 @@
-(function (l10n) {
+(function (window, l10n, undefined) {
 	if (typeof l10n.link !== 'string' || l10n.link.length < 1) {
 		return;
 	}
@@ -29,4 +29,4 @@
 	newListItem = document.createElement('li');
 	newListItem.appendChild(newLink);
 	optionsLinks.appendChild(newListItem);
-}(this.childThemify));
+}(this, this.childThemify));
