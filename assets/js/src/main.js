@@ -48,4 +48,4 @@
 	}
 
 	$(onLoad);
-}(this, this.childThemify));
+}(window, window.childThemify));
