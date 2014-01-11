@@ -5,3 +5,4 @@ composer.lock
 vendor/
 phpunit.xml
 node_modules/
+assets/js/child-themify.*

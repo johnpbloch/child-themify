@@ -10,6 +10,8 @@
 
 class Child_Themify {
 
+	const VERSION = '1.0.1';
+
 	/**
 	 * Check the user's capabilities and validate the nonce
 	 *
@@ -225,8 +227,8 @@ EOF;
 		$theme    = wp_get_theme();
 		$link     = $this->getLink( $theme );
 		$js       = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? 'js' : 'min.js';
-		$filename = "ctf.$js";
-		wp_enqueue_script( 'child-themify', plugins_url( $filename, __FILE__ ), array(), '1.0', true );
+		$filename = "assets/js/child-themify.$js";
+		wp_enqueue_script( 'child-themify', plugins_url( $filename, __FILE__ ), array(), self::VERSION, true );
 		wp_localize_script( 'child-themify', 'childThemify', array(
 			'createAChildTheme' => __( 'Create a child theme', 'child-themify' ),
 			'link'              => $link,
