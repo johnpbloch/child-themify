@@ -4,3 +4,4 @@ readme.txt
 composer.lock
 vendor/
 phpunit.xml
+node_modules/

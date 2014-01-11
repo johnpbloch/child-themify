@@ -1,0 +1,12 @@
+{
+	"name"           : "ChidThemify",
+	"version"        : "1.0.1",
+	"description"    : "",
+	"main"           : "Gruntfile.js.js",
+	"devDependencies": {
+		"grunt"               : "~0.4",
+		"grunt-contrib-uglify": "~0.2",
+		"grunt-contrib-jshint": "~0.8",
+		"grunt-contrib-watch" : "~0.5"
+	}
+}
