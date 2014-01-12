@@ -70,6 +70,8 @@
 		if (undefined !== themes.data.settings.theme && '' !== themes.data.settings.theme) {
 			injectLinks(themesView.overlay.$el, themesView.model);
 		}
+
+		themesView.listenTo(themesView.collection, 'update', initialize);
 	}
 
 	$(onLoad);
