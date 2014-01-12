@@ -36,8 +36,7 @@
 		}, 30);
 	}
 
-	function onLoad() {
-		themesView = themes.Run.view.view;
+	function initialize() {
 		var index,
 				obj,
 				listeners = themesView._listeners,
@@ -60,9 +59,16 @@
 					themesView.listenTo(themeViews[index], 'theme:expand', onExpand);
 				}
 			}
-			if (undefined !== themes.data.settings.theme && '' !== themes.data.settings.theme) {
-				injectLinks(themesView.overlay.$el, themesView.model);
-			}
+		}
+	}
+
+	function onLoad() {
+		themesView = themes.Run.view.view;
+
+		initialize();
+
+		if (undefined !== themes.data.settings.theme && '' !== themes.data.settings.theme) {
+			injectLinks(themesView.overlay.$el, themesView.model);
 		}
 	}
 
