@@ -109,7 +109,6 @@ class Child_Themify {
 			return true;
 		}
 		$this->create( $_POST['new_theme'], $theme );
-		self::procreate( $_POST['new_theme'], $theme );
 	}
 
 	/**
