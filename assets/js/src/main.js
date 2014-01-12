@@ -1,4 +1,4 @@
-(function (window, l10n) {
+(function (window, l10n, undefined) {
 	var $ = window.jQuery,
 			themes = window.wp.themes,
 			themesView,
@@ -59,6 +59,9 @@
 				if (themeViews.hasOwnProperty(index)) {
 					themesView.listenTo(themeViews[index], 'theme:expand', onExpand);
 				}
+			}
+			if (undefined !== themes.data.settings.theme && '' !== themes.data.settings.theme) {
+				injectLinks(themesView.overlay.$el, themesView.model);
 			}
 		}
 	}
