@@ -17,6 +17,9 @@
 	}
 
 	function injectLinks(into, model) {
+		if (model.get('parent')) {
+			return;
+		}
 		var className = '.theme-actions .' + (model.get('active') ? '' : 'in') + 'active-theme',
 				links = into.find(className),
 				link = createLink(model.id);
