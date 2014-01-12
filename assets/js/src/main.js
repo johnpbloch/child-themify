@@ -4,7 +4,7 @@
 			themesView,
 			themeViews = {};
 
-	function createLink(theme) {
+	function createUrl(theme) {
 		var link = window.location.href;
 		if (link.indexOf('?')) {
 			link = link.substr(0, link.indexOf('?'));
@@ -22,7 +22,7 @@
 		}
 		var className = '.theme-actions .' + (model.get('active') ? '' : 'in') + 'active-theme',
 				links = into.find(className),
-				link = createLink(model.id);
+				link = createUrl(model.id);
 		if (links.length) {
 			links.first().append('<a href="' + link + '" class="button button-secondary">' +
 					l10n.createAChildTheme +
