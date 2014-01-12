@@ -4,11 +4,24 @@
 			themesView,
 			themeViews = {};
 
+	function createLink(theme) {
+		var link = window.location.href;
+		if (link.indexOf('?')) {
+			link = link.substr(0, link.indexOf('?'));
+		}
+		link += '?action=child-themify';
+		link += '&theme=' + theme;
+		link += '&_ctf_nonce=' + l10n.nonce;
+
+		return link;
+	}
+
 	function injectLinks(into, model) {
 		var className = '.theme-actions .' + (model.get('active') ? '' : 'in') + 'active-theme',
-				links = into.find(className);
+				links = into.find(className),
+				link = createLink(model.id);
 		if (links.length) {
-			links.first().append('<a href="#" class="button button-secondary">' +
+			links.first().append('<a href="' + link + '" class="button button-secondary">' +
 					l10n.createAChildTheme +
 					'</a>');
 		}
