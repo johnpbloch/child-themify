@@ -43,22 +43,17 @@ class Child_Themify {
 	}
 
 	/**
-	 * @param WP_Theme $theme
-	 *
 	 * @return string
 	 */
-	public function nonce( WP_Theme $theme ) {
-		return wp_create_nonce( $this->nonceName( $theme ) );
+	public function nonce() {
+		return wp_create_nonce( $this->nonceName() );
 	}
 
 	/**
-	 * @param WP_Theme $theme
-	 *
 	 * @return string
 	 */
-	public function nonceName( WP_Theme $theme ) {
-		$stylesheet = $theme->get_stylesheet();
-		return "child_themify_$stylesheet";
+	public function nonceName() {
+		return "child_themify";
 	}
 
 	public function showInterface() {
@@ -226,14 +221,12 @@ EOF;
 	}
 
 	public function linkThemes() {
-		$theme    = wp_get_theme();
-		$link     = $this->getLink( $theme );
 		$js       = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? 'js' : 'min.js';
 		$filename = "assets/js/child-themify.$js";
 		wp_enqueue_script( 'child-themify', plugins_url( $filename, CTF_PATH ), array( 'theme' ), self::VERSION, true );
 		wp_localize_script( 'child-themify', 'childThemify', array(
 			'createAChildTheme' => __( 'Create a child theme', 'child-themify' ),
-			'link'              => $link,
+			'nonce'             => $this->nonce(),
 		) );
 	}
 
