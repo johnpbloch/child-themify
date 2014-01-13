@@ -162,8 +162,8 @@ EOF;
 	public static function link_current_theme() {
 		$theme    = wp_get_theme();
 		$link     = self::getLink( $theme->get_stylesheet() );
-		$filename = 'assets/js/';
-		$filename .= defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? 'ctf.js' : 'ctf.min.js';
+		$filename = 'assets/js/legacy.';
+		$filename .= defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? 'js' : 'min.js';
 		wp_enqueue_script( 'child-themify', plugins_url( $filename, __FILE__ ), array(), '1.0', true );
 		wp_localize_script( 'child-themify', 'childThemify', array(
 			'createAChildTheme' => __( 'Create a child theme', 'child-themify' ),
