@@ -25,6 +25,8 @@ module.exports = function (grunt) {
 							'**',
 							// No source control should be copied
 							'!**/.git**/**',
+							// No Github files should be copied
+							'!**/README.md',
 							// No Grunt stuff should get copied
 							'!**/node_modules/**',
 							'!**/package.json',
