@@ -102,7 +102,7 @@ class Child_Themify {
 	 */
 	public function getLink( WP_Theme $theme ) {
 		// If the current user can't install a theme, the theme doesn't exist
-		if ( $this->isValidTheme( $theme ) ) {
+		if ( ! $this->isValidTheme( $theme ) ) {
 			return '';
 		}
 
@@ -138,7 +138,7 @@ class Child_Themify {
 		if ( ! ( $theme instanceof WP_Theme ) ) {
 			$theme = wp_get_theme( $theme );
 		}
-		if ( $this->isValidTheme( $theme ) ) {
+		if ( ! $this->isValidTheme( $theme ) ) {
 			return $links;
 		}
 		$link = $this->getLink( $theme );
