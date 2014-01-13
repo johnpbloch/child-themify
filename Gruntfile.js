@@ -3,6 +3,53 @@ module.exports = function (grunt) {
 	var PACKAGE = grunt.file.readJSON('package.json');
 	grunt.initConfig({
 		pkg   : PACKAGE,
+		clean : {
+			trunk: {
+				dot   : false,
+				expand: true,
+				cwd   : 'build/trunk',
+				src   : [
+					'**/*',
+					'!readme.txt'
+				]
+			}
+		},
+		copy  : {
+			files: {
+				files: [
+					{
+						dot   : false,
+						expand: true,
+						cwd   : '.',
+						src   : [
+							'**',
+							// No source control should be copied
+							'!**/.git**/**',
+							// No Grunt stuff should get copied
+							'!**/node_modules/**',
+							'!**/package.json',
+							'!**/Gruntfile.js',
+							// No composer stuff should get copied
+							'!**/vendor/**',
+							'!**/composer.json',
+							'!**/composer.lock',
+							'!**/composer.phar',
+							// No PHPUnit stuff should get copied
+							'!phpunit.xml**',
+							'!bootstrap.php',
+							'!tests/**',
+							// Only the compiled js
+							'!assets/js/{src,vendor}/**',
+							// Don't copy the build folder into itself
+							'!build/**',
+							// Don't copy the main plugin file's parts
+							'!plugin/**'
+						],
+						dest  : 'build/trunk/'
+					}
+				]
+			}
+		},
 		concat: {
 			childthemify: {
 				src : ['assets/js/src/main.js'],
@@ -70,10 +117,13 @@ module.exports = function (grunt) {
 		}
 	});
 
+	grunt.loadNpmTasks('grunt-contrib-clean');
+	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 
+	grunt.registerTask('build', ['jshint', 'concat', 'uglify', 'clean:trunk', 'copy:files']);
 	grunt.registerTask('default', ['jshint', 'concat', 'uglify']);
 };
