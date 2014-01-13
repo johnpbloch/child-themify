@@ -1,9 +1,5 @@
 <?php
 
-define( 'CTF_PATH', WP_PLUGIN_DIR . '/' . basename( dirname( __FILE__ ) ) . '/' . basename( __FILE__ ) );
-define( 'CTF_URL', WP_PLUGIN_URL . '/' . basename( dirname( __FILE__ ) ) . '/' . basename( __FILE__ ) );
-define( 'CTF_VERSION', '%%VERSION%%' );
-
 function ctf_plugins_loaded() {
 	if ( version_compare( $GLOBALS['wp_version'], '3.8', '>=' ) ) {
 		global $child_themify;
