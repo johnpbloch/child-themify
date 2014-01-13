@@ -164,7 +164,7 @@ EOF;
 		$link     = self::getLink( $theme->get_stylesheet() );
 		$filename = 'assets/js/legacy.';
 		$filename .= defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? 'js' : 'min.js';
-		wp_enqueue_script( 'child-themify', plugins_url( $filename, __FILE__ ), array(), '1.0', true );
+		wp_enqueue_script( 'child-themify', plugins_url( $filename, CTF_PATH ), array(), '1.0', true );
 		wp_localize_script( 'child-themify', 'childThemify', array(
 			'createAChildTheme' => __( 'Create a child theme', 'child-themify' ),
 			'link'              => $link,
@@ -172,7 +172,7 @@ EOF;
 	}
 
 	public static function init() {
-		load_plugin_textdomain( 'child-themify', false, basename( dirname( __FILE__ ) ) . '/languages' );
+		load_plugin_textdomain( 'child-themify', false, basename( dirname( CTF_PATH ) ) . '/languages' );
 		add_filter( 'theme_action_links', array( 'CTF_Babymaker', 'moodLighting' ), 10, 2 );
 		add_action( 'load-themes.php', array( 'CTF_Babymaker', 'load_themes_page' ) );
 	}
