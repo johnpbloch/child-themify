@@ -27,7 +27,7 @@ module.exports = function (grunt) {
 						return src;
 					}
 				},
-				src    : ['constants.php','main.php'],
+				src    : ['plugin/constants.php', 'plugin/main.php'],
 				dest   : 'child-themify.php'
 			}
 		},
