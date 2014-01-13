@@ -7,3 +7,4 @@ phpunit.xml
 node_modules/
 assets/js/child-themify.*
 child-themify.php
+assets/js/legacy.*

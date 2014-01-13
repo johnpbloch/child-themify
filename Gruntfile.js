@@ -8,6 +8,10 @@ module.exports = function (grunt) {
 				src : ['assets/js/src/main.js'],
 				dest: 'assets/js/child-themify.js'
 			},
+			legacy      : {
+				src : ['assets/js/src/legacy.js'],
+				dest: 'assets/js/legacy.js'
+			},
 			plugin      : {
 				options: {
 					banner : '<?php\n/*\n' +
@@ -40,7 +44,8 @@ module.exports = function (grunt) {
 			},
 			childthemify: {
 				files: {
-					'assets/js/child-themify.min.js': ['assets/js/child-themify.js']
+					'assets/js/child-themify.min.js': ['assets/js/child-themify.js'],
+					'assets/js/legacy.min.js'       : ['assets/js/legacy.js']
 				}
 			}
 		},
