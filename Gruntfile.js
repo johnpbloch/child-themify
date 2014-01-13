@@ -18,10 +18,10 @@ module.exports = function (grunt) {
 							' * Plugin URI: https://github.com/johnpbloch/child-themify\n' +
 							' * Author: John P. Bloch\n' +
 							' * License: GPLv2 or later\n' +
-							' */\n\n',
+							' */\n',
 					process: function (src) {
 						// Remove leading php open tags
-						src = src.replace((/^<php\s*/), '');
+						src = src.replace('<?php\n', '');
 						// Replace version strings
 						src = src.replace('%%VERSION%%', '' + PACKAGE.version);
 						return src;
