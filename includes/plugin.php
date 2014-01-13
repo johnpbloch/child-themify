@@ -208,6 +208,9 @@ EOF;
 	}
 
 	public function linkThemes() {
+		if ( ! $this->checkCapability() ) {
+			return;
+		}
 		$js       = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? 'js' : 'min.js';
 		$filename = "assets/js/child-themify.$js";
 		wp_enqueue_script( 'child-themify', plugins_url( $filename, CTF_PATH ), array( 'theme' ), CTF_VERSION, true );
