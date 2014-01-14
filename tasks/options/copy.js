@@ -8,7 +8,7 @@ module.exports = (function () {
 				'!**/README.md',
 				// No Grunt stuff should get copied
 				'!**/node_modules/**',
-				'!/tasks/**',
+				'!**/tasks/**',
 				'!**/package.json',
 				'!**/Gruntfile.js',
 				// No composer stuff should get copied
