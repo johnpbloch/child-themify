@@ -5,6 +5,7 @@
 	"main"           : "Gruntfile.js.js",
 	"devDependencies": {
 		"glob"                : "~3.2",
+		"temp"                : "~0.6",
 		"grunt"               : "~0.4",
 		"load-grunt-tasks"    : "~0.2",
 		"grunt-contrib-clean" : "~0.5",
