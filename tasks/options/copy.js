@@ -27,12 +27,16 @@ module.exports = (function () {
 				// Don't copy the main plugin file's parts
 				'!plugin/**'
 			],
-			temp = require('temp');
+			temp = require('temp'),
+			path = require('path'),
+			tempDir;
 
 	temp.track();
 
+	tempDir = path.join(temp.mkdirSync(), 'child-themify');
+
 	return {
-		files: {
+		files : {
 			files: [
 				{
 					dot   : false,
@@ -43,16 +47,17 @@ module.exports = (function () {
 				}
 			]
 		},
-		tmp  : {
+		tmp   : {
 			files: [
 				{
 					dot   : false,
 					expand: true,
 					cwd   : '.',
 					src   : SRC,
-					dest  : temp.mkdirSync()
+					dest  : tempDir
 				}
 			]
-		}
+		},
+		tmpDir: tempDir
 	};
 }());

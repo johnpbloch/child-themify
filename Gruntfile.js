@@ -24,6 +24,9 @@ module.exports = function (grunt) {
 
 	grunt.initConfig(config);
 
+	grunt.loadTasks('tasks');
+
+	grunt.registerTask('i18n', ['copy:tmp', 'makepot']);
 	grunt.registerTask('build', ['jshint', 'concat', 'uglify', 'clean:trunk', 'copy:files']);
 	grunt.registerTask('default', ['jshint', 'concat', 'uglify']);
 };
