@@ -10,13 +10,19 @@
 			"email": "me@johnpbloch.com"
 		}
 	],
+	"repositories"     : [
+		{
+			"type": "composer",
+			"url" : "http://composer.johnpbloch.com"
+		}
+	],
 	"require"          : {
 		"composer/installers": "~1"
 	},
 	"require-dev"      : {
 		"10up/wp_mock"        : "dev-master",
 		"phpunit/phpunit"     : "~3.7@stable",
-		"johnpbloch/wordpress": "~3.8@stable"
+		"wordpress/i18n-tools": "dev-trunk"
 	},
 	"extra"            : {
 		"wordpress-install-dir": "vendor/johnpbloch/wordpress"
