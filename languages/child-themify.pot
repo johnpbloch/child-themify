@@ -1,43 +1,44 @@
-# Copyright (C) 2012 Child Themify
+# Copyright (C) 2014 Child Themify
 # This file is distributed under the same license as the Child Themify package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Child Themify 0.1-alpha\n"
-"Report-Msgid-Bugs-To: http://wordpress.org/tag/child-themify\n"
-"POT-Creation-Date: 2012-12-31 17:13:34+00:00\n"
+"Project-Id-Version: Child Themify 1.0.2\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/child-themify\n"
+"POT-Creation-Date: 2014-01-14 15:19:34+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2012-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2014-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
-#: child-themify.php:21
+#: includes/legacy.php:13 includes/plugin.php:14
 msgid "You do not have permission to do that!"
 msgstr ""
 
-#: child-themify.php:47
+#: includes/legacy.php:39 includes/plugin.php:62
 msgctxt "The placeholder is for a theme's name"
 msgid "Create a child theme from %s"
 msgstr ""
 
-#: child-themify.php:49
+#: includes/legacy.php:42 includes/plugin.php:65
 msgid "Name your child theme"
 msgstr ""
 
-#: child-themify.php:51
+#: includes/legacy.php:44 includes/plugin.php:67
 msgid "Let's go!"
 msgstr ""
 
-#: child-themify.php:111 child-themify.php:171
+#: includes/legacy.php:106 includes/legacy.php:169 includes/plugin.php:145
+#: includes/plugin.php:218
 msgid "Create a child theme"
 msgstr ""
 
-#: child-themify.php:128
+#: includes/legacy.php:125 includes/plugin.php:165
 msgid "Could not access the filesystem!"
 msgstr ""
 
-#: child-themify.php:149
+#: includes/legacy.php:146 includes/plugin.php:186
 msgid "Your child theme was created successfully."
 msgstr ""
 
