@@ -4,7 +4,7 @@ module.exports = (function () {
 	return {
 		options: grunt.file.readJSON('.jshintrc'),
 		grunt  : {
-			src: ['Gruntfile.js']
+			src: ['Gruntfile.js', 'tasks/**/*.js']
 		},
 		ctf    : {
 			src: ['assets/js/src/**/*.js']
