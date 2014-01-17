@@ -2,7 +2,7 @@
 	"name"           : "child-themify",
 	"version"        : "1.0.2",
 	"description"    : "Create child themes from any non-child theme at the click of a button.\n\nThis plugin is multisite compatible; if used on a multisite network, controls for creating child themes will be in the network admin instead of the regular site admin.",
-	"main"           : "Gruntfile.js.js",
+	"main"           : "Gruntfile.js",
 	"keywords"       : ["themes", "child", "theme"],
 	"license"        : "GPL-2.0+",
 	"devDependencies": {
@@ -19,47 +19,5 @@
 		"grunt-phplint"       : "0.0.5",
 		"grunt-wp-readme"     : "~0.1",
 		"grunt-wp-deploy"     : "~0.3"
-	},
-	"wpData"         : {
-		"displayName"     : "Child Themify",
-		"contributors"    : ["JohnPBloch"],
-		"minimumVersion"  : "3.4.2",
-		"testtedUpTo"     : "3.8",
-		"shortDescription": "Create child themes at the click of a button.",
-		"installation"    : [
-			"Upload the `child-themify` directory and its contents to the `/wp-content/plugins/` directory (or your custom location if you manually changed the location).",
-			"Activate the plugin through the 'Plugins' menu in WordPress",
-			"You can now create a child theme of any non-child theme you have installed by going to the themes page and clicking \"Create a child theme\" from the actions links of the theme of your choice."
-		],
-		"faq"             : [],
-		"screenshots"     : [
-			{
-				"file"   : "network-admin.png",
-				"caption": "Network administration area"
-			},
-			{
-				"file"   : "single-site.png",
-				"caption": "Single site administration area"
-			}
-		],
-		"changelog"       : [
-			{
-				"version"       : "1.0.2",
-				"releaseMessage": "This version fixes the plugin in WordPress 3.8",
-				"releaseDate"   : "2014-01-13",
-				"changes"       : ["Added support for WP 3.8"]
-			},
-			{
-				"version"       : "1.0.1",
-				"releaseMessage": "This version fixes a bug that will prevent some users' css from taking effect in new child themes.",
-				"releaseDate"   : "2013-01-18",
-				"changes"       : ["Add a semicolon to the end of the @import line in the stylesheet. Props to Luis Alejandre (wpthemedetector.com) for finding and solving."]
-			},
-			{
-				"version"    : "1.0",
-				"releaseDate": "2012-12-31",
-				"changes"    : ["Initial Release"]
-			}
-		]
 	}
 }
