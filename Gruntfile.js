@@ -18,7 +18,7 @@ module.exports = function (grunt) {
 	var PACKAGE = grunt.file.readJSON('package.json'),
 			config = {
 				pkg   : PACKAGE,
-				banner: '/*! <%= pkg.wpData.displayName %> - v<%= pkg.version %>\n' +
+				banner: '/*! <%= wp_readme.plugin.displayName %> - v<%= pkg.version %>\n' +
 						'* Copyright (c) <%= grunt.template.today("yyyy") %> ' +
 						'John P. Bloch */\n'
 			};

@@ -19,8 +19,8 @@ module.exports = (function () {
 		plugin      : {
 			options: {
 				banner : '<?php\n/*\n' +
-						' * Plugin Name: <%= pkg.wpData.displayName %>\n' +
-						' * Description: <%= pkg.wpData.shortDescription %>\n' +
+						' * Plugin Name: <%= wp_readme.plugin.displayName %>\n' +
+						' * Description: <%= wp_readme.plugin.blurb %>\n' +
 						' * Version: <%= pkg.version %>\n' +
 						' * Plugin URI: https://github.com/johnpbloch/child-themify\n' +
 						' * Author: John P. Bloch\n' +
