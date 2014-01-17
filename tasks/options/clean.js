@@ -3,7 +3,7 @@ module.exports = {
 	trunk: {
 		dot   : false,
 		expand: true,
-		cwd   : 'build/trunk',
-		src   : ['**/*']
+		cwd   : 'build/',
+		src   : ['trunk/**/*', 'assets/screenshot-*']
 	}
 };
