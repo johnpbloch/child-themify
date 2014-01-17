@@ -2,7 +2,7 @@
 module.exports = {
 	options     : {
 		// the banner is inserted at the top of the output
-		banner: '/*! Child Themify - v<%= pkg.version %>\n' +
+		banner: '/*! <%= pkg.wpData.displayName %> - v<%= pkg.version %>\n' +
 				'* Copyright (c) <%= grunt.template.today("yyyy") %> ' +
 				'John P. Bloch */'
 	},

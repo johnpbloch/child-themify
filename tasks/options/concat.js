@@ -1,7 +1,6 @@
 /* jshint node:true */
 module.exports = (function () {
-	var grunt = require('grunt'),
-			PACKAGE = grunt.file.readJSON('package.json');
+	var grunt = require('grunt');
 	return{
 		childthemify: {
 			src : ['assets/js/src/main.js'],
@@ -14,19 +13,18 @@ module.exports = (function () {
 		plugin      : {
 			options: {
 				banner : '<?php\n/*\n' +
-						' * Plugin Name: Child Themify\n' +
-						' * Description: Enables the quick creation of child themes ' +
-						'from any non-child theme you have installed.\n' +
+						' * Plugin Name: <%= pkg.wpData.displayName %>\n' +
+						' * Description: <%= pkg.wpData.shortDescription %>\n' +
 						' * Version: <%= pkg.version %>\n' +
 						' * Plugin URI: https://github.com/johnpbloch/child-themify\n' +
 						' * Author: John P. Bloch\n' +
-						' * License: GPLv2 or later\n' +
+						' * License: <%= pkg.license %>\n' +
 						' */\n',
 				process: function (src) {
 					// Remove leading php open tags
 					src = src.replace('<?php\n', '');
 					// Replace version strings
-					src = src.replace('%%VERSION%%', '' + PACKAGE.version);
+					src = src.replace('%%VERSION%%', '' + grunt.config('pkg').version);
 					return src;
 				}
 			},
