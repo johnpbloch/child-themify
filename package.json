@@ -30,24 +30,33 @@
 		],
 		"faq"             : [],
 		"screenshots"     : [
-			"Network administration area",
-			"Single site administration area"
+			{
+				"file"   : "network-admin.png",
+				"caption": "Network administration area"
+			},
+			{
+				"file"   : "single-site.png",
+				"caption": "Single site administration area"
+			}
 		],
-		"changelog"       : {
-			"1.0.2": {
+		"changelog"       : [
+			{
+				"version"       : "1.0.2",
 				"releaseMessage": "This version fixes the plugin in WordPress 3.8",
 				"releaseDate"   : "2014-01-13",
 				"changes"       : ["Added support for WP 3.8"]
 			},
-			"1.0.1": {
+			{
+				"version"       : "1.0.1",
 				"releaseMessage": "This version fixes a bug that will prevent some users' css from taking effect in new child themes.",
 				"releaseDate"   : "2013-01-18",
 				"changes"       : ["Add a semicolon to the end of the @import line in the stylesheet. Props to Luis Alejandre (wpthemedetector.com) for finding and solving."]
 			},
-			"1.0"  : {
+			{
+				"version"    : "1.0",
 				"releaseDate": "2012-12-31",
 				"changes"    : ["Initial Release"]
 			}
-		}
+		]
 	}
 }
