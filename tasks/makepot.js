@@ -6,7 +6,5 @@ module.exports = function (grunt) {
 			args: this.data.args,
 			opts: {stdio: 'inherit'}
 		}, this.async());
-//		grunt.log.writeln(this.data.cmd);
-//		grunt.log.writeln(this.data.args);
 	});
 };
