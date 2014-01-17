@@ -93,6 +93,17 @@ module.exports = (function () {
 			]
 		},
 		screenshots: getScreenshotsConfig(),
+		release    : {
+			files: [
+				{
+					dot   : false,
+					expand: true,
+					cwd   : 'build/trunk/',
+					src   : ['**'],
+					dest  : 'build/tags/<%= pkg.version %>/'
+				}
+			]
+		},
 		tmpDir     : tempDir
 	};
 }());
