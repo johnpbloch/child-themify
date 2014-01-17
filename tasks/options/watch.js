@@ -5,8 +5,12 @@ module.exports = {
 		tasks: ['jshint:grunt']
 	},
 	plugin: {
-		files: ['<%= phplint.plugin %>'],
+		files: ['<%= concat.plugin.src %>'],
 		tasks: ['phplint:plugin', 'concat:plugin']
+	},
+	php   : {
+		files: ['<%= phplint.plugin %>', '!plugin/**'],
+		tasks: ['phplint:plugin']
 	},
 	src   : {
 		files: ['assets/js/src/**/*.js'],
