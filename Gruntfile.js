@@ -17,7 +17,10 @@ module.exports = function (grunt) {
 
 	var PACKAGE = grunt.file.readJSON('package.json'),
 			config = {
-				pkg: PACKAGE
+				pkg   : PACKAGE,
+				banner: '/*! <%= pkg.wpData.displayName %> - v<%= pkg.version %>\n' +
+						'* Copyright (c) <%= grunt.template.today("yyyy") %> ' +
+						'John P. Bloch */\n'
 			};
 
 	grunt.util._.extend(config, loadConfig('./tasks/options/'));
