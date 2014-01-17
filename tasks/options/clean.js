@@ -4,9 +4,6 @@ module.exports = {
 		dot   : false,
 		expand: true,
 		cwd   : 'build/trunk',
-		src   : [
-			'**/*',
-			'!readme.txt'
-		]
+		src   : ['**/*']
 	}
 };
