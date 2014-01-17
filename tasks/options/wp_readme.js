@@ -1,6 +1,8 @@
 /* jshint node:true */
 module.exports = (function () {
-	var PACKAGE = require('grunt').file.readJSON('package.json');
+	var grunt = require('grunt'),
+			PACKAGE = grunt.file.readJSON('package.json'),
+			screenshots = grunt.file.readJSON('assets/img/screenshots/screenshots.json').screenshots;
 	return {
 		options: {
 			defaultFaq: 'None yet.\n\n'
@@ -20,10 +22,9 @@ module.exports = (function () {
 					'Activate the plugin through the \'Plugins\' menu in WordPress',
 					'You can now create a child theme of any non-child theme you have installed by going to the themes page and clicking "Create a child theme" from the actions links of the theme of your choice.'
 				],
-				screenshots : [
-					'Network administration area',
-					'Single site administration area'
-				],
+				screenshots : screenshots.map(function (item) {
+					return item.caption;
+				}),
 				changelog   : [
 					{
 						version       : '1.0.2',

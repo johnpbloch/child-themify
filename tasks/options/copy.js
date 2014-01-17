@@ -42,7 +42,7 @@ module.exports = (function () {
 	}
 
 	function getScreenshotsConfig() {
-		var screenshots = grunt.file.readJSON('package.json').wpData.screenshots,
+		var screenshots = grunt.file.readJSON('assets/img/screenshots/screenshots.json').screenshots,
 				index,
 				screenshot,
 				counter,
