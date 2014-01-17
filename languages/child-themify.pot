@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Child Themify 1.0.2\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/child-themify\n"
-"POT-Creation-Date: 2014-01-14 15:19:34+00:00\n"
+"POT-Creation-Date: 2014-01-17 06:46:27+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -51,9 +51,7 @@ msgid "https://github.com/johnpbloch/child-themify"
 msgstr ""
 
 #. Description of the plugin/theme
-msgid ""
-"Enables the quick creation of child themes from any non-child theme you have "
-"installed."
+msgid "Create child themes at the click of a button."
 msgstr ""
 
 #. Author of the plugin/theme
