@@ -27,7 +27,8 @@ module.exports = (function () {
 				// Don't copy the main plugin file's parts
 				'!plugin/**',
 				// Don't copy screenshots either
-				'!assets/img/screenshots/**'
+				'!assets/img/screenshots/**',
+				'!assets/img/**'
 			],
 			grunt = require('grunt'),
 			temp = require('temp'),
