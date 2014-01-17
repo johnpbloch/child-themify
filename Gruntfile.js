@@ -30,6 +30,7 @@ module.exports = function (grunt) {
 	grunt.loadTasks('tasks');
 
 	grunt.registerTask('i18n', ['copy:tmp', 'makepot']);
-	grunt.registerTask('build', ['jshint', 'concat', 'uglify', 'i18n', 'clean:trunk', 'copy:files']);
+	grunt.registerTask('cp', ['copy:files', 'copy:screenshots']);
+	grunt.registerTask('build', ['jshint', 'concat', 'readme', 'uglify', 'i18n', 'clean:trunk', 'cp']);
 	grunt.registerTask('default', ['jshint', 'concat', 'uglify']);
 };
