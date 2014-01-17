@@ -27,16 +27,47 @@ module.exports = (function () {
 				// Don't copy the main plugin file's parts
 				'!plugin/**'
 			],
+			grunt = require('grunt'),
 			temp = require('temp'),
 			path = require('path'),
 			tempDir;
+
+	function createRenameFunction(counter, mimetype) {
+		return function (dest) {
+			return dest + 'screenshot-' + counter + mimetype;
+		};
+	}
+
+	function getScreenshotsConfig() {
+		var screenshots = grunt.file.readJSON('package.json').wpData.screenshots,
+				index,
+				screenshot,
+				counter,
+				config = {
+					files: []
+				},
+				mimeType;
+		for (index = 0; index < screenshots.length; index += 1) {
+			screenshot = screenshots[index];
+			counter = index + 1;
+			mimeType = screenshot.file.substr(screenshot.file.lastIndexOf('.'));
+			config.files.push({
+				expand: true,
+				cwd   : 'assets/img/screenshots/',
+				src   : screenshot.file,
+				dest  : 'build/assets/',
+				rename: createRenameFunction(counter, mimeType)
+			});
+		}
+		return config;
+	}
 
 	temp.track();
 
 	tempDir = path.join(temp.mkdirSync(), 'child-themify');
 
 	return {
-		files : {
+		files      : {
 			files: [
 				{
 					dot   : false,
@@ -47,7 +78,7 @@ module.exports = (function () {
 				}
 			]
 		},
-		tmp   : {
+		tmp        : {
 			files: [
 				{
 					dot   : false,
@@ -58,6 +89,7 @@ module.exports = (function () {
 				}
 			]
 		},
-		tmpDir: tempDir
+		screenshots: getScreenshotsConfig(),
+		tmpDir     : tempDir
 	};
 }());
