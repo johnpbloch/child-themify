@@ -12,7 +12,7 @@ module.exports = (function () {
 			contributors  : ['JohnPBloch'],
 			tags          : PACKAGE.keywords,
 			minimumVersion: '3.4.2',
-			testedUpTo    : '3.8',
+			testedUpTo    : '3.9',
 			stableTag     : '<%=pkg.version%>',
 			blurb         : 'Create child themes at the click of a button.',
 			sections      : {
