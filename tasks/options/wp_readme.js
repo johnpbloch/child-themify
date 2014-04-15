@@ -27,6 +27,15 @@ module.exports = (function () {
 				}),
 				changelog   : [
 					{
+						version       : '1.0.3',
+						releaseMessage: 'This version cleans up 3.8+ compatibility and ensures 3.9 compatibility',
+						releaseDate   : '2014-04-15',
+						changes       : [
+							'Standardized theme action links shim. See https://github.com/johnpbloch/child-themify/issues/2 for more information',
+							'Maintenance, code cleanup, bug fixes'
+						]
+					},
+					{
 						version       : '1.0.2',
 						releaseMessage: 'This version fixes the plugin in WordPress 3.8',
 						releaseDate   : '2014-01-13',
@@ -44,7 +53,7 @@ module.exports = (function () {
 						changes    : ['Initial Release']
 					}
 				],
-				upgrade     : 'This version fixes the plugin in WordPress 3.8'
+				upgrade     : 'This version cleans up 3.8+ compatibility and ensures 3.9 compatibility'
 			}
 		}
 	};
