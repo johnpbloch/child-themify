@@ -1,6 +1,12 @@
 # Child Themify
 This WordPress plugin lets you create child themes from within WordPress. Click the "Create Child Theme" link, name the new theme, and you're done!
 
+### Contributors
+
+Many thanks to everybody who's contributed (directly or indirectly) to this plugin. Thanks!
+
+* @georgestephanis Thanks for the theme action links template override!
+
 ### Unit Tests
 This plugin has unit tests, but you will need to have [PHP Test Helpers](https://github.com/sebastianbergmann/php-test-helpers) installed. You also need to make sure you are set up to run WordPress tests locally.
 
