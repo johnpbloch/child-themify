@@ -30,17 +30,25 @@ class Child_Themify {
 	}
 
 	/**
+	 * @param WP_Theme $theme
+	 *
 	 * @return string
 	 */
-	public function nonce() {
-		return wp_create_nonce( $this->nonceName() );
+	public function nonce( WP_Theme $theme = null ) {
+		return wp_create_nonce( $this->nonceName( $theme ) );
 	}
 
 	/**
+	 * @param WP_Theme $theme
+	 *
 	 * @return string
 	 */
-	public function nonceName() {
-		return "child_themify";
+	public function nonceName( WP_Theme $theme = null ) {
+		$nonce_name = 'child_themify';
+		if ( $theme ) {
+			$nonce_name .= '_' . $theme->get_stylesheet();
+		}
+		return $nonce_name;
 	}
 
 	public function showInterface() {
@@ -187,16 +195,12 @@ EOF;
 	}
 
 	public function loadThemesPage() {
-		if ( ! $this->isChildThemifyPage() ) {
-			if ( ! is_multisite() ) {
-				add_action( 'admin_footer', array( $this, 'linkThemes' ) );
-			}
-			return;
+		if ( $this->isChildThemifyPage() ) {
+			$this->loadFile( ABSPATH . 'wp-admin/admin-header.php' );
+			$this->showInterface();
+			$this->loadFile( ABSPATH . 'wp-admin/admin-footer.php' );
+			exit;
 		}
-		$this->loadFile( ABSPATH . 'wp-admin/admin-header.php' );
-		$this->showInterface();
-		$this->loadFile( ABSPATH . 'wp-admin/admin-footer.php' );
-		exit;
 	}
 
 	public function loadFile( $file ) {
@@ -207,23 +211,113 @@ EOF;
 		return ( ! empty( $_GET['action'] ) && $_GET['action'] === 'child-themify' );
 	}
 
-	public function linkThemes() {
-		if ( ! $this->checkCapability() ) {
-			return;
-		}
-		$js       = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? 'js' : 'min.js';
-		$filename = "assets/js/child-themify.$js";
-		wp_enqueue_script( 'child-themify', plugins_url( $filename, CTF_PATH ), array( 'theme' ), CTF_VERSION, true );
-		wp_localize_script( 'child-themify', 'childThemify', array(
-			'createAChildTheme' => __( 'Create a child theme', 'child-themify' ),
-			'nonce'             => $this->nonce(),
-		) );
-	}
-
 	public function init() {
 		load_plugin_textdomain( 'child-themify', false, basename( dirname( __FILE__ ) ) . '/languages' );
 		add_filter( 'theme_action_links', array( $this, 'addActionLink' ), 10, 2 );
 		add_action( 'load-themes.php', array( $this, 'loadThemesPage' ) );
+		if ( version_compare( $GLOBALS['wp_version'], '3.9.9', '<' ) ) {
+			add_action( 'admin_footer-themes.php', array( $this, 'override_tmpl_theme_single' ) );
+		}
+		add_action( 'tmpl-theme-single_actions', array( $this, 'tmpl_theme_single_actions' ) );
+		add_filter( 'wp_prepare_themes_for_js', array( $this, 'prepare_themes' ) );
+	}
+
+	public function override_tmpl_theme_single() {
+		?>
+		<script>
+			var tts = document.getElementById('tmpl-theme-single');
+			if (tts.parentNode) {
+				tts.parentNode.removeChild(tts);
+			}
+		</script>
+		<script id="tmpl-theme-single" type="text/template">
+			<div class="theme-backdrop"></div>
+			<div class="theme-wrap">
+				<div class="theme-header">
+					<button class="left dashicons dashicons-no"><span class="screen-reader-text"><?php _e( 'Show previous theme' ); ?></span></button>
+					<button class="right dashicons dashicons-no"><span class="screen-reader-text"><?php _e( 'Show next theme' ); ?></span></button>
+					<button class="close dashicons dashicons-no"><span class="screen-reader-text"><?php _e( 'Close overlay' ); ?></span></button>
+				</div>
+				<div class="theme-about">
+					<div class="theme-screenshots">
+					<# if ( data.screenshot[0] ) { #>
+						<div class="screenshot">
+							<img src="{{ data.screenshot[0] }}" alt="" />
+						</div>
+					<# } else { #>
+						<div class="screenshot blank"></div>
+					<# } #>
+					</div>
+
+					<div class="theme-info">
+						<# if ( data.active ) { #>
+							<span class="current-label"><?php _e( 'Current Theme' ); ?></span>
+						<# } #>
+						<h3 class="theme-name">{{{ data.name }}}<span class="theme-version"><?php printf( __( 'Version: %s' ), '{{{ data.version }}}' ); ?></span></h3>
+						<h4 class="theme-author"><?php printf( __( 'By %s' ), '{{{ data.authorAndUri }}}' ); ?></h4>
+
+						<# if ( data.hasUpdate ) { #>
+						<div class="theme-update-message">
+							<h4 class="theme-update"><?php _e( 'Update Available' ); ?></h4>
+							{{{ data.update }}}
+						</div>
+						<# } #>
+						<p class="theme-description">{{{ data.description }}}</p>
+
+						<# if ( data.parent ) { #>
+							<p class="parent-theme"><?php printf( __( 'This is a child theme of %s.' ), '<strong>{{{ data.parent }}}</strong>' ); ?></p>
+						<# } #>
+
+						<# if ( data.tags ) { #>
+							<p class="theme-tags"><span><?php _e( 'Tags:' ); ?></span> {{{ data.tags }}}</p>
+						<# } #>
+					</div>
+				</div>
+
+				<div class="theme-actions">
+					<div class="active-theme">
+						<a href="{{{ data.actions.customize }}}" class="button button-primary customize load-customize hide-if-no-customize"><?php _e( 'Customize' ); ?></a>
+						<?php echo implode( ' ', $GLOBALS['current_theme_actions'] ); ?>
+						<?php do_action( 'tmpl-theme-single_actions', 'active' ); ?>
+					</div>
+					<div class="inactive-theme">
+						<# if ( data.actions.activate ) { #>
+							<a href="{{{ data.actions.activate }}}" class="button button-primary activate"><?php _e( 'Activate' ); ?></a>
+						<# } #>
+						<a href="{{{ data.actions.customize }}}" class="button button-secondary load-customize hide-if-no-customize"><?php _e( 'Live Preview' ); ?></a>
+						<a href="{{{ data.actions.preview }}}" class="button button-secondary hide-if-customize"><?php _e( 'Preview' ); ?></a>
+						<?php do_action( 'tmpl-theme-single_actions', 'inactive' ); ?>
+					</div>
+
+					<# if ( ! data.active && data.actions['delete'] ) { #>
+						<a href="{{{ data.actions['delete'] }}}" class="button button-secondary delete-theme"><?php _e( 'Delete' ); ?></a>
+					<# } #>
+				</div>
+			</div>
+		</script>
+		<?php
+		// End single theme template shim
+	}
+
+	public function tmpl_theme_single_actions() {
+		?>
+		<# if ( data.actions.childThemify ) { #>
+			<a href="{{{ data.actions.childThemify }}}" class="button button-secondary" title="<?php esc_attr_e( 'Create a child theme', 'child-themify' ); ?>"><?php esc_attr_e( 'Create a child theme', 'child-themify' ); ?></a>
+		<# } #>
+		<?php
+		// End single action for CTF
+	}
+
+	public function prepare_themes( $themes ) {
+		if ( $this->checkCapability() ) {
+			foreach ( $themes as $slug => $data ) {
+				$theme         = wp_get_theme( $slug );
+				$download_link = $this->getLink( $theme );
+
+				$themes[$slug]['actions']['childThemify'] = $download_link ? $download_link : false;
+			}
+		}
+		return $themes;
 	}
 
 }

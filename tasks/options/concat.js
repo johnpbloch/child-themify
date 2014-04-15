@@ -2,13 +2,6 @@
 module.exports = (function () {
 	var grunt = require('grunt');
 	return{
-		childthemify: {
-			options: {
-				banner: '<%= banner %>'
-			},
-			src    : ['assets/js/src/main.js'],
-			dest   : 'assets/js/child-themify.js'
-		},
 		legacy      : {
 			options: {
 				banner: '<%= banner %>'
