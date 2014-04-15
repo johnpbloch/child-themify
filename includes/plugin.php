@@ -30,17 +30,25 @@ class Child_Themify {
 	}
 
 	/**
+	 * @param WP_Theme $theme
+	 *
 	 * @return string
 	 */
-	public function nonce() {
-		return wp_create_nonce( $this->nonceName() );
+	public function nonce( WP_Theme $theme = null ) {
+		return wp_create_nonce( $this->nonceName( $theme ) );
 	}
 
 	/**
+	 * @param WP_Theme $theme
+	 *
 	 * @return string
 	 */
-	public function nonceName() {
-		return "child_themify";
+	public function nonceName( WP_Theme $theme = null ) {
+		$nonce_name = 'child_themify';
+		if ( $theme ) {
+			$nonce_name .= '_' . $theme->get_stylesheet();
+		}
+		return $nonce_name;
 	}
 
 	public function showInterface() {
