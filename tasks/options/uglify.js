@@ -6,7 +6,6 @@ module.exports = {
 	},
 	childthemify: {
 		files: {
-			'assets/js/child-themify.min.js': ['assets/js/child-themify.js'],
 			'assets/js/legacy.min.js'       : ['assets/js/legacy.js']
 		}
 	}

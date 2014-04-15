@@ -14,6 +14,6 @@ module.exports = {
 	},
 	src   : {
 		files: ['assets/js/src/**/*.js'],
-		tasks: ['jshint:ctf', 'concat:childthemify', 'uglify:childthemify']
+		tasks: ['jshint:ctf', 'concat:legacy', 'uglify:childthemify']
 	}
 };
