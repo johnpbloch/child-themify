@@ -236,6 +236,7 @@ EOF;
 			add_action( 'admin_footer-themes.php', array( $this, 'override_tmpl_theme_single' ) );
 		}
 		add_action( 'tmpl-theme-single_actions', array( $this, 'tmpl_theme_single_actions' ) );
+		add_filter( 'wp_prepare_themes_for_js', array( $this, 'prepare_themes' ) );
 	}
 
 	public function override_tmpl_theme_single() {
@@ -322,6 +323,18 @@ EOF;
 		<# } #>
 		<?php
 		// End single action for CTF
+	}
+
+	public function prepare_themes( $themes ) {
+		if ( $this->checkCapability() ) {
+			foreach ( $themes as $slug => $data ) {
+				$theme         = wp_get_theme( $slug );
+				$download_link = $this->getLink( $theme );
+
+				$themes[$slug]['actions']['childThemify'] = $download_link ? $download_link : false;
+			}
+		}
+		return $themes;
 	}
 
 }
