@@ -195,16 +195,12 @@ EOF;
 	}
 
 	public function loadThemesPage() {
-		if ( ! $this->isChildThemifyPage() ) {
-			if ( ! is_multisite() ) {
-				add_action( 'admin_footer', array( $this, 'linkThemes' ) );
-			}
-			return;
+		if ( $this->isChildThemifyPage() ) {
+			$this->loadFile( ABSPATH . 'wp-admin/admin-header.php' );
+			$this->showInterface();
+			$this->loadFile( ABSPATH . 'wp-admin/admin-footer.php' );
+			exit;
 		}
-		$this->loadFile( ABSPATH . 'wp-admin/admin-header.php' );
-		$this->showInterface();
-		$this->loadFile( ABSPATH . 'wp-admin/admin-footer.php' );
-		exit;
 	}
 
 	public function loadFile( $file ) {
@@ -213,19 +209,6 @@ EOF;
 
 	public function isChildThemifyPage() {
 		return ( ! empty( $_GET['action'] ) && $_GET['action'] === 'child-themify' );
-	}
-
-	public function linkThemes() {
-		if ( ! $this->checkCapability() ) {
-			return;
-		}
-		$js       = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? 'js' : 'min.js';
-		$filename = "assets/js/child-themify.$js";
-		wp_enqueue_script( 'child-themify', plugins_url( $filename, CTF_PATH ), array( 'theme' ), CTF_VERSION, true );
-		wp_localize_script( 'child-themify', 'childThemify', array(
-			'createAChildTheme' => __( 'Create a child theme', 'child-themify' ),
-			'nonce'             => $this->nonce(),
-		) );
 	}
 
 	public function init() {
