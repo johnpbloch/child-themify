@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Child Themify 1.0.2\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/child-themify\n"
-"POT-Creation-Date: 2014-01-17 07:45:26+00:00\n"
+"POT-Creation-Date: 2014-04-15 14:59:17+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -16,30 +16,86 @@ msgstr ""
 msgid "You do not have permission to do that!"
 msgstr ""
 
-#: includes/legacy.php:39 includes/plugin.php:62
+#: includes/legacy.php:39 includes/plugin.php:70
 msgctxt "The placeholder is for a theme's name"
 msgid "Create a child theme from %s"
 msgstr ""
 
-#: includes/legacy.php:42 includes/plugin.php:65
+#: includes/legacy.php:42 includes/plugin.php:73
 msgid "Name your child theme"
 msgstr ""
 
-#: includes/legacy.php:44 includes/plugin.php:67
+#: includes/legacy.php:44 includes/plugin.php:75
 msgid "Let's go!"
 msgstr ""
 
-#: includes/legacy.php:106 includes/legacy.php:169 includes/plugin.php:145
-#: includes/plugin.php:218
+#: includes/legacy.php:106 includes/legacy.php:169 includes/plugin.php:153
+#: includes/plugin.php:305
 msgid "Create a child theme"
 msgstr ""
 
-#: includes/legacy.php:125 includes/plugin.php:165
+#: includes/legacy.php:125 includes/plugin.php:173
 msgid "Could not access the filesystem!"
 msgstr ""
 
-#: includes/legacy.php:146 includes/plugin.php:186
+#: includes/legacy.php:146 includes/plugin.php:194
 msgid "Your child theme was created successfully."
+msgstr ""
+
+#: includes/plugin.php:237
+msgid "Show previous theme"
+msgstr ""
+
+#: includes/plugin.php:238
+msgid "Show next theme"
+msgstr ""
+
+#: includes/plugin.php:239
+msgid "Close overlay"
+msgstr ""
+
+#: includes/plugin.php:254
+msgid "Current Theme"
+msgstr ""
+
+#: includes/plugin.php:256
+msgid "Version: %s"
+msgstr ""
+
+#: includes/plugin.php:257
+msgid "By %s"
+msgstr ""
+
+#: includes/plugin.php:261
+msgid "Update Available"
+msgstr ""
+
+#: includes/plugin.php:268
+msgid "This is a child theme of %s."
+msgstr ""
+
+#: includes/plugin.php:272
+msgid "Tags:"
+msgstr ""
+
+#: includes/plugin.php:279
+msgid "Customize"
+msgstr ""
+
+#: includes/plugin.php:285
+msgid "Activate"
+msgstr ""
+
+#: includes/plugin.php:287
+msgid "Live Preview"
+msgstr ""
+
+#: includes/plugin.php:288
+msgid "Preview"
+msgstr ""
+
+#: includes/plugin.php:293
+msgid "Delete"
 msgstr ""
 
 #. Plugin Name of the plugin/theme
