@@ -227,6 +227,7 @@ EOF;
 		if ( version_compare( $GLOBALS['wp_version'], '3.9.9', '<' ) ) {
 			add_action( 'admin_footer-themes.php', array( $this, 'override_tmpl_theme_single' ) );
 		}
+		add_action( 'tmpl-theme-single_actions', array( $this, 'tmpl_theme_single_actions' ) );
 	}
 
 	public function override_tmpl_theme_single() {
@@ -303,6 +304,16 @@ EOF;
 			</div>
 		</script>
 		<?php
+		// End single theme template shim
+	}
+
+	public function tmpl_theme_single_actions() {
+		?>
+		<# if ( data.actions.childThemify ) { #>
+			<a href="{{{ data.actions.childThemify }}}" class="button button-secondary" title="<?php esc_attr_e( 'Create a child theme', 'child-themify' ); ?>"><?php esc_attr_e( 'Create a child theme', 'child-themify' ); ?></a>
+		<# } #>
+		<?php
+		// End single action for CTF
 	}
 
 }
