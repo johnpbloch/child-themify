@@ -2,6 +2,8 @@
 module.exports = function (grunt) {
 	require('load-grunt-tasks')(grunt);
 
+	grunt.util.linefeed = '\n';
+
 	function loadConfig(path) {
 		var glob = require('glob'),
 				object = {},
