@@ -12,7 +12,7 @@ module.exports = (function () {
 			contributors  : ['JohnPBloch'],
 			tags          : PACKAGE.keywords,
 			minimumVersion: '3.4.2',
-			testedUpTo    : '3.9',
+			testedUpTo    : '4.0.9',
 			stableTag     : '<%=pkg.version%>',
 			blurb         : 'Create child themes at the click of a button.',
 			sections      : {
@@ -26,6 +26,12 @@ module.exports = (function () {
 					return item.caption;
 				}),
 				changelog   : [
+					{
+						version       : '1.0.4',
+						releaseMessage: 'This version fixes compatibility with WordPress 4.0',
+						releaseDate   : '2014-09-15',
+						changes       : ['Added support for WordPress 4.0']
+					},
 					{
 						version       : '1.0.3',
 						releaseMessage: 'This version cleans up 3.8+ compatibility and ensures 3.9 compatibility',
@@ -53,7 +59,7 @@ module.exports = (function () {
 						changes    : ['Initial Release']
 					}
 				],
-				upgrade     : 'This version cleans up 3.8+ compatibility and ensures 3.9 compatibility'
+				upgrade     : 'This version fixes 4.0 compatibility'
 			}
 		}
 	};
