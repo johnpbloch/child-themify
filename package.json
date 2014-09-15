@@ -1,6 +1,6 @@
 {
 	"name"           : "child-themify",
-	"version"        : "1.0.3",
+	"version"        : "1.0.4",
 	"description"    : "Create child themes from any non-child theme at the click of a button.\n\nThis plugin is multisite compatible; if used on a multisite network, controls for creating child themes will be in the network admin instead of the regular site admin.",
 	"main"           : "Gruntfile.js",
 	"keywords"       : ["themes", "child", "theme"],
