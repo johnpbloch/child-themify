@@ -119,6 +119,7 @@ class CTF_Babymaker {
 	 * @throws Exception If the global filesystem object isn't available
 	 */
 	public static function procreate( $new_theme, WP_Theme $template ) {
+		/** @var WP_Filesystem_Base $wp_filesystem */
 		global $wp_filesystem;
 		if ( ! ( $wp_filesystem instanceof WP_Filesystem_Base ) ) {
 			if ( ! WP_Filesystem() ) {
@@ -126,6 +127,7 @@ class CTF_Babymaker {
 			}
 		}
 		$oldStylesheet       = $template->get_stylesheet();
+		$templateDirectory   = untrailingslashit( $template->get_stylesheet_directory() );
 		$oldName             = $template->name;
 		$new_theme_directory = trailingslashit( get_theme_root() ) . sanitize_file_name( strtolower( $new_theme ) );
 		$wp_filesystem->mkdir( $new_theme_directory );
@@ -143,6 +145,9 @@ Template: $oldStylesheet
 
 EOF;
 		$wp_filesystem->put_contents( $newStylesheet, $stylesheetContents );
+		if ( file_exists( "$templateDirectory/screenshot.png" ) ) {
+			$wp_filesystem->copy( "$templateDirectory/screenshot.png", "$new_theme_directory/screenshot.png" );
+		}
 		add_settings_error( '', 'child-themify', __( 'Your child theme was created successfully.', 'child-themify' ), 'updated' );
 	}
 
