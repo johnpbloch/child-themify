@@ -18,13 +18,11 @@ class CTF_Analytics {
 				'Content-Type'  => 'application/json',
 			),
 			'body'     => array(
-				array(
-					'stats' => array(
-						array(
-							'requestID'  => md5( home_url() ),
-							'WPVersion'  => $GLOBALS['wp_version'],
-							'PHPVersion' => PHP_VERSION,
-						)
+				'stats' => array(
+					array(
+						'requestID'  => md5( home_url() ),
+						'WPVersion'  => $GLOBALS['wp_version'],
+						'PHPVersion' => PHP_VERSION,
 					)
 				)
 			),
