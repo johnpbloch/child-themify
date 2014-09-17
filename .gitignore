@@ -1,3 +1,4 @@
+.idea/
 tests/wordpress-tests
 tests/local-bootstrap.php
 readme.txt
@@ -7,5 +8,5 @@ phpunit.xml
 node_modules/
 assets/js/child-themify.*
 child-themify.php
-assets/js/legacy.*
+assets/js/*.js
 build/
