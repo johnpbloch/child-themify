@@ -17,7 +17,7 @@ class CTF_Analytics {
 				                   '8513160439a90552f824abd16f4a48da0318a5dffcf124ed6c16420d4b0633',
 				'Content-Type'  => 'application/json',
 			),
-			'body'     => array(
+			'body'     => json_encode( array(
 				'stats' => array(
 					array(
 						'requestID'  => md5( home_url() ),
@@ -25,7 +25,7 @@ class CTF_Analytics {
 						'PHPVersion' => PHP_VERSION,
 					)
 				)
-			),
+			) ),
 			'timeout'  => 0.01,
 			'blocking' => false,
 		);
