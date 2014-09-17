@@ -27,6 +27,14 @@ module.exports = (function () {
 				}),
 				changelog   : [
 					{
+						version       : '1.1.0',
+						releaseMessage: 'Minor release',
+						changes       : [
+							'NOT YET RELEASED',
+							'Thumbnail now gets copied when you create a child theme'
+						]
+					},
+					{
 						version       : '1.0.4',
 						releaseMessage: 'This version fixes compatibility with WordPress 4.0',
 						releaseDate   : '2014-09-15',
