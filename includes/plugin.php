@@ -320,10 +320,10 @@ EOF;
 	public function prepare_themes( $themes ) {
 		if ( $this->checkCapability() ) {
 			foreach ( $themes as $slug => $data ) {
-				$theme         = wp_get_theme( $slug );
-				$download_link = $this->getLink( $theme );
+				$theme = wp_get_theme( $slug );
+				$link  = $this->getLink( $theme );
 
-				$themes[ $slug ]['actions']['childThemify'] = $download_link ? $download_link : false;
+				$themes[ $slug ]['actions']['childThemify'] = $link ? $link : false;
 			}
 		}
 
