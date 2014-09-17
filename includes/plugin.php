@@ -48,6 +48,7 @@ class Child_Themify {
 		if ( $theme ) {
 			$nonce_name .= '_' . $theme->get_stylesheet();
 		}
+
 		return $nonce_name;
 	}
 
@@ -96,6 +97,7 @@ class Child_Themify {
 		}
 		if ( ! WP_Filesystem( $creds, get_theme_root() ) ) {
 			request_filesystem_credentials( $url, '', true, get_theme_root(), array( 'new_theme' ) );
+
 			return true;
 		}
 		$this->create( $_POST['new_theme'], $theme );
@@ -119,6 +121,7 @@ class Child_Themify {
 			'theme'      => $theme->get_stylesheet(),
 			'_ctf_nonce' => $this->nonce( $theme ),
 		);
+
 		return add_query_arg( $args, $this->getBaseLink() );
 	}
 
@@ -153,6 +156,7 @@ class Child_Themify {
 		$html = sprintf( "<a href=\"$link\">%s</a>", __( 'Create a child theme', 'child-themify' ) );
 
 		$links['child-themify'] = $html;
+
 		return $links;
 	}
 
@@ -319,9 +323,10 @@ EOF;
 				$theme         = wp_get_theme( $slug );
 				$download_link = $this->getLink( $theme );
 
-				$themes[$slug]['actions']['childThemify'] = $download_link ? $download_link : false;
+				$themes[ $slug ]['actions']['childThemify'] = $download_link ? $download_link : false;
 			}
 		}
+
 		return $themes;
 	}
 
