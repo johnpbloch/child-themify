@@ -71,8 +71,8 @@ class Child_Themify {
 			<h2><?php echo esc_html( sprintf( _x( 'Create a child theme from %s', 'The placeholder is for a theme\'s name', 'child-themify' ), $theme->name ) ); ?></h2>
 
 			<form method="post" action="<?php echo esc_url( $this->getLink( $theme ) ); ?>">
-				<label><?php esc_html_e( 'Name your child theme', 'child-themify' ); ?></label><br>
-				<input type="text" name="new_theme" />
+				<label for="ctf_new_theme"><?php esc_html_e( 'Name your child theme', 'child-themify' ); ?></label><br>
+				<input type="text" name="new_theme" id="ctf_new_theme" />
 				<?php submit_button( __( "Let's go!", 'child-themify' ) ); ?>
 			</form>
 		</div>
@@ -101,6 +101,8 @@ class Child_Themify {
 			return true;
 		}
 		$this->create( $_POST['new_theme'], $theme );
+
+		return false;
 	}
 
 	/**
@@ -153,7 +155,7 @@ class Child_Themify {
 			return $links;
 		}
 		$link = $this->getLink( $theme );
-		$html = sprintf( "<a href=\"$link\">%s</a>", __( 'Create a child theme', 'child-themify' ) );
+		$html = sprintf( '<a href="%s">%s</a>', esc_url( $link ), __( 'Create a child theme', 'child-themify' ) );
 
 		$links['child-themify'] = $html;
 
