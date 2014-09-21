@@ -9,9 +9,10 @@ class CTF_Analytics {
 	}
 
 	public function run() {
-		if ( (int) get_option( 'ctf_analytics_opt_in', 0 ) <= 0 ||
-		     ! is_admin() ||
-		     $this->hash === get_option( 'ctf_analytics_hash' )
+		if (
+			(int) get_option( 'ctf_analytics_opt_in', 0 ) <= 0 ||
+			! is_admin() ||
+			$this->hash === get_option( 'ctf_analytics_hash' )
 		) {
 			return;
 		}
