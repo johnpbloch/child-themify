@@ -12,6 +12,26 @@ msgstr ""
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
+#: includes/analytics.php:45
+msgid "Hey there!"
+msgstr ""
+
+#: includes/analytics.php:46
+msgid "Thanks for using Child Themify! To help future development of the plugin, we want to collect some anonymous data, but only if you don't mind."
+msgstr ""
+
+#: includes/analytics.php:47
+msgid "Learn More"
+msgstr ""
+
+#: includes/analytics.php:48
+msgid "Opt In"
+msgstr ""
+
+#: includes/analytics.php:49
+msgid "Opt Out"
+msgstr ""
+
 #: includes/legacy.php:13 includes/plugin.php:14
 msgid "You do not have permission to do that!"
 msgstr ""

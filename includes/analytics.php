@@ -4,22 +4,26 @@ class CTF_Analytics {
 
 	protected $hash;
 
+	protected $optIn = 0;
+
 	public function __construct( $hash = false ) {
-		$this->hash = $hash ? $hash : $this->generateHash();
+		$this->hash  = $hash ? $hash : $this->generateHash();
+		$this->optIn = (int) get_option( 'ctf_analytics_opt_in', $this->optIn );
 	}
 
 	public function run() {
+		$this->solicitOptIn();
+		$this->hooks();
+	}
+
+	public function shutdown() {
 		if (
-			(int) get_option( 'ctf_analytics_opt_in', 0 ) <= 0 ||
+			(int) $this->optIn <= 0 ||
 			! is_admin() ||
 			$this->hash === get_option( 'ctf_analytics_hash' )
 		) {
 			return;
 		}
-		add_action( 'shutdown', array( $this, 'shutdown' ) );
-	}
-
-	public function shutdown() {
 		$url         = 'https://api.keen.io/3.0/projects/5419a6cfbcb79c14cc525900/events';
 		$requestArgs = array(
 			'headers'  => array(
@@ -34,6 +38,29 @@ class CTF_Analytics {
 		);
 		wp_remote_post( $url, $requestArgs );
 		update_option( 'ctf_analytics_hash', $this->hash );
+	}
+
+	protected function solicitOptIn() {
+		if ( ! is_admin() || $this->optIn !== 0 ) {
+			return;
+		}
+		add_settings_error(
+			'ctf_analytics_opt_in',
+			'ctf_analytics_opt_in',
+			sprintf(
+				'<strong>%s</strong> %s <a href="#" id="ctf_analytics_more_info">%s</a> | <a href="#" id="ctf_analytics_opt_in">%s</a> | <a href="#" id="ctf_analytics_opt_out">%s</a>',
+				esc_html__( 'Hey there!', 'child-themify' ),
+				esc_html__( 'Thanks for using Child Themify! To help future development of the plugin, we want to collect some anonymous data, but only if you don\'t mind.', 'child-themify' ),
+				esc_html__( 'Learn More', 'child-themify' ),
+				esc_html__( 'Opt In', 'child-themify' ),
+				esc_html__( 'Opt Out', 'child-themify' )
+			),
+			'updated'
+		);
+	}
+
+	protected function hooks() {
+		add_action( 'shutdown', array( $this, 'shutdown' ) );
 	}
 
 	protected function generateHash() {
