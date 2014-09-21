@@ -28,15 +28,7 @@ class CTF_Analytics {
 				                   '8513160439a90552f824abd16f4a48da0318a5dffcf124ed6c16420d4b0633',
 				'Content-Type'  => 'application/json',
 			),
-			'body'     => json_encode( array(
-				'stats' => array(
-					array(
-						'requestID'  => md5( home_url() ),
-						'WPVersion'  => $GLOBALS['wp_version'],
-						'PHPVersion' => PHP_VERSION,
-					)
-				)
-			) ),
+			'body'     => $this->getBodyJSON(),
 			'timeout'  => 0.01,
 			'blocking' => false,
 		);
@@ -46,6 +38,18 @@ class CTF_Analytics {
 
 	protected function generateHash() {
 		return md5( $GLOBALS['wp_version'] . '|' . PHP_VERSION );
+	}
+
+	protected function getBodyJSON() {
+		return json_encode( array(
+			'stats' => array(
+				array(
+					'requestID'  => md5( home_url() ),
+					'WPVersion'  => $GLOBALS['wp_version'],
+					'PHPVersion' => PHP_VERSION,
+				)
+			)
+		) );
 	}
 
 }
