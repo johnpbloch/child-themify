@@ -4,11 +4,21 @@ class CTF_Analytics {
 
 	protected $hash;
 
-	function __construct( $hash ) {
-		$this->hash = $hash;
+	public function __construct( $hash = false ) {
+		$this->hash = $hash ? $hash : $this->generateHash();
 	}
 
-	function shutdown() {
+	public function run() {
+		if ( (int) get_option( 'ctf_analytics_opt_out', 0 ) > 0 ||
+		     ! is_admin() ||
+		     $this->hash === get_option( 'ctf_analytics_hash' )
+		) {
+			return;
+		}
+		add_action( 'shutdown', array( $this, 'shutdown' ) );
+	}
+
+	public function shutdown() {
 		$url         = 'https://api.keen.io/3.0/projects/5419a6cfbcb79c14cc525900/events';
 		$requestArgs = array(
 			'headers'  => array(
@@ -31,6 +41,10 @@ class CTF_Analytics {
 		);
 		wp_remote_post( $url, $requestArgs );
 		update_option( 'ctf_analytics_hash', $this->hash );
+	}
+
+	protected function generateHash() {
+		return md5( $GLOBALS['wp_version'] . '|' . PHP_VERSION );
 	}
 
 }
