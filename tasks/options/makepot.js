@@ -4,7 +4,7 @@ module.exports = (function () {
 		'default': {
 			cmd : 'php',
 			args: [
-				'vendor/bin/makepot.php',
+				'vendor/wordpress/i18n-tools/tools/i18n/makepot.php',
 				'wp-plugin',
 				'<%= copy.tmpDir %>',
 				'languages/child-themify.pot'
