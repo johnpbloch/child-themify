@@ -35,7 +35,7 @@ module.exports = (function () {
 					{
 						version       : '1.1.0',
 						releaseMessage: 'Minor release with tweaks and thumbnail support',
-						rleaseDate    : '14-12-20',
+						releaseDate   : '14-12-20',
 						changes       : [
 							'Thumbnail now gets copied when you create a child theme',
 							'Various other tweaks and security hardening'
