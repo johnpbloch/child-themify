@@ -11,7 +11,7 @@ class Child_Themify {
 	 */
 	public function isActionAllowed( WP_Theme $theme ) {
 		if ( ! $this->checkCapability() ) {
-			wp_die( __( 'You do not have permission to do that!', 'child-themify' ) );
+			wp_die( esc_html__( 'You do not have permission to do that!', 'child-themify' ) );
 		}
 		check_admin_referer( $this->nonceName( $theme ), '_ctf_nonce' );
 	}
@@ -155,7 +155,7 @@ class Child_Themify {
 			return $links;
 		}
 		$link = $this->getLink( $theme );
-		$html = sprintf( '<a href="%s">%s</a>', esc_url( $link ), __( 'Create a child theme', 'child-themify' ) );
+		$html = sprintf( '<a href="%s">%s</a>', esc_url( $link ), esc_html__( 'Create a child theme', 'child-themify' ) );
 
 		$links['child-themify'] = $html;
 
@@ -177,7 +177,7 @@ class Child_Themify {
 		global $wp_filesystem;
 		if ( ! ( $wp_filesystem instanceof WP_Filesystem_Base ) ) {
 			if ( ! WP_Filesystem() ) {
-				throw new Exception( __( 'Could not access the filesystem!', 'child-themify' ) );
+				throw new Exception( esc_html__( 'Could not access the filesystem!', 'child-themify' ) );
 			}
 		}
 		$oldStylesheet       = $template->get_stylesheet();
@@ -202,7 +202,7 @@ EOF;
 		if ( file_exists( "$templateDirectory/screenshot.png" ) ) {
 			$wp_filesystem->copy( "$templateDirectory/screenshot.png", "$new_theme_directory/screenshot.png" );
 		}
-		add_settings_error( '', 'child-themify', __( 'Your child theme was created successfully.', 'child-themify' ), 'updated' );
+		add_settings_error( '', 'child-themify', esc_html__( 'Your child theme was created successfully.', 'child-themify' ), 'updated' );
 	}
 
 	public function loadThemesPage() {

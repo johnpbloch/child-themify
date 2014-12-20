@@ -10,7 +10,7 @@ class CTF_Babymaker {
 	public static function getTested() {
 		$theme = empty( $_GET['theme'] ) ? '' : $_GET['theme'];
 		if ( ! self::fertile() ) {
-			wp_die( __( 'You do not have permission to do that!', 'child-themify' ) );
+			wp_die( esc_html__( 'You do not have permission to do that!', 'child-themify' ) );
 		}
 		check_admin_referer( self::nonce_name( $theme ), '_ctf_nonce' );
 	}
@@ -105,7 +105,7 @@ class CTF_Babymaker {
 			return $links;
 		}
 		$link                   = self::getLink( $theme->get_stylesheet() );
-		$html                   = sprintf( "<a href=\"$link\">%s</a>", __( 'Create a child theme', 'child-themify' ) );
+		$html                   = sprintf( "<a href=\"$link\">%s</a>", esc_html__( 'Create a child theme', 'child-themify' ) );
 		$links['child-themify'] = $html;
 
 		return $links;
@@ -126,7 +126,7 @@ class CTF_Babymaker {
 		global $wp_filesystem;
 		if ( ! ( $wp_filesystem instanceof WP_Filesystem_Base ) ) {
 			if ( ! WP_Filesystem() ) {
-				throw new Exception( __( 'Could not access the filesystem!', 'child-themify' ) );
+				throw new Exception( esc_html__( 'Could not access the filesystem!', 'child-themify' ) );
 			}
 		}
 		$oldStylesheet       = $template->get_stylesheet();
@@ -151,7 +151,7 @@ EOF;
 		if ( file_exists( "$templateDirectory/screenshot.png" ) ) {
 			$wp_filesystem->copy( "$templateDirectory/screenshot.png", "$new_theme_directory/screenshot.png" );
 		}
-		add_settings_error( '', 'child-themify', __( 'Your child theme was created successfully.', 'child-themify' ), 'updated' );
+		add_settings_error( '', 'child-themify', esc_html__( 'Your child theme was created successfully.', 'child-themify' ), 'updated' );
 	}
 
 	public static function load_themes_page() {
@@ -175,7 +175,7 @@ EOF;
 		$filename .= defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? 'js' : 'min.js';
 		wp_enqueue_script( 'child-themify', plugins_url( $filename, CTF_PATH ), array(), '1.0', true );
 		wp_localize_script( 'child-themify', 'childThemify', array(
-			'createAChildTheme' => __( 'Create a child theme', 'child-themify' ),
+			'createAChildTheme' => esc_html__( 'Create a child theme', 'child-themify' ),
 			'link'              => $link,
 		) );
 	}
