@@ -226,9 +226,7 @@ EOF;
 		load_plugin_textdomain( 'child-themify', false, basename( dirname( __FILE__ ) ) . '/languages' );
 		add_filter( 'theme_action_links', array( $this, 'addActionLink' ), 10, 2 );
 		add_action( 'load-themes.php', array( $this, 'loadThemesPage' ) );
-		if ( version_compare( $GLOBALS['wp_version'], '4.1.9', '<' ) ) {
-			add_action( 'admin_footer-themes.php', array( $this, 'override_tmpl_theme_single' ) );
-		}
+		add_action( 'admin_footer-themes.php', array( $this, 'override_tmpl_theme_single' ) );
 		add_action( 'tmpl-theme-single_actions', array( $this, 'tmpl_theme_single_actions' ) );
 		add_filter( 'wp_prepare_themes_for_js', array( $this, 'prepare_themes' ) );
 	}
