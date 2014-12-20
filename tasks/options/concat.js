@@ -27,7 +27,7 @@ module.exports = (function () {
 					return src;
 				}
 			},
-			src    : ['plugin/constants.php', 'plugin/analytics.php', 'plugin/main.php'],
+			src    : ['plugin/constants.php', 'plugin//main.php'],
 			dest   : 'child-themify.php'
 		}
 	};
