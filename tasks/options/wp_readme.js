@@ -34,10 +34,11 @@ module.exports = (function () {
 				changelog   : [
 					{
 						version       : '1.1.0',
-						releaseMessage: 'Minor release',
+						releaseMessage: 'Minor release with tweaks and thumbnail support',
+						rleaseDate    : '14-12-20',
 						changes       : [
-							'NOT YET RELEASED',
-							'Thumbnail now gets copied when you create a child theme'
+							'Thumbnail now gets copied when you create a child theme',
+							'Various other tweaks and security hardening'
 						]
 					},
 					{
@@ -73,7 +74,7 @@ module.exports = (function () {
 						changes    : ['Initial Release']
 					}
 				],
-				upgrade     : 'This version fixes 4.0 compatibility'
+				upgrade     : 'Minor release with tweaks and thumbnail support'
 			}
 		}
 	};
