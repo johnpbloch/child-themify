@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Child Themify 1.0.4\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/child-themify\n"
-"POT-Creation-Date: 2014-12-20 16:22:47+00:00\n"
+"POT-Creation-Date: 2014-12-20 17:04:48+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -30,7 +30,7 @@ msgid "Let's go!"
 msgstr ""
 
 #: includes/legacy.php:108 includes/legacy.php:178 includes/plugin.php:158
-#: includes/plugin.php:316
+#: includes/plugin.php:314
 msgid "Create a child theme"
 msgstr ""
 
@@ -42,59 +42,59 @@ msgstr ""
 msgid "Your child theme was created successfully."
 msgstr ""
 
-#: includes/plugin.php:248
+#: includes/plugin.php:246
 msgid "Show previous theme"
 msgstr ""
 
-#: includes/plugin.php:249
+#: includes/plugin.php:247
 msgid "Show next theme"
 msgstr ""
 
-#: includes/plugin.php:250
+#: includes/plugin.php:248
 msgid "Close overlay"
 msgstr ""
 
-#: includes/plugin.php:265
+#: includes/plugin.php:263
 msgid "Current Theme"
 msgstr ""
 
-#: includes/plugin.php:267
+#: includes/plugin.php:265
 msgid "Version: %s"
 msgstr ""
 
-#: includes/plugin.php:268
+#: includes/plugin.php:266
 msgid "By %s"
 msgstr ""
 
-#: includes/plugin.php:272
+#: includes/plugin.php:270
 msgid "Update Available"
 msgstr ""
 
-#: includes/plugin.php:279
+#: includes/plugin.php:277
 msgid "This is a child theme of %s."
 msgstr ""
 
-#: includes/plugin.php:283
+#: includes/plugin.php:281
 msgid "Tags:"
 msgstr ""
 
-#: includes/plugin.php:290
+#: includes/plugin.php:288
 msgid "Customize"
 msgstr ""
 
-#: includes/plugin.php:296
+#: includes/plugin.php:294
 msgid "Activate"
 msgstr ""
 
-#: includes/plugin.php:298
+#: includes/plugin.php:296
 msgid "Live Preview"
 msgstr ""
 
-#: includes/plugin.php:299
+#: includes/plugin.php:297
 msgid "Preview"
 msgstr ""
 
-#: includes/plugin.php:304
+#: includes/plugin.php:302
 msgid "Delete"
 msgstr ""
 #. Plugin Name of the plugin/theme
