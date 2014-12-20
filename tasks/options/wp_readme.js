@@ -22,6 +22,12 @@ module.exports = (function () {
 					'Activate the plugin through the \'Plugins\' menu in WordPress',
 					'You can now create a child theme of any non-child theme you have installed by going to the themes page and clicking "Create a child theme" from the actions links of the theme of your choice.'
 				],
+				faq         : [
+					{
+						question: "Where can I get some help?",
+						answer  : "I'd really prefer that you use [Github's issue tracker](https://github.com/johnpbloch/child-themify/issues/new). The [WordPress.org support forum for the plugin](https://wordpress.org/support/plugin/child-themify) will work too, it will just take longer."
+					}
+				],
 				screenshots : screenshots.map(function (item) {
 					return item.caption;
 				}),
