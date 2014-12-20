@@ -24,8 +24,8 @@ module.exports = (function () {
 				],
 				faq         : [
 					{
-						question: "Where can I get some help?",
-						answer  : "I'd really prefer that you use [Github's issue tracker](https://github.com/johnpbloch/child-themify/issues/new). The [WordPress.org support forum for the plugin](https://wordpress.org/support/plugin/child-themify) will work too, it will just take longer."
+						question: 'Where can I get some help?',
+						answer  : 'I\'d really prefer that you use [Github\'s issue tracker](https://github.com/johnpbloch/child-themify/issues/new). The [WordPress.org support forum for the plugin](https://wordpress.org/support/plugin/child-themify) will work too, it will just take longer.'
 					}
 				],
 				screenshots : screenshots.map(function (item) {
