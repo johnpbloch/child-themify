@@ -1,23 +1,27 @@
 {
-	"name"           : "child-themify",
-	"version"        : "1.1.0",
-	"description"    : "Create child themes from any non-child theme at the click of a button.\n\nThis plugin is multisite compatible; if used on a multisite network, controls for creating child themes will be in the network admin instead of the regular site admin.",
-	"main"           : "Gruntfile.js",
-	"keywords"       : ["themes", "child", "theme"],
-	"license"        : "GPL-2.0+",
-	"devDependencies": {
-		"glob"                : "~3.2",
-		"temp"                : "~0.6",
-		"grunt"               : "~0.4",
-		"load-grunt-tasks"    : "~0.2",
-		"grunt-contrib-clean" : "~0.5",
-		"grunt-contrib-copy"  : "~0.4",
-		"grunt-contrib-uglify": "~0.2",
-		"grunt-contrib-jshint": "~0.8",
-		"grunt-contrib-concat": "~0.3",
-		"grunt-contrib-watch" : "~0.5",
-		"grunt-phplint"       : "0.0.5",
-		"grunt-wp-readme"     : "~0.1",
-		"grunt-wp-deploy"     : "~0.3"
-	}
+  "name": "child-themify",
+  "version": "1.1.1",
+  "description": "Create child themes from any non-child theme at the click of a button.\n\nThis plugin is multisite compatible; if used on a multisite network, controls for creating child themes will be in the network admin instead of the regular site admin.",
+  "main": "Gruntfile.js",
+  "keywords": [
+    "themes",
+    "child",
+    "theme"
+  ],
+  "license": "GPL-2.0+",
+  "devDependencies": {
+    "glob": "~3.2",
+    "temp": "~0.6",
+    "grunt": "~0.4",
+    "load-grunt-tasks": "~0.2",
+    "grunt-contrib-clean": "~0.5",
+    "grunt-contrib-copy": "~0.4",
+    "grunt-contrib-uglify": "~0.2",
+    "grunt-contrib-jshint": "~0.8",
+    "grunt-contrib-concat": "~0.3",
+    "grunt-contrib-watch": "~0.5",
+    "grunt-phplint": "0.0.5",
+    "grunt-wp-readme": "~0.1",
+    "grunt-wp-deploy": "~0.3"
+  }
 }
