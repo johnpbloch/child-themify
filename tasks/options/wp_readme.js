@@ -33,6 +33,12 @@ module.exports = (function () {
 				}),
 				changelog   : [
 					{
+						version       : '1.1.1',
+						releaseMessage: 'Added French translation',
+						releaseDate   : '2015-01-13',
+						changes       : ['Added French translation from FR_lucien']
+					},
+					{
 						version       : '1.1.0',
 						releaseMessage: 'Minor release with tweaks and thumbnail support',
 						releaseDate   : '2014-12-20',
@@ -74,7 +80,7 @@ module.exports = (function () {
 						changes    : ['Initial Release']
 					}
 				],
-				upgrade     : 'Minor release with tweaks and thumbnail support'
+				upgrade     : 'Added French translation'
 			}
 		}
 	};
