@@ -1,0 +1,116 @@
+# Copyright (C) 2014 Child Themify
+# This file is distributed under the same license as the Child Themify package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Child Themify 1.1\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/child-themify\n"
+"POT-Creation-Date: 2014-12-20 17:08:52+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2015-01-13 20:00+0100\n"
+"Last-Translator: C_Lucien <lutch@free.fr>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"X-Generator: Poedit 1.5.6\n"
+
+#: includes/legacy.php:13 includes/plugin.php:14
+msgid "You do not have permission to do that!"
+msgstr "Vous n'avez pas les permissions pour cette action !"
+
+#: includes/legacy.php:39 includes/plugin.php:71
+msgctxt "The placeholder is for a theme's name"
+msgid "Create a child theme from %s"
+msgstr "Créer un thème enfant de %s"
+
+#: includes/legacy.php:42 includes/plugin.php:74
+msgid "Name your child theme"
+msgstr "Nommez le thème enfant"
+
+#: includes/legacy.php:44 includes/plugin.php:76
+msgid "Let's go!"
+msgstr "Action !"
+
+#: includes/legacy.php:108 includes/legacy.php:178 includes/plugin.php:158
+#: includes/plugin.php:314
+msgid "Create a child theme"
+msgstr "Créer un thème enfant"
+
+#: includes/legacy.php:129 includes/plugin.php:180
+msgid "Could not access the filesystem!"
+msgstr "Accès impossible au dossier système !"
+
+#: includes/legacy.php:154 includes/plugin.php:205
+msgid "Your child theme was created successfully."
+msgstr "Création du thème enfant réussie"
+
+#: includes/plugin.php:246
+msgid "Show previous theme"
+msgstr "Afficher le thème précédent"
+
+#: includes/plugin.php:247
+msgid "Show next theme"
+msgstr "Afficher le thème suivant"
+
+#: includes/plugin.php:248
+msgid "Close overlay"
+msgstr "Fermer"
+
+#: includes/plugin.php:263
+msgid "Current Theme"
+msgstr "Thème actif"
+
+#: includes/plugin.php:265
+msgid "Version: %s"
+msgstr "Version : %s"
+
+#: includes/plugin.php:266
+msgid "By %s"
+msgstr "Par %s"
+
+#: includes/plugin.php:270
+msgid "Update Available"
+msgstr "Mise à jour disponible"
+
+#: includes/plugin.php:277
+msgid "This is a child theme of %s."
+msgstr "Thème enfant de %s"
+
+#: includes/plugin.php:281
+msgid "Tags:"
+msgstr "Mots-clés"
+
+#: includes/plugin.php:288
+msgid "Customize"
+msgstr "Personnaliser"
+
+#: includes/plugin.php:294
+msgid "Activate"
+msgstr "Activer"
+
+#: includes/plugin.php:296
+msgid "Live Preview"
+msgstr "Prévisualisation en ligne"
+
+#: includes/plugin.php:297
+msgid "Preview"
+msgstr "Prévisualiser"
+
+#: includes/plugin.php:302
+msgid "Delete"
+msgstr "Supprimer"
+
+#. Plugin Name of the plugin/theme
+msgid "Child Themify"
+msgstr "Child Themify"
+
+#. Plugin URI of the plugin/theme
+msgid "https://github.com/johnpbloch/child-themify"
+msgstr "https://github.com/johnpbloch/child-themify"
+
+#. Description of the plugin/theme
+msgid "Create child themes at the click of a button."
+msgstr "Créer un thème enfant en un clic."
+
+#. Author of the plugin/theme
+msgid "John P. Bloch"
+msgstr "John P. Bloch"
