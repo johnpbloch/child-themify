@@ -14,6 +14,8 @@ module.exports = (function () {
 			minimumVersion: '3.4.2',
 			testedUpTo    : '4.3.9',
 			stableTag     : '<%=pkg.version%>',
+			textDomain    : '<%=pkg.name%>',
+			domainPath    : '/languages',
 			blurb         : 'Create child themes at the click of a button.',
 			sections      : {
 				description : '<%= pkg.description %>',
