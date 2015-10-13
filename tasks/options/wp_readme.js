@@ -35,6 +35,15 @@ module.exports = (function () {
 				}),
 				changelog   : [
 					{
+						version       : '1.1.2',
+						releaseMessage: 'i18n improvements',
+						releaseDate   : '2015-10-13',
+						changes       : [
+							'Fixed basename location when loading the textdomain',
+							'Added textdomain and domainpath headers to plugin file'
+						]
+					},
+					{
 						version       : '1.1.1',
 						releaseMessage: 'Added French translation',
 						releaseDate   : '2015-01-13',
@@ -82,7 +91,7 @@ module.exports = (function () {
 						changes    : ['Initial Release']
 					}
 				],
-				upgrade     : 'Added French translation'
+				upgrade     : 'I18n improvements'
 			}
 		}
 	};
