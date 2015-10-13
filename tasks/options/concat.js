@@ -18,6 +18,8 @@ module.exports = (function () {
 						' * Plugin URI: https://github.com/johnpbloch/child-themify\n' +
 						' * Author: John P. Bloch\n' +
 						' * License: <%= pkg.license %>\n' +
+						' * Text Domain: <%= pkg.name %>\n' +
+						' * Domain Path: /languages\n' +
 						' */\n',
 				process: function (src) {
 					// Remove leading php open tags
