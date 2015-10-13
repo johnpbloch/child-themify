@@ -21,7 +21,7 @@
     "grunt-contrib-concat": "~0.3",
     "grunt-contrib-watch": "~0.5",
     "grunt-phplint": "0.0.5",
-    "grunt-wp-readme": "~0.1",
+    "grunt-wp-readme": "~0.2",
     "grunt-wp-deploy": "~0.3"
   }
 }
