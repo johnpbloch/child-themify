@@ -223,7 +223,7 @@ EOF;
 	}
 
 	public function init() {
-		load_plugin_textdomain( 'child-themify', false, basename( dirname( __FILE__ ) ) . '/languages' );
+		load_plugin_textdomain( 'child-themify', false, basename( dirname( dirname( __FILE__ ) ) ) . '/languages' );
 		add_filter( 'theme_action_links', array( $this, 'addActionLink' ), 10, 2 );
 		add_action( 'load-themes.php', array( $this, 'loadThemesPage' ) );
 		add_action( 'admin_footer-themes.php', array( $this, 'override_tmpl_theme_single' ) );
