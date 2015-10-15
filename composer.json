@@ -24,6 +24,7 @@
 		"phpunit/phpunit"     : "~3.7@stable",
 		"wordpress/i18n-tools": "dev-trunk"
 	},
+	"prefer-stable"    : true,
 	"extra"            : {
 		"wordpress-install-dir": "vendor/johnpbloch/wordpress"
 	}
