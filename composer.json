@@ -27,5 +27,8 @@
 	"prefer-stable"    : true,
 	"extra"            : {
 		"wordpress-install-dir": "vendor/johnpbloch/wordpress"
+	},
+	"config"           : {
+		"secure-http": false
 	}
 }
