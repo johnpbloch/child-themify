@@ -1,14 +1,14 @@
-# Copyright (C) 2015 Child Themify
+# Copyright (C) 2016 Child Themify
 # This file is distributed under the same license as the Child Themify package.
 msgid ""
 msgstr ""
 "Project-Id-Version: Child Themify 1.1.2\n"
-"Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/child-themify\n"
-"POT-Creation-Date: 2015-10-13 15:49:47+00:00\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/child-themify\n"
+"POT-Creation-Date: 2016-08-02 14:14:03+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2015-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2016-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
