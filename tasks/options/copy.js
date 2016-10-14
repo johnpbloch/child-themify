@@ -11,6 +11,7 @@ module.exports = (function () {
 				'!**/tasks/**',
 				'!**/package.json',
 				'!**/Gruntfile.js',
+				'!**/yarn.lock',
 				// No composer stuff should get copied
 				'!**/vendor/**',
 				'!**/composer.json',
