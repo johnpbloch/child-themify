@@ -33,6 +33,12 @@ module.exports = (function () {
 				}),
 				changelog   : [
 					{
+						version       : '1.2.0',
+						releaseMessage: 'Plugin now creates a functions file',
+						releaseDate   : '2016-10-13',
+						changes       : ['The plugin now creates a functions.php file in the new theme']
+					},
+					{
 						version       : '1.1.2',
 						releaseMessage: 'i18n improvements',
 						releaseDate   : '2015-10-13',
@@ -89,7 +95,7 @@ module.exports = (function () {
 						changes    : ['Initial Release']
 					}
 				],
-				upgrade     : 'I18n improvements'
+				upgrade     : 'Creates a blank functions.php file'
 			}
 		}
 	};
