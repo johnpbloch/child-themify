@@ -202,6 +202,9 @@ EOF;
 		if ( file_exists( "$templateDirectory/screenshot.png" ) ) {
 			$wp_filesystem->copy( "$templateDirectory/screenshot.png", "$new_theme_directory/screenshot.png" );
 		}
+		$functions = trailingslashit( $new_theme_directory ) . 'functions.php';
+		$wp_filesystem->touch( $functions );
+		$wp_filesystem->put_contents( $functions, "<?php\n" );
 		add_settings_error( '', 'child-themify', esc_html__( 'Your child theme was created successfully.', 'child-themify' ), 'updated' );
 	}
 
