@@ -1,9 +1,0 @@
-<phpunit bootstrap="./bootstrap.php"
-				 backupGlobals="false"
-				 colors="true">
-	<testsuites>
-		<testsuite>
-			<directory suffix="Test.php">tests/phpunit</directory>
-		</testsuite>
-	</testsuites>
-</phpunit>

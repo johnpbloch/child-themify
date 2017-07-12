@@ -2,7 +2,6 @@
   "name": "child-themify",
   "version": "1.2.0",
   "description": "Create child themes from any non-child theme at the click of a button.\n\nThis plugin is multisite compatible; if used on a multisite network, controls for creating child themes will be in the network admin instead of the regular site admin.",
-  "main": "Gruntfile.js",
   "keywords": [
     "themes",
     "child",
@@ -10,18 +9,5 @@
   ],
   "license": "GPL-2.0+",
   "devDependencies": {
-    "glob": "^7.1.2",
-    "grunt": "^1.0.1",
-    "grunt-contrib-clean": "^1.1.0",
-    "grunt-contrib-concat": "^1.0.1",
-    "grunt-contrib-copy": "^1.0.0",
-    "grunt-contrib-jshint": "^1.1.0",
-    "grunt-contrib-uglify": "^3.0.1",
-    "grunt-contrib-watch": "^1.0.0",
-    "grunt-phplint": "^0.1.0",
-    "grunt-wp-deploy": "~0.3",
-    "grunt-wp-readme": "~0.2",
-    "load-grunt-tasks": "^3.5.2",
-    "temp": "^0.8.3"
   }
 }

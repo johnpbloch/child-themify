@@ -10,24 +10,8 @@
 			"email": "me@johnpbloch.com"
 		}
 	],
-	"repositories"     : [
-		{
-			"type": "composer",
-			"url" : "http://composer.johnpbloch.com"
-		}
-	],
-	"require"          : {
-		"composer/installers": "~1"
-	},
 	"require-dev"      : {
-		"johnpbloch/wordpress": ">=3.4.2",
-		"wordpress/i18n-tools": "dev-trunk"
+		"johnpbloch/wordpress-core": ">=3.4.2"
 	},
-	"prefer-stable"    : true,
-	"extra"            : {
-		"wordpress-install-dir": "vendor/johnpbloch/wordpress"
-	},
-	"config"           : {
-		"secure-http": false
-	}
+	"prefer-stable"    : true
 }
