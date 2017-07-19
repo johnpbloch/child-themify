@@ -59,7 +59,7 @@ class App extends Component {
 
     render() {
         return (
-            <div className="App">
+            <div className="App wrap">
                 <h1>{this.props.i18n.header}</h1>
                 {this.renderThemeSelector()}
                 {this.renderNameField()}
