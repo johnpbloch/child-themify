@@ -11,5 +11,11 @@
   "devDependencies": {
     "husky": "^0.14.3",
     "lerna": "^2.0.0"
+  },
+  "scripts": {
+    "build": "yarn run build:react && yarn run build:assets:js && yarn run build:assets:css",
+    "build:react": "cd packages/child-themify && yarn run build",
+    "build:assets:js": "cp packages/child-themify/build/static/js/*.js assets/js/child-themify.js && cp packages/child-themify/build/static/js/*.map assets/js/child-themify.js.map",
+    "build:assets:css": "cp packages/child-themify/build/static/css/*.css assets/css/child-themify.css && cp packages/child-themify/build/static/css/*.map assets/css/child-themify.css.map"
   }
 }
