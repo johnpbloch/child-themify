@@ -13,6 +13,7 @@ class App extends Component {
         this.state = {
             theme: undefined,
             childName: '',
+            advanced: false,
             filesLoading: false,
             themeFiles: [],
         };
@@ -108,13 +109,30 @@ class App extends Component {
         </div>);
     }
 
+    toggleAdvanced = (event) => {
+        event.preventDefault();
+        this.setState({advanced: !this.state.advanced});
+    };
+
+    renderShowAdvancedFieldsToggle() {
+        if (!this.state.theme) {
+            return null;
+        }
+        const text = this.state.advanced ? i18n.hide_advanced : i18n.show_advanced;
+        const icon = `dashicons dashicons-arrow-${this.state.advanced ? 'up' : 'down'}`;
+        return (<p><a className="advancedToggle" href="#" onClick={this.toggleAdvanced}>
+            {text} <span className={icon}/>
+        </a></p>);
+    }
+
     render() {
         return (
             <div className="App wrap">
                 <h1>{i18n.header}</h1>
                 {this.renderThemeSelector()}
                 {this.renderNameField()}
-                {this.renderExtraFilesField()}
+                {this.renderShowAdvancedFieldsToggle()}
+                {this.state.advanced ? this.renderExtraFilesField() : null}
             </div>
         );
     }
