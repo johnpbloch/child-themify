@@ -1,12 +1,12 @@
 .App {
-    max-width: 40rem;
+    max-width: 50rem;
 }
 
 .ctf-form-field {
     padding: 1rem 0;
 }
 
-.ctf-form-field label {
+.ctf-form-field > label {
     font-size: 1rem;
     font-weight: bold;
     display: block;
@@ -17,4 +17,17 @@
     padding: .5rem;
     border-radius: .25rem;
     border-color: #cccccc;
+}
+
+.ctf-extra-files {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.ctf-extra-files > p {
+    width: 50%;
+    max-width: 13rem;
+    min-width: 8rem;
+    padding: 0 1rem 1rem 0;
+    margin: 0;
 }

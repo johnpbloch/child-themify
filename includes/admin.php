@@ -42,6 +42,8 @@ function child_themify_admin_page() {
 				'theme_select_label' => esc_html__( 'Select a parent theme', 'child-themify' ),
 				'theme_placeholder'  => esc_html__( 'Select a theme...', 'child-themify' ),
 				'name_label'         => esc_html__( 'Name your child theme', 'child-themify' ),
+				'files_label'        => esc_html__( 'Extra Theme Files', 'child-themify' ),
+				'files_description'  => esc_html__( 'Select extra files that you want to copy into the child theme. style.css and functions.php are not in this list because they will always be created.', 'child-themify' ),
 			),
 		)
 	);

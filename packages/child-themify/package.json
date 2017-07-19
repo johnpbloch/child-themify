@@ -8,6 +8,7 @@
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
+    "react-loading": "^0.1.4",
     "react-scripts": "1.0.10",
     "react-select": "^1.0.0-rc.5"
   },

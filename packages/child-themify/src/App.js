@@ -1,19 +1,37 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
+import ReactLoading from 'react-loading';
 import 'react-select/dist/react-select.min.css';
-import {i18n} from './Utils';
+import {i18n, Data} from './Utils';
 import './App.css';
 
 class App extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {};
+        this.state = {
+            theme: undefined,
+            childName: '',
+            filesLoading: false,
+            themeFiles: [],
+        };
     }
 
     selectTheme = (selected) => {
-        this.setState({theme: selected ? selected.value : undefined});
+        this.setState({
+            theme: selected ? selected.value : undefined,
+            childName: '',
+            filesLoading: true,
+            themeFiles: [],
+        });
+        if (selected) {
+            Data.themeFiles(selected.value)
+                .then(data => {
+                    this.themeFiles = Object.keys(data.data.files);
+                    this.setState({filesLoading: false});
+                });
+        }
     };
 
     static formatSlug(name) {
@@ -64,7 +82,30 @@ class App extends Component {
         if (!this.state.theme) {
             return null;
         }
-        return (<div className="ctf-form-field">foobar</div>);
+        return (<div className="ctf-form-field">
+            <label>{i18n.files_label}</label>
+            {this.state.filesLoading
+                ? <ReactLoading type="bubbles" color="#333" delay="0"/>
+                : (<div>
+                    <p>{i18n.files_description}</p>
+                    <div className="ctf-extra-files">
+                        {this.themeFiles.map(file => {
+                            const isChecked = -1 !== this.state.themeFiles.indexOf(file);
+                            const updateState = (event) => {
+                                if (event.target.checked) {
+                                    this.setState({themeFiles: [...this.state.themeFiles, event.target.value]});
+                                } else {
+                                    this.setState({themeFiles: this.state.filter(i => i !== event.target.value)});
+                                }
+                            };
+                            return (<p><label>
+                                <input checked={isChecked} onChange={updateState} type="checkbox" value={file}/>
+                                {file}
+                            </label></p>);
+                        })}
+                    </div>
+                </div>)}
+        </div>);
     }
 
     render() {
