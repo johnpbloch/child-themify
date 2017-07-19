@@ -26,7 +26,7 @@ function child_themify_admin_page() {
 	wp_enqueue_script(
 		'child-themify',
 		child_themify_js(),
-		array(),
+		array( 'wp-util' ),
 		child_themify_asset_version(),
 		true
 	);
