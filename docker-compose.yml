@@ -1,0 +1,14 @@
+version: "3"
+services:
+  wordpress:
+    image: wordpress
+    ports:
+    - "20591:80"
+    environment:
+      WORDPRESS_DB_PASSWORD: password
+    volumes:
+    - ".:/usr/src/wordpress/wp-content/plugins/child-themify"
+  mysql:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: password
