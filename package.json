@@ -19,7 +19,7 @@
     "build:react": "cd packages/child-themify && yarn run build",
     "build:assets:js": "cp packages/child-themify/build/static/js/*.js assets/js/child-themify.js && cp packages/child-themify/build/static/js/*.map assets/js/child-themify.js.map",
     "build:assets:css": "cp packages/child-themify/build/static/css/*.css assets/css/child-themify.css && cp packages/child-themify/build/static/css/*.map assets/css/child-themify.css.map",
-    "build:notify": "notify -m 'Child Themify' -t 'Build finished successfully!'",
+    "build:notify": "notify -m \"Child Themify\" -t \"Build finished successfully!\"",
     "setup": "lerna bootstrap",
     "watch": "watch \"yarn build || notify -m 'Child Themify' -t 'Build failed!'\" packages/child-themify/src --interval=1"
   }

@@ -48,7 +48,7 @@ class App extends Component {
             return null;
         }
         return (<div>
-            <label>Name your child theme</label>
+            <label>{this.props.i18n.name_label}</label>
             <input
                 type="text"
                 name="theme-name"
