@@ -30,4 +30,15 @@ function child_themify_admin_page() {
 		child_themify_asset_version(),
 		true
 	);
+	wp_localize_script(
+		'child-themify',
+		'ChildThemify',
+		array(
+			'themes' => array(),
+			'i18n'   => array(
+				'header'             => esc_html__( 'Create a Child Theme', 'child-themify' ),
+				'theme_select_label' => esc_html__( 'Select a parent theme', 'child-themify' ),
+			),
+		)
+	);
 }

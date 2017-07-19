@@ -34,7 +34,7 @@ class App extends Component {
 
     renderThemeSelector() {
         return (<div>
-            <label>Select a parent theme</label>
+            <label>{this.props.i18n.theme_select_label}</label>
             <Select
                 name="form-field-name"
                 options={this.props.themes}
@@ -60,7 +60,7 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-                <h1>Create a child theme</h1>
+                <h1>{this.props.i18n.header}</h1>
                 {this.renderThemeSelector()}
                 {this.renderNameField()}
                 <pre>{JSON.stringify(this.state)}</pre>
