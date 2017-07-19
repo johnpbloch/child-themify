@@ -63,7 +63,6 @@ class App extends Component {
                 <h1>{this.props.i18n.header}</h1>
                 {this.renderThemeSelector()}
                 {this.renderNameField()}
-                <pre>{JSON.stringify(this.state)}</pre>
             </div>
         );
     }
