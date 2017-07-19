@@ -35,6 +35,7 @@ function child_themify_admin_page() {
 		'ChildThemify',
 		array(
 			'rest'   => rest_url( 'child-themify/v1' ),
+			'nonce'  => wp_create_nonce( 'wp_rest' ),
 			'themes' => child_themify_get_parent_themes_for_js(),
 			'i18n'   => array(
 				'header'             => esc_html__( 'Create a Child Theme', 'child-themify' ),
