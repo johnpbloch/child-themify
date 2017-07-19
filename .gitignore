@@ -1,12 +1,5 @@
 .idea/
-tests/wordpress-tests
-tests/local-bootstrap.php
-readme.txt
 composer.lock
 vendor/
-phpunit.xml
 node_modules/
-assets/js/child-themify.*
-child-themify.php
-assets/js/*.js
 build/
