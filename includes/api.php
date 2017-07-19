@@ -32,13 +32,14 @@ function child_themify_api_get_theme_files( $request ) {
 		);
 	}
 	/** @var WP_Theme $theme */
-	$theme = $request['theme'];
-	$files = $theme->get_files( null, 1 );
-	if ( isset( $files['functions.php'] ) ) {
-		unset( $files['functions.php'] );
-	}
-	if ( isset( $files['style.css'] ) ) {
-		unset( $files['style.css'] );
+	$theme     = $request['theme'];
+	$raw_files = $theme->get_files( array( 'php', 'inc', 'css', 'js', 'json' ), 1 );
+	$files     = array();
+	foreach ( $raw_files as $name => $path ) {
+		if ( in_array( $name, array( 'functions.php', 'style.css' ) ) ) {
+			continue;
+		}
+		$files[ $name ] = $path;
 	}
 
 	return rest_ensure_response( array( 'files' => $files ) );
