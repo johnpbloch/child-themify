@@ -38,6 +38,7 @@ function child_themify_admin_page() {
 			'i18n'   => array(
 				'header'             => esc_html__( 'Create a Child Theme', 'child-themify' ),
 				'theme_select_label' => esc_html__( 'Select a parent theme', 'child-themify' ),
+				'theme_placeholder'  => esc_html__( 'Select a theme...', 'child-themify' ),
 				'name_label'         => esc_html__( 'Name your child theme', 'child-themify' ),
 			),
 		)

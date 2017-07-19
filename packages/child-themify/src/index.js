@@ -9,6 +9,7 @@ const settings = _.assign({}, {
         header: '',
         theme_select_label: '',
         name_label: '',
+        theme_placeholder: '',
     },
 }, window.ChildThemify);
 

@@ -39,6 +39,7 @@ class App extends Component {
                 name="form-field-name"
                 options={this.props.themes}
                 onChange={this.selectTheme}
+                placeholder={this.props.i18n.theme_placeholder}
                 value={this.state.theme}/>
         </div>)
     }
