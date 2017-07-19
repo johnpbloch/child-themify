@@ -1,3 +1,14 @@
 .App {
     max-width: 40rem;
 }
+
+.ctf-form-field {
+    padding: 1rem 0;
+}
+
+.ctf-form-field label {
+    font-size: 1rem;
+    font-weight: bold;
+    display: block;
+    padding-bottom: .5rem;
+}

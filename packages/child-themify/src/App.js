@@ -33,7 +33,7 @@ class App extends Component {
     };
 
     renderThemeSelector() {
-        return (<div>
+        return (<div className="ctf-form-field">
             <label>{this.props.i18n.theme_select_label}</label>
             <Select
                 name="form-field-name"
@@ -47,12 +47,13 @@ class App extends Component {
         if (!this.state.theme) {
             return null;
         }
-        return (<div>
+        return (<div className="ctf-form-field">
             <label>{this.props.i18n.name_label}</label>
             <input
-                type="text"
+                className="widefat"
                 name="theme-name"
                 onChange={this.updateThemeName}
+                type="text"
                 value={this.state.childName}/>
         </div>)
     }
