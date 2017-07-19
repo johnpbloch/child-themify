@@ -7,7 +7,7 @@ services:
     environment:
       WORDPRESS_DB_PASSWORD: password
     volumes:
-    - ".:/usr/src/wordpress/wp-content/plugins/child-themify"
+    - ".:/var/www/html/wp-content/plugins/child-themify"
   mysql:
     image: mysql
     environment:
