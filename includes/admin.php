@@ -26,7 +26,7 @@ function child_themify_admin_page() {
 	wp_enqueue_script(
 		'child-themify',
 		child_themify_js(),
-		array( 'wp-util' ),
+		array(),
 		child_themify_asset_version(),
 		true
 	);
@@ -34,6 +34,7 @@ function child_themify_admin_page() {
 		'child-themify',
 		'ChildThemify',
 		array(
+			'rest'   => rest_url( 'child-themify/v1' ),
 			'themes' => child_themify_get_parent_themes_for_js(),
 			'i18n'   => array(
 				'header'             => esc_html__( 'Create a Child Theme', 'child-themify' ),
