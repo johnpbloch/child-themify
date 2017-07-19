@@ -14,7 +14,7 @@ class App extends Component {
             theme: undefined,
             childName: '',
             advanced: false,
-            filesLoading: false,
+            dataLoading: false,
             themeFiles: [],
         };
     }
@@ -23,14 +23,16 @@ class App extends Component {
         this.setState({
             theme: selected ? selected.value : undefined,
             childName: '',
-            filesLoading: true,
+            dataLoading: true,
             themeFiles: [],
         });
         if (selected) {
-            Data.themeFiles(selected.value)
+            Data.themeData(selected.value)
                 .then(data => {
-                    this.themeFiles = Object.keys(data.data.files);
-                    this.setState({filesLoading: false});
+                    this.themeData = {
+                        files: Object.keys(data.data.files),
+                    };
+                    this.setState({dataLoading: false});
                 });
         }
     };
@@ -85,12 +87,12 @@ class App extends Component {
         }
         return (<div className="ctf-form-field">
             <label>{i18n.files_label}</label>
-            {this.state.filesLoading
+            {this.state.dataLoading
                 ? <ReactLoading type="bubbles" color="#333" delay="0"/>
                 : (<div>
                     <p>{i18n.files_description}</p>
                     <div className="ctf-extra-files">
-                        {this.themeFiles.map(file => {
+                        {this.themeData.files.map(file => {
                             const isChecked = -1 !== this.state.themeFiles.indexOf(file);
                             const updateState = (event) => {
                                 if (event.target.checked) {

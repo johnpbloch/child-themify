@@ -5,8 +5,8 @@ const {rest_url, rest_nonce} = settings;
 
 export class Data {
 
-    static themeFiles(theme) {
-        return axios.get(`${rest_url}/theme-files/${theme}`, {
+    static themeData(theme) {
+        return axios.get(`${rest_url}/theme-data/${theme}`, {
             headers: {'X-WP-Nonce': rest_nonce}
         });
     }

@@ -8,7 +8,7 @@ function child_themify_api_init() {
  * @param WP_REST_Server $server
  */
 function child_themify_api_endpoints( $server ) {
-	register_rest_route( 'child-themify/v1', 'theme-files/(?P<theme>.+)', array(
+	register_rest_route( 'child-themify/v1', 'theme-data/(?P<theme>.+)', array(
 		'methods'             => WP_REST_Server::READABLE,
 		'callback'            => 'child_themify_api_get_theme_files',
 		'args'                => array(
