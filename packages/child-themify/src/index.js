@@ -4,13 +4,9 @@ import _ from 'lodash';
 import App from './App';
 
 const settings = _.assign({}, {
+    wp: window.wp,
+    rest: '',
     themes: [],
-    i18n: {
-        header: '',
-        theme_select_label: '',
-        name_label: '',
-        theme_placeholder: '',
-    },
 }, window.ChildThemify);
 
 ReactDOM.render(<App {...settings}/>, document.getElementById('ctfAppRoot'));

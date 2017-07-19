@@ -70,11 +70,28 @@ class App extends Component {
     }
 }
 
+App.defaultProps = {
+    i18n: {
+        header: '',
+        theme_select_label: '',
+        name_label: '',
+        theme_placeholder: '',
+    }
+};
+
 App.propTypes = {
+    wp: PropTypes.object.isRequired,
+    rest: PropTypes.string.isRequired,
     themes: PropTypes.arrayOf(PropTypes.shape({
         value: PropTypes.string.isRequired,
         label: PropTypes.string.isRequired,
     })),
+    i18n: PropTypes.shape({
+        header: PropTypes.string,
+        theme_select_label: PropTypes.string,
+        name_label: PropTypes.string,
+        theme_placeholder: PropTypes.string,
+    }),
 };
 
 export default App;
