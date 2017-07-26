@@ -81,6 +81,22 @@ class App extends Component {
         </div>)
     }
 
+    updateExtraFileField = (event) => {
+        if (event.target.checked) {
+            this.setState({themeFiles: [...this.state.themeFiles, event.target.value]});
+        } else {
+            this.setState({themeFiles: this.state.filter(i => i !== event.target.value)});
+        }
+    };
+
+    renderExtraFileField = (file) => {
+        const isChecked = -1 !== this.state.themeFiles.indexOf(file);
+        return (<p><label>
+            <input checked={isChecked} onChange={this.updateExtraFileField} type="checkbox" value={file}/>
+            {file}
+        </label></p>);
+    };
+
     renderExtraFilesField() {
         if (!this.state.theme) {
             return null;
@@ -92,20 +108,7 @@ class App extends Component {
                 : (<div>
                     <p>{i18n.files_description}</p>
                     <div className="ctf-extra-files">
-                        {this.themeData.files.map(file => {
-                            const isChecked = -1 !== this.state.themeFiles.indexOf(file);
-                            const updateState = (event) => {
-                                if (event.target.checked) {
-                                    this.setState({themeFiles: [...this.state.themeFiles, event.target.value]});
-                                } else {
-                                    this.setState({themeFiles: this.state.filter(i => i !== event.target.value)});
-                                }
-                            };
-                            return (<p><label>
-                                <input checked={isChecked} onChange={updateState} type="checkbox" value={file}/>
-                                {file}
-                            </label></p>);
-                        })}
+                        {this.themeData.files.map(this.renderExtraFileField)}
                     </div>
                 </div>)}
         </div>);
@@ -122,7 +125,7 @@ class App extends Component {
         }
         const text = this.state.advanced ? i18n.hide_advanced : i18n.show_advanced;
         const icon = `dashicons dashicons-arrow-${this.state.advanced ? 'up' : 'down'}`;
-        return (<p><a className="advancedToggle" href="#" onClick={this.toggleAdvanced}>
+        return (<p><a className="advancedToggle" onClick={this.toggleAdvanced}>
             {text} <span className={icon}/>
         </a></p>);
     }

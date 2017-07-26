@@ -33,5 +33,6 @@
 }
 
 a.advancedToggle {
+    cursor: pointer;
     text-decoration: none;
 }
