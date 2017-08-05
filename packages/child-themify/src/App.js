@@ -108,9 +108,13 @@ class App extends Component {
                     onChange={data => this.updateField('themeFiles', data)}
                     selectedFiles={this.state.themeFiles}
                     themeFiles={this.themeData.files || []}/>)}
-                {this.ifTheme(() => <p className="submit">
-                    <input className="button button-primary button-large" type="submit" value="Create Child Theme"/>
-                </p>)}
+                <p className="submit">
+                    <input
+                        className="button button-primary button-large"
+                        disabled={(!this.state.theme || !this.state.childSlug)}
+                        type="submit"
+                        value="Create Child Theme"/>
+                </p>
 
             </div>
         );
