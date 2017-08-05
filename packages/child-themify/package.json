@@ -10,7 +10,8 @@
     "react-dom": "^15.6.1",
     "react-loading": "^0.1.4",
     "react-scripts": "1.0.10",
-    "react-select": "^1.0.0-rc.5"
+    "react-select": "^1.0.0-rc.5",
+    "sprintf-js": "^1.1.1"
   },
   "devDependencies": {
     "cross-env": "^5.0.3",

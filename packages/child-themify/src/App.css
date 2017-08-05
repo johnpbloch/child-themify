@@ -36,3 +36,21 @@ a.advancedToggle {
     cursor: pointer;
     text-decoration: none;
 }
+
+.name-field-wrapper {
+    position: relative;
+}
+
+.name-field-status-indicator {
+    position: absolute;
+    right: 10px;
+    top: 50px;
+}
+
+.name-field-status-indicator .dashicons-yes {
+    color: #39e639;
+}
+
+.name-field-status-indicator .dashicons-no {
+    color: #b31b1b;
+}

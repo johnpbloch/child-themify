@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import ReactLoading from 'react-loading';
 import {debounce} from 'lodash';
+import {sprintf} from 'sprintf-js';
 import 'react-select/dist/react-select.min.css';
 import {i18n, Data, settings} from './Utils';
 import './App.css';
-import {ExtraFiles, Input, ThemeSelector} from "./Fields";
+import {ExtraFiles, Input, ThemeSelector} from './Fields';
 
 class App extends Component {
 
@@ -14,6 +16,7 @@ class App extends Component {
         this.state = {
             advanced: false,
             author: settings.current_user,
+            checkingSlug: false,
             childName: '',
             dataLoading: false,
             theme: '',
@@ -55,8 +58,11 @@ class App extends Component {
     updateThemeName = (name) => {
         const childName = name;
         const childSlug = App.formatSlug(childName);
-        this.setState({childName, childSlug, validSlug: null});
-        this.checkChildSlug();
+        const checkingSlug = !!childSlug;
+        this.setState({childName, childSlug, checkingSlug, validSlug: null});
+        if (checkingSlug) {
+            this.checkChildSlug();
+        }
     };
 
     toggleAdvanced = (event) => {
@@ -72,17 +78,42 @@ class App extends Component {
         </a></p>);
     };
 
+    getErrorIndicatorIcon() {
+        if (this.state.validSlug === true) {
+            return <span className="dashicons dashicons-yes"/>;
+        }
+        if (this.state.validSlug === false) {
+            return <span className="dashicons dashicons-no"/>;
+        }
+        return null;
+    }
+
+    renderNameField = () => {
+        const error = this.state.validSlug === false;
+        return (
+            <div className="name-field-wrapper">
+                <Input label={i18n.name_label} onChange={this.updateThemeName} value={this.state.childName}/>
+                <div className="name-field-status-indicator">
+                    {this.state.checkingSlug ?
+                        <ReactLoading color="#333" delay={0} height="20px" type="spin" width="20px"/> :
+                        this.getErrorIndicatorIcon()}
+                </div>
+                {error ? sprintf(i18n.invalid_theme, `"${this.state.childSlug}"`) : null}
+            </div>
+        );
+    };
+
     checkChildSlug = debounce(() => {
-        window.console.log('debounced');
         Data.themeData(this.state.childSlug)
             .then(() => {
-                this.setState({validSlug: false});
+                this.setState({checkingSlug: false, validSlug: false});
             }, (error) => {
                 this.setState({
+                    checkingSlug: false,
                     validSlug: error.response && error.response.status === 404
                 });
             });
-    }, 2000);
+    }, 1500);
 
     updateField(field, value) {
         this.setState({[field]: value});
@@ -108,10 +139,7 @@ class App extends Component {
             <div className="App wrap">
                 <h1>{i18n.header}</h1>
                 <ThemeSelector onChange={this.selectTheme} theme={this.state.theme} themes={this.props.themes}/>
-                {this.ifTheme(() => <Input
-                    label={i18n.name_label}
-                    onChange={this.updateThemeName}
-                    value={this.state.childName}/>)}
+                {this.ifTheme(this.renderNameField)}
                 {this.ifTheme(this.renderShowAdvancedFieldsToggle)}
                 {this.ifAdvanced(() => <Input
                     label={i18n.author_label}

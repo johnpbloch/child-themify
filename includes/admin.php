@@ -34,11 +34,11 @@ function child_themify_admin_page() {
 		'child-themify',
 		'ChildThemify',
 		array(
-			'rest'   => rest_url( 'child-themify/v1' ),
-			'nonce'  => wp_create_nonce( 'wp_rest' ),
-			'themes' => child_themify_get_parent_themes_for_js(),
+			'rest'         => rest_url( 'child-themify/v1' ),
+			'nonce'        => wp_create_nonce( 'wp_rest' ),
+			'themes'       => child_themify_get_parent_themes_for_js(),
 			'current_user' => wp_get_current_user()->display_name,
-			'i18n'   => array(
+			'i18n'         => array(
 				'header'             => esc_html__( 'Create a Child Theme', 'child-themify' ),
 				'theme_select_label' => esc_html__( 'Select a parent theme', 'child-themify' ),
 				'theme_placeholder'  => esc_html__( 'Select a theme...', 'child-themify' ),
@@ -50,6 +50,7 @@ function child_themify_admin_page() {
 				'select_all'         => esc_html__( 'Select All', 'child-themify' ),
 				'select_none'        => esc_html__( 'Select None', 'child-themify' ),
 				'author_label'       => esc_html__( 'Author Name', 'child-themify' ),
+				'invalid_theme'      => esc_html__( 'A theme %s already exists!', 'child-themify' ),
 			),
 		)
 	);
