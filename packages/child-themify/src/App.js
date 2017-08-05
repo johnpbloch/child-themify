@@ -21,6 +21,16 @@ class App extends Component {
         this.themeData = {};
     }
 
+    static formatSlug(name) {
+        let slug = name;
+        slug = slug.toLowerCase();
+        slug = slug.replace(/[^\w\s-]/g, '');
+        slug = slug.replace(/\s+/g, '-');
+        slug = slug.replace(/([_-])\1+/g, '$1');
+
+        return slug;
+    }
+
     selectTheme = (selected) => {
         this.setState({
             theme: selected ? selected.value : '',
@@ -38,16 +48,6 @@ class App extends Component {
                 });
         }
     };
-
-    static formatSlug(name) {
-        let slug = name;
-        slug = slug.toLowerCase();
-        slug = slug.replace(/[^\w\s-]/g, '');
-        slug = slug.replace(/\s+/g, '-');
-        slug = slug.replace(/([_-])\1+/g, '$1');
-
-        return slug;
-    }
 
     updateThemeName = (name) => {
         const childName = name;
