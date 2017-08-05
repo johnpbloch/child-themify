@@ -37,6 +37,7 @@ function child_themify_admin_page() {
 			'rest'   => rest_url( 'child-themify/v1' ),
 			'nonce'  => wp_create_nonce( 'wp_rest' ),
 			'themes' => child_themify_get_parent_themes_for_js(),
+			'current_user' => wp_get_current_user()->display_name,
 			'i18n'   => array(
 				'header'             => esc_html__( 'Create a Child Theme', 'child-themify' ),
 				'theme_select_label' => esc_html__( 'Select a parent theme', 'child-themify' ),
@@ -48,6 +49,7 @@ function child_themify_admin_page() {
 				'files_description'  => esc_html__( 'Select extra files that you want to copy into the child theme. style.css and functions.php are not in this list because they will always be created.', 'child-themify' ),
 				'select_all'         => esc_html__( 'Select All', 'child-themify' ),
 				'select_none'        => esc_html__( 'Select None', 'child-themify' ),
+				'author_label'       => esc_html__( 'Author Name', 'child-themify' ),
 			),
 		)
 	);

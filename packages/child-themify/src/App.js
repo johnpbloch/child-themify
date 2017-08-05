@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import 'react-select/dist/react-select.min.css';
-import {i18n, Data} from './Utils';
+import {i18n, Data, settings} from './Utils';
 import './App.css';
 import {ExtraFiles, Input, ThemeSelector} from "./Fields";
 
@@ -11,10 +11,11 @@ class App extends Component {
         super(props);
 
         this.state = {
-            theme: '',
-            childName: '',
             advanced: false,
+            author: settings.current_user,
+            childName: '',
             dataLoading: false,
+            theme: '',
             themeFiles: [],
         };
 
@@ -98,6 +99,10 @@ class App extends Component {
                     onChange={this.updateThemeName}
                     value={this.state.childName}/>)}
                 {this.ifTheme(this.renderShowAdvancedFieldsToggle)}
+                {this.ifAdvanced(() => <Input
+                    label={i18n.author_label}
+                    onChange={data => this.updateField('author', data)}
+                    value={this.state.author}/>)}
                 {this.ifAdvanced(() => <ExtraFiles
                     dataLoading={this.state.dataLoading}
                     onChange={data => this.updateField('themeFiles', data)}
