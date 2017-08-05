@@ -21,6 +21,7 @@ const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const getClientEnvironment = require('react-scripts/config/env');
 const paths = require('react-scripts/config/paths');
 const WebpackNotifierPlugin = require('webpack-notifier');
+const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // In development, we always serve from the root. This makes config easier.
@@ -259,9 +260,12 @@ module.exports = {
     // You can remove this if you don't use Moment.js:
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     new WebpackNotifierPlugin(),
-      new ExtractTextPlugin({
-          filename: 'css/child-themify.css',
-      }),
+    new ExtractTextPlugin({
+      filename: 'css/child-themify.css',
+    }),
+    new FriendlyErrorsPlugin({
+      clearConsole: true,
+    }),
   ],
   // Some libraries import Node modules but don't use them in the browser.
   // Tell Webpack to provide empty mocks for them so importing them works.
