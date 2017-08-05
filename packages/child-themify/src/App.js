@@ -4,7 +4,7 @@ import ReactLoading from 'react-loading';
 import 'react-select/dist/react-select.min.css';
 import {i18n, Data} from './Utils';
 import './App.css';
-import {ThemeSelector} from "./Fields";
+import {Name, ThemeSelector} from "./Fields";
 
 class App extends Component {
     constructor(props) {
@@ -47,27 +47,12 @@ class App extends Component {
         return slug;
     }
 
-    updateThemeName = (event) => {
-        const childName = event.target.value;
+    updateThemeName = (name) => {
+        const childName = name;
         const childSlug = App.formatSlug(childName);
 
         this.setState({childName, childSlug});
     };
-
-    renderNameField() {
-        if (!this.state.theme) {
-            return null;
-        }
-        return (<div className="ctf-form-field">
-            <label>{i18n.name_label}</label>
-            <input
-                className="widefat"
-                name="theme-name"
-                onChange={this.updateThemeName}
-                type="text"
-                value={this.state.childName}/>
-        </div>)
-    }
 
     updateExtraFileField = (event) => {
         if (event.target.checked) {
@@ -118,12 +103,19 @@ class App extends Component {
         </a></p>);
     }
 
+    ifTheme(component) {
+        if(!this.state.theme){
+            return null;
+        }
+        return component;
+    }
+
     render() {
         return (
             <div className="App wrap">
                 <h1>{i18n.header}</h1>
                 <ThemeSelector onChange={this.selectTheme} theme={this.state.theme} themes={this.props.themes}/>
-                {this.renderNameField()}
+                {this.ifTheme(<Name onChange={this.updateThemeName} value={this.state.childName} />)}
                 {this.renderShowAdvancedFieldsToggle()}
                 {this.state.advanced ? this.renderExtraFilesField() : null}
             </div>
