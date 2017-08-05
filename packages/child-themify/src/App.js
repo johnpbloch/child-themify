@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import 'react-select/dist/react-select.min.css';
 import {i18n, Data} from './Utils';
 import './App.css';
-import {ExtraFiles, Name, ThemeSelector} from "./Fields";
+import {ExtraFiles, Input, ThemeSelector} from "./Fields";
 
 class App extends Component {
 
@@ -93,7 +93,10 @@ class App extends Component {
             <div className="App wrap">
                 <h1>{i18n.header}</h1>
                 <ThemeSelector onChange={this.selectTheme} theme={this.state.theme} themes={this.props.themes}/>
-                {this.ifTheme(() => <Name onChange={this.updateThemeName} value={this.state.childName}/>)}
+                {this.ifTheme(() => <Input
+                    label={i18n.name_label}
+                    onChange={this.updateThemeName}
+                    value={this.state.childName}/>)}
                 {this.ifTheme(this.renderShowAdvancedFieldsToggle)}
                 {this.ifAdvanced(() => <ExtraFiles
                     dataLoading={this.state.dataLoading}

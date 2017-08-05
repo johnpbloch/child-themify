@@ -1,35 +1,36 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {i18n} from '../Utils';
 
-class Name extends Component {
+class Input extends Component {
 
-    updateThemeName = (event) => {
+    updateValue = (event) => {
         this.props.onChange(event.target.value);
     };
 
     render() {
         return (<div className="ctf-form-field">
-            <label>{i18n.name_label}</label>
+            <label>{this.props.label}</label>
             <input
                 className="widefat"
-                name="theme-name"
-                onChange={this.updateThemeName}
-                type="text"
+                onChange={this.updateValue}
+                type={this.props.type}
                 value={this.props.value}/>
         </div>)
     }
 }
 
-Name.defaultProps = {
+Input.defaultProps = {
     onChange: () => {
     },
+    type: 'text',
     value: '',
 };
 
-Name.propTypes = {
+Input.propTypes = {
+    label: PropTypes.string.isRequired,
     onChange: PropTypes.func,
+    type: PropTypes.string,
     value: PropTypes.string.isRequired,
 };
 
-export {Name};
+export {Input};
