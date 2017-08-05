@@ -19,6 +19,25 @@ class ExtraFiles extends Component {
         return <ExtraFile checked={isChecked} key={file} name={file} onChange={this.updateFile}/>;
     };
 
+    selectAll = event => {
+        event.preventDefault();
+        this.props.onChange(this.props.themeFiles);
+    };
+
+    selectNone = event => {
+        event.preventDefault();
+        this.props.onChange([]);
+    };
+
+    renderSelectAllNone() {
+        return (
+            <p>
+                <a href="" onClick={this.selectAll}>{i18n.select_all}</a> |&nbsp;
+                <a href="" onClick={this.selectNone}>{i18n.select_none}</a>
+            </p>
+        );
+    }
+
     render() {
         return (<div className="ctf-form-field">
             <label>{i18n.files_label}</label>
@@ -26,6 +45,7 @@ class ExtraFiles extends Component {
                 ? <ReactLoading type="bubbles" color="#333" delay="0"/>
                 : (<div>
                     <p>{i18n.files_description}</p>
+                    {this.renderSelectAllNone()}
                     <div className="ctf-extra-files">
                         {this.props.themeFiles.map(this.renderExtraFileField)}
                     </div>

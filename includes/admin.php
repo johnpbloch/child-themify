@@ -46,6 +46,8 @@ function child_themify_admin_page() {
 				'hide_advanced'      => esc_html__( 'Hide advanced fields', 'child-themify' ),
 				'files_label'        => esc_html__( 'Extra Theme Files', 'child-themify' ),
 				'files_description'  => esc_html__( 'Select extra files that you want to copy into the child theme. style.css and functions.php are not in this list because they will always be created.', 'child-themify' ),
+				'select_all'         => esc_html__( 'Select All', 'child-themify' ),
+				'select_none'        => esc_html__( 'Select None', 'child-themify' ),
 			),
 		)
 	);
