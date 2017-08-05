@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import {debounce} from 'lodash';
 import 'react-select/dist/react-select.min.css';
 import {i18n, Data, settings} from './Utils';
 import './App.css';
@@ -17,6 +18,7 @@ class App extends Component {
             dataLoading: false,
             theme: '',
             themeFiles: [],
+            validSlug: null,
         };
 
         this.themeData = {};
@@ -53,8 +55,8 @@ class App extends Component {
     updateThemeName = (name) => {
         const childName = name;
         const childSlug = App.formatSlug(childName);
-
-        this.setState({childName, childSlug});
+        this.setState({childName, childSlug, validSlug: null});
+        this.checkChildSlug();
     };
 
     toggleAdvanced = (event) => {
@@ -69,6 +71,18 @@ class App extends Component {
             {text} <span className={icon}/>
         </a></p>);
     };
+
+    checkChildSlug = debounce(() => {
+        window.console.log('debounced');
+        Data.themeData(this.state.childSlug)
+            .then(() => {
+                this.setState({validSlug: false});
+            }, (error) => {
+                this.setState({
+                    validSlug: error.response && error.response.status === 404
+                });
+            });
+    }, 2000);
 
     updateField(field, value) {
         this.setState({[field]: value});
@@ -111,7 +125,7 @@ class App extends Component {
                 <p className="submit">
                     <input
                         className="button button-primary button-large"
-                        disabled={(!this.state.theme || !this.state.childSlug)}
+                        disabled={(!this.state.theme || !this.state.childSlug || !this.state.validSlug)}
                         type="submit"
                         value="Create Child Theme"/>
                 </p>
