@@ -1,3 +1,5 @@
+window.ChildThemify = window.ChildThemify || {};
+
 const rest_url = window.ChildThemify.rest || '';
 const rest_nonce = window.ChildThemify.nonce || '';
 const theme_list = window.ChildThemify.themes || [];

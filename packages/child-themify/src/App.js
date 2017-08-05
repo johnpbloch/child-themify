@@ -1,17 +1,17 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import Select from 'react-select';
 import ReactLoading from 'react-loading';
 import 'react-select/dist/react-select.min.css';
 import {i18n, Data} from './Utils';
 import './App.css';
+import {ThemeSelector} from "./Fields";
 
 class App extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            theme: undefined,
+            theme: '',
             childName: '',
             advanced: false,
             dataLoading: false,
@@ -21,7 +21,7 @@ class App extends Component {
 
     selectTheme = (selected) => {
         this.setState({
-            theme: selected ? selected.value : undefined,
+            theme: selected ? selected.value : '',
             childName: '',
             dataLoading: true,
             themeFiles: [],
@@ -53,18 +53,6 @@ class App extends Component {
 
         this.setState({childName, childSlug});
     };
-
-    renderThemeSelector() {
-        return (<div className="ctf-form-field">
-            <label>{i18n.theme_select_label}</label>
-            <Select
-                name="form-field-name"
-                options={this.props.themes}
-                onChange={this.selectTheme}
-                placeholder={i18n.theme_placeholder}
-                value={this.state.theme}/>
-        </div>)
-    }
 
     renderNameField() {
         if (!this.state.theme) {
@@ -134,7 +122,7 @@ class App extends Component {
         return (
             <div className="App wrap">
                 <h1>{i18n.header}</h1>
-                {this.renderThemeSelector()}
+                <ThemeSelector onChange={this.selectTheme} theme={this.state.theme} themes={this.props.themes}/>
                 {this.renderNameField()}
                 {this.renderShowAdvancedFieldsToggle()}
                 {this.state.advanced ? this.renderExtraFilesField() : null}
