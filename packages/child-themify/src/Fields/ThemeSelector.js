@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {PropTypes} from 'prop-types';
 import Select from 'react-select';
-import {i18n} from "../../Utils/i18n";
+import {i18n} from "../Utils/i18n";
 
 class ThemeSelector extends Component {
 

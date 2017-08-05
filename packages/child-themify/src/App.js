@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import ReactLoading from 'react-loading';
 import 'react-select/dist/react-select.min.css';
 import {i18n, Data} from './Utils';
 import './App.css';
-import {Name, ThemeSelector} from "./Fields";
+import {ExtraFiles, Name, ThemeSelector} from "./Fields";
 
 class App extends Component {
+
     constructor(props) {
         super(props);
 
@@ -17,6 +17,8 @@ class App extends Component {
             dataLoading: false,
             themeFiles: [],
         };
+
+        this.themeData = {};
     }
 
     selectTheme = (selected) => {
@@ -54,60 +56,36 @@ class App extends Component {
         this.setState({childName, childSlug});
     };
 
-    updateExtraFileField = (event) => {
-        if (event.target.checked) {
-            this.setState({themeFiles: [...this.state.themeFiles, event.target.value]});
-        } else {
-            this.setState({themeFiles: this.state.filter(i => i !== event.target.value)});
-        }
-    };
-
-    renderExtraFileField = (file) => {
-        const isChecked = -1 !== this.state.themeFiles.indexOf(file);
-        return (<p><label>
-            <input checked={isChecked} onChange={this.updateExtraFileField} type="checkbox" value={file}/>
-            {file}
-        </label></p>);
-    };
-
-    renderExtraFilesField() {
-        if (!this.state.theme) {
-            return null;
-        }
-        return (<div className="ctf-form-field">
-            <label>{i18n.files_label}</label>
-            {this.state.dataLoading
-                ? <ReactLoading type="bubbles" color="#333" delay="0"/>
-                : (<div>
-                    <p>{i18n.files_description}</p>
-                    <div className="ctf-extra-files">
-                        {this.themeData.files.map(this.renderExtraFileField)}
-                    </div>
-                </div>)}
-        </div>);
-    }
-
     toggleAdvanced = (event) => {
         event.preventDefault();
         this.setState({advanced: !this.state.advanced});
     };
 
-    renderShowAdvancedFieldsToggle() {
-        if (!this.state.theme) {
-            return null;
-        }
+    renderShowAdvancedFieldsToggle = () => {
         const text = this.state.advanced ? i18n.hide_advanced : i18n.show_advanced;
         const icon = `dashicons dashicons-arrow-${this.state.advanced ? 'up' : 'down'}`;
         return (<p><a className="advancedToggle" onClick={this.toggleAdvanced}>
             {text} <span className={icon}/>
         </a></p>);
+    };
+
+    updateField(field, value) {
+        this.setState({[field]: value});
     }
 
-    ifTheme(component) {
-        if(!this.state.theme){
+    ifTheme(renderer) {
+        if (!this.state.theme) {
             return null;
         }
-        return component;
+        return renderer();
+    }
+
+    ifAdvanced(renderer) {
+        if (!this.state.advanced) {
+            return null;
+        }
+
+        return this.ifTheme(renderer);
     }
 
     render() {
@@ -115,9 +93,13 @@ class App extends Component {
             <div className="App wrap">
                 <h1>{i18n.header}</h1>
                 <ThemeSelector onChange={this.selectTheme} theme={this.state.theme} themes={this.props.themes}/>
-                {this.ifTheme(<Name onChange={this.updateThemeName} value={this.state.childName} />)}
-                {this.renderShowAdvancedFieldsToggle()}
-                {this.state.advanced ? this.renderExtraFilesField() : null}
+                {this.ifTheme(() => <Name onChange={this.updateThemeName} value={this.state.childName}/>)}
+                {this.ifTheme(this.renderShowAdvancedFieldsToggle)}
+                {this.ifAdvanced(() => <ExtraFiles
+                    dataLoading={this.state.dataLoading}
+                    onChange={data => this.updateField('themeFiles', data)}
+                    selectedFiles={this.state.themeFiles}
+                    themeFiles={this.themeData.files || []}/>)}
             </div>
         );
     }
