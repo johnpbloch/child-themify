@@ -1,0 +1,33 @@
+{
+  "rest": "http://ctf.dev/wp-json/child-themify/v1",
+  "nonce": "29d759ae42",
+  "themes": [
+    {
+      "value": "twentyfifteen",
+      "label": "Twenty Fifteen"
+    },
+    {
+      "value": "twentyseventeen",
+      "label": "Twenty Seventeen"
+    },
+    {
+      "value": "twentysixteen",
+      "label": "Twenty Sixteen"
+    }
+  ],
+  "current_user": "asdf",
+  "i18n": {
+    "header": "Create a Child Theme",
+    "theme_select_label": "Select a parent theme",
+    "theme_placeholder": "Select a theme...",
+    "name_label": "Name your child theme",
+    "show_advanced": "Show advanced fields",
+    "hide_advanced": "Hide advanced fields",
+    "files_label": "Extra Theme Files",
+    "files_description": "Select extra files that you want to copy into the child theme. style.css and functions.php are not in this list because they will always be created.",
+    "select_all": "Select All",
+    "select_none": "Select None",
+    "author_label": "Author Name",
+    "invalid_theme": "A theme %s already exists!"
+  }
+}

@@ -51,7 +51,7 @@ class App extends Component {
                         files: Object.keys(data.data.files),
                     };
                     this.setState({dataLoading: false});
-                });
+                }).catch(() => {});
         }
     };
 
@@ -112,7 +112,7 @@ class App extends Component {
                     checkingSlug: false,
                     validSlug: error.response && error.response.status === 404
                 });
-            });
+            }).catch(() => {});
     }, 1500);
 
     updateField(field, value) {

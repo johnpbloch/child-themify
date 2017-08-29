@@ -1,0 +1,24 @@
+{
+  "files": {
+    "404.php": "\/var\/www\/html\/wp-content\/themes\/twentyseventeen\/404.php",
+    "archive.php": "\/var\/www\/html\/wp-content\/themes\/twentyseventeen\/archive.php",
+    "comments.php": "\/var\/www\/html\/wp-content\/themes\/twentyseventeen\/comments.php",
+    "footer.php": "\/var\/www\/html\/wp-content\/themes\/twentyseventeen\/footer.php",
+    "front-page.php": "\/var\/www\/html\/wp-content\/themes\/twentyseventeen\/front-page.php",
+    "header.php": "\/var\/www\/html\/wp-content\/themes\/twentyseventeen\/header.php",
+    "inc\/back-compat.php": "\/var\/www\/html\/wp-content\/themes\/twentyseventeen\/inc\/back-compat.php",
+    "inc\/color-patterns.php": "\/var\/www\/html\/wp-content\/themes\/twentyseventeen\/inc\/color-patterns.php",
+    "inc\/custom-header.php": "\/var\/www\/html\/wp-content\/themes\/twentyseventeen\/inc\/custom-header.php",
+    "inc\/customizer.php": "\/var\/www\/html\/wp-content\/themes\/twentyseventeen\/inc\/customizer.php",
+    "inc\/icon-functions.php": "\/var\/www\/html\/wp-content\/themes\/twentyseventeen\/inc\/icon-functions.php",
+    "inc\/template-functions.php": "\/var\/www\/html\/wp-content\/themes\/twentyseventeen\/inc\/template-functions.php",
+    "inc\/template-tags.php": "\/var\/www\/html\/wp-content\/themes\/twentyseventeen\/inc\/template-tags.php",
+    "index.php": "\/var\/www\/html\/wp-content\/themes\/twentyseventeen\/index.php",
+    "page.php": "\/var\/www\/html\/wp-content\/themes\/twentyseventeen\/page.php",
+    "rtl.css": "\/var\/www\/html\/wp-content\/themes\/twentyseventeen\/rtl.css",
+    "search.php": "\/var\/www\/html\/wp-content\/themes\/twentyseventeen\/search.php",
+    "searchform.php": "\/var\/www\/html\/wp-content\/themes\/twentyseventeen\/searchform.php",
+    "sidebar.php": "\/var\/www\/html\/wp-content\/themes\/twentyseventeen\/sidebar.php",
+    "single.php": "\/var\/www\/html\/wp-content\/themes\/twentyseventeen\/single.php"
+  }
+}
