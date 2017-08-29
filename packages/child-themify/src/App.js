@@ -78,6 +78,18 @@ class App extends Component {
         </a></p>);
     };
 
+    realCheckChildSlug() {
+        Data.themeData(this.state.childSlug)
+            .then(() => {
+                this.setState({checkingSlug: false, validSlug: false});
+            }, (error) => {
+                this.setState({
+                    checkingSlug: false,
+                    validSlug: error.response && error.response.status === 404
+                });
+            }).catch(() => {});
+    }
+
     getErrorIndicatorIcon() {
         if (this.state.validSlug === true) {
             return <span className="dashicons dashicons-yes"/>;
@@ -104,15 +116,7 @@ class App extends Component {
     };
 
     checkChildSlug = debounce(() => {
-        Data.themeData(this.state.childSlug)
-            .then(() => {
-                this.setState({checkingSlug: false, validSlug: false});
-            }, (error) => {
-                this.setState({
-                    checkingSlug: false,
-                    validSlug: error.response && error.response.status === 404
-                });
-            }).catch(() => {});
+        this.realCheckChildSlug();
     }, 1500);
 
     updateField(field, value) {
