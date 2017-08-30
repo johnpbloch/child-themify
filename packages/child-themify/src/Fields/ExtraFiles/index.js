@@ -42,7 +42,7 @@ class ExtraFiles extends Component {
         return (<div className="ctf-form-field">
             <label>{i18n.files_label}</label>
             {this.props.dataLoading
-                ? <ReactLoading type="bubbles" color="#333" delay="0"/>
+                ? <ReactLoading type="bubbles" color="#333" delay={0}/>
                 : (<div>
                     <p>{i18n.files_description}</p>
                     {this.renderSelectAllNone()}
