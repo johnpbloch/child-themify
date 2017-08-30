@@ -32,8 +32,8 @@ class ExtraFiles extends Component {
     renderSelectAllNone() {
         return (
             <p>
-                <a href="" onClick={this.selectAll}>{i18n.select_all}</a> |&nbsp;
-                <a href="" onClick={this.selectNone}>{i18n.select_none}</a>
+                <a href="" className="select-all" onClick={this.selectAll}>{i18n.select_all}</a> |&nbsp;
+                <a href="" className="select-none" onClick={this.selectNone}>{i18n.select_none}</a>
             </p>
         );
     }
