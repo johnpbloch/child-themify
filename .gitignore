@@ -3,3 +3,4 @@ composer.lock
 vendor/
 node_modules/
 build/
+/coverage/

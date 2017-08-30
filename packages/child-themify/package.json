@@ -32,6 +32,13 @@
     "dev": "cross-env NODE_ENV=development webpack --color --config webpack.config.dev.js --progress --hide-modules"
   },
   "jest": {
+    "coverageDirectory": "../../coverage",
+    "coveragePathIgnorePatterns": [
+      "<rootDir>/__mocks__/",
+      "<rootDir>/public/",
+      "<rootDir>/src/__tests__/",
+      "<rootDir>/*.js"
+    ],
     "setupFiles": [
       "<rootDir>/setupFile.js"
     ],
