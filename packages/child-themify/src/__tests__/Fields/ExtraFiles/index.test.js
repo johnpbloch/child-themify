@@ -69,12 +69,7 @@ describe('<ExtraFiles/> component tests', () => {
     });
 
     it('Checks and unchecks individual files', () => {
-        const files = [
-            'Foo',
-            'Bar',
-            'Baz',
-            'Bat',
-        ];
+        const files = ['Foo', 'Bar', 'Baz', 'Bat'];
         const selectedFiles = ['Foo', 'Baz'];
         const wrapper = mount(<ExtraFiles themeFiles={files} selectedFiles={selectedFiles}/>);
         wrapper.setProps({
