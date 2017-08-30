@@ -25,6 +25,8 @@ class App extends Component {
         };
 
         this.themeData = {};
+
+        this.checkChildSlug = debounce(this.realCheckChildSlug.bind(this), 1500);
     }
 
     static formatSlug(name) {
@@ -44,6 +46,7 @@ class App extends Component {
             dataLoading: true,
             themeFiles: [],
         });
+        /* istanbul ignore else */
         if (selected) {
             Data.themeData(selected.value)
                 .then(data => {
@@ -60,6 +63,7 @@ class App extends Component {
         const childSlug = App.formatSlug(childName);
         const checkingSlug = !!childSlug;
         this.setState({childName, childSlug, checkingSlug, validSlug: null});
+        /* istanbul ignore else */
         if (checkingSlug) {
             this.checkChildSlug();
         }
@@ -87,13 +91,16 @@ class App extends Component {
                     checkingSlug: false,
                     validSlug: error.response && error.response.status === 404
                 });
-            }).catch(() => {});
+            }).catch(() => {
+        });
     }
 
     getErrorIndicatorIcon() {
+        /* istanbul ignore else */
         if (this.state.validSlug === true) {
             return <span className="dashicons dashicons-yes"/>;
         }
+        /* istanbul ignore else */
         if (this.state.validSlug === false) {
             return <span className="dashicons dashicons-no"/>;
         }
@@ -115,15 +122,16 @@ class App extends Component {
         );
     };
 
-    checkChildSlug = debounce(() => {
-        this.realCheckChildSlug();
-    }, 1500);
+    /* istanbul ignore next */
+    checkChildSlug() {
+    }
 
     updateField(field, value) {
         this.setState({[field]: value});
     }
 
     ifTheme(renderer) {
+        /* istanbul ignore else */
         if (!this.state.theme) {
             return null;
         }
@@ -131,6 +139,7 @@ class App extends Component {
     }
 
     ifAdvanced(renderer) {
+        /* istanbul ignore else */
         if (!this.state.advanced) {
             return null;
         }
