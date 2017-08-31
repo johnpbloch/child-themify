@@ -107,7 +107,7 @@ describe('<App/> component tests', () => {
             .then(() => {
                 return new Promise(resolve => {
                     instance.updateThemeName('First Test Theme');
-                    setTimeout(() => resolve(1), 10);
+                    setTimeout(() => resolve(1));
                 })
             })
             .then(() => {
@@ -120,7 +120,7 @@ describe('<App/> component tests', () => {
             .then(() => {
                 return new Promise(resolve => {
                     instance.updateThemeName('Test Theme');
-                    setTimeout(() => resolve(1), 10);
+                    setTimeout(() => resolve(1));
                 });
             })
             .then(() => {
