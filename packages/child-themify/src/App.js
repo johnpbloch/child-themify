@@ -96,8 +96,7 @@ class App extends Component {
                     checkingSlug: false,
                     validSlug: error.response && error.response.status === 404
                 });
-            }).catch(() => {
-        });
+            }).catch(() => {});
     }
 
     getErrorIndicatorIcon() {

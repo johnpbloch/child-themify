@@ -4,6 +4,7 @@ import React from 'react';
 import {shallow, mount} from 'enzyme';
 import state from '../../__mocks__/state.json';
 import App from '../App';
+import {Input} from '../Fields/Input';
 import twentyseventeen from '../../__mocks__/api/theme-data/twentyseventeen.json';
 
 describe('<App/> component tests', () => {
@@ -83,5 +84,48 @@ describe('<App/> component tests', () => {
         component.instance().selectTheme();
 
         expect(component.state('theme')).toBe('');
+    });
+
+    test('Existing theme names cannot be used', () => {
+        expect.assertions(4);
+        const component = mount(<App themes={state.themes}/>);
+        axiosMock.reset();
+        axiosMock
+            .onGet('http://ctf.dev/wp-json/child-themify/v1/theme-data/twentyseventeen')
+            .reply(200, twentyseventeen);
+        const instance = component.instance();
+        instance.checkChildSlug = instance.realCheckChildSlug;
+        instance.selectTheme({value: 'twentyseventeen'});
+
+        axiosMock
+            .onGet('http://ctf.dev/wp-json/child-themify/v1/theme-data/test-theme')
+            .reply(200, {"files": {}})
+            .onGet()
+            .reply(404, {});
+
+        return Promise.resolve(1)
+            .then(() => {
+                return new Promise(resolve => {
+                    instance.updateThemeName('First Test Theme');
+                    setTimeout(() => resolve(1), 10);
+                })
+            })
+            .then(() => {
+                return new Promise(resolve => {
+                    expect(component.find('.dashicons-yes').exists()).toBe(true);
+                    expect(component.find('.dashicons-no').exists()).toBe(false);
+                    resolve(1);
+                });
+            })
+            .then(() => {
+                return new Promise(resolve => {
+                    instance.updateThemeName('Test Theme');
+                    setTimeout(() => resolve(1), 10);
+                });
+            })
+            .then(() => {
+                expect(component.find('.dashicons-yes').exists()).toBe(false);
+                expect(component.find('.dashicons-no').exists()).toBe(true);
+            });
     });
 });
