@@ -26,6 +26,11 @@ class App extends Component {
 
         this.themeData = {};
 
+        this.selectTheme = this.selectTheme.bind(this);
+        this.updateThemeName = this.updateThemeName.bind(this);
+        this.toggleAdvanced = this.toggleAdvanced.bind(this);
+        this.renderShowAdvancedFieldsToggle = this.renderShowAdvancedFieldsToggle.bind(this);
+        this.renderNameField = this.renderNameField.bind(this);
         this.checkChildSlug = debounce(this.realCheckChildSlug.bind(this), 1500);
     }
 
@@ -39,7 +44,7 @@ class App extends Component {
         return slug;
     }
 
-    selectTheme = (selected) => {
+    selectTheme(selected) {
         this.setState({
             theme: selected ? selected.value : '',
             childName: '',
@@ -58,7 +63,7 @@ class App extends Component {
         }
     };
 
-    updateThemeName = (name) => {
+    updateThemeName(name) {
         const childName = name;
         const childSlug = App.formatSlug(childName);
         const checkingSlug = !!childSlug;
@@ -69,12 +74,12 @@ class App extends Component {
         }
     };
 
-    toggleAdvanced = (event) => {
+    toggleAdvanced(event) {
         event.preventDefault();
         this.setState({advanced: !this.state.advanced});
     };
 
-    renderShowAdvancedFieldsToggle = () => {
+    renderShowAdvancedFieldsToggle() {
         const text = this.state.advanced ? i18n.hide_advanced : i18n.show_advanced;
         const icon = `dashicons dashicons-arrow-${this.state.advanced ? 'up' : 'down'}`;
         return (<p><a className="advancedToggle" onClick={this.toggleAdvanced}>
@@ -107,7 +112,7 @@ class App extends Component {
         return null;
     }
 
-    renderNameField = () => {
+    renderNameField() {
         const error = this.state.validSlug === false;
         return (
             <div className="name-field-wrapper">
