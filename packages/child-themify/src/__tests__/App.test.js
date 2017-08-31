@@ -72,4 +72,15 @@ describe('<App/> component tests', () => {
 
         expect(component.find('ExtraFiles').exists()).toBe(true);
     });
+
+    test('Reset data on theme clear', () => {
+        const component = mount(<App themes={state.themes}/>);
+        component.setState({
+            theme: 'twentyseventeen',
+        });
+
+        component.instance().selectTheme();
+
+        expect(component.state('theme')).toBe('');
+    });
 });
