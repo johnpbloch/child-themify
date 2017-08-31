@@ -4,6 +4,7 @@ import React from 'react';
 import {shallow, mount} from 'enzyme';
 import state from '../../__mocks__/state.json';
 import App from '../App';
+import twentyseventeen from '../../__mocks__/api/theme-data/twentyseventeen.json';
 
 describe('<App/> component tests', () => {
     const axiosMock = new AxiosMockAdapter(axios);
@@ -16,7 +17,7 @@ describe('<App/> component tests', () => {
         axiosMock.reset();
         axiosMock
             .onGet('http://ctf.dev/wp-json/child-themify/v1/theme-data/twentyseventeen')
-            .reply(200, import('../../__mocks__/api/theme-data/twentyseventeen.json'));
+            .reply(200, twentyseventeen);
 
         component.instance().selectTheme({value: 'twentyseventeen'});
 
@@ -30,7 +31,7 @@ describe('<App/> component tests', () => {
         axiosMock.reset();
         axiosMock
             .onGet('http://ctf.dev/wp-json/child-themify/v1/theme-data/twentyseventeen')
-            .reply(200, import('../../__mocks__/api/theme-data/twentyseventeen.json'))
+            .reply(200, twentyseventeen)
             .onGet()
             .reply(404, {});
         instance.selectTheme({value: 'twentyseventeen'});
@@ -62,7 +63,7 @@ describe('<App/> component tests', () => {
         axiosMock.reset();
         axiosMock
             .onGet('http://ctf.dev/wp-json/child-themify/v1/theme-data/twentyseventeen')
-            .reply(200, import('../../__mocks__/api/theme-data/twentyseventeen.json'));
+            .reply(200, twentyseventeen);
 
         component.instance().selectTheme({value: 'twentyseventeen'});
 
