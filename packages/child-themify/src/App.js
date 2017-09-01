@@ -13,17 +13,7 @@ class App extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            advanced: false,
-            author: settings.current_user,
-            checkingSlug: false,
-            childName: '',
-            creatingTheme: false,
-            dataLoading: false,
-            theme: '',
-            themeFiles: [],
-            validSlug: null,
-        };
+        this.state = App.getDefaultState();
 
         this.themeData = {};
 
@@ -34,6 +24,20 @@ class App extends Component {
         this.renderNameField = this.renderNameField.bind(this);
         this.createTheme = this.createTheme.bind(this);
         this.checkChildSlug = debounce(this.realCheckChildSlug.bind(this), 1500);
+    }
+
+    static getDefaultState() {
+        return {
+            advanced: false,
+            author: settings.current_user,
+            checkingSlug: false,
+            childName: '',
+            creatingTheme: false,
+            dataLoading: false,
+            theme: '',
+            themeFiles: [],
+            validSlug: null,
+        };
     }
 
     static formatSlug(name) {
@@ -61,7 +65,9 @@ class App extends Component {
                         files: Object.keys(data.data.files),
                     };
                     this.setState({dataLoading: false});
-                }).catch(() => {});
+                })
+                .catch(() => {
+                });
         }
     };
 
@@ -98,7 +104,9 @@ class App extends Component {
                     checkingSlug: false,
                     validSlug: error.response && error.response.status === 404
                 });
-            }).catch(() => {});
+            })
+            .catch(() => {
+            });
     }
 
     getErrorIndicatorIcon() {
@@ -133,6 +141,21 @@ class App extends Component {
     }
 
     createTheme() {
+        this.setState({creatingTheme: true});
+        Data.createTheme(
+            this.state.childSlug,
+            this.state.theme,
+            this.state.childName,
+            this.state.author,
+            this.state.themeFiles,
+            settings.credentials
+        )
+            .then(() => {
+                this.setState({...App.getDefaultState(), showMessage: true});
+            }, error => {
+            })
+            .catch(() => {
+            });
     }
 
     updateField(field, value) {
@@ -165,6 +188,17 @@ class App extends Component {
     }
 
     render() {
+        if (this.state.showMessage) {
+            const noticeType = this.error ? 'error' : 'success';
+            return (
+                <div className="App wrap">
+                    <h1>{i18n.header}</h1>
+                    <div className={`notice notice-${noticeType}`}>
+                        <p>{this.state.showMessage}</p>
+                    </div>
+                </div>
+            );
+        }
         const {ready, working} = i18n.create_button;
         return (
             <div className="App wrap">
