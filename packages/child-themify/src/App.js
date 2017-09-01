@@ -18,6 +18,7 @@ class App extends Component {
             author: settings.current_user,
             checkingSlug: false,
             childName: '',
+            creatingTheme: false,
             dataLoading: false,
             theme: '',
             themeFiles: [],
@@ -31,6 +32,7 @@ class App extends Component {
         this.toggleAdvanced = this.toggleAdvanced.bind(this);
         this.renderShowAdvancedFieldsToggle = this.renderShowAdvancedFieldsToggle.bind(this);
         this.renderNameField = this.renderNameField.bind(this);
+        this.createTheme = this.createTheme.bind(this);
         this.checkChildSlug = debounce(this.realCheckChildSlug.bind(this), 1500);
     }
 
@@ -130,6 +132,9 @@ class App extends Component {
     checkChildSlug() {
     }
 
+    createTheme() {
+    }
+
     updateField(field, value) {
         this.setState({[field]: value});
     }
@@ -149,6 +154,14 @@ class App extends Component {
         }
 
         return this.ifTheme(renderer);
+    }
+
+    isSubmitDisabled() {
+        return ((
+            !this.state.theme ||
+            !this.state.childSlug ||
+            !this.state.validSlug
+        ) || this.state.creatingTheme);
     }
 
     render() {
@@ -171,9 +184,10 @@ class App extends Component {
                 <p className="submit">
                     <input
                         className="button button-primary button-large"
-                        disabled={(!this.state.theme || !this.state.childSlug || !this.state.validSlug)}
+                        disabled={this.isSubmitDisabled()}
+                        onClick={this.createTheme}
                         type="submit"
-                        value={ready}/>
+                        value={this.state.creatingTheme ? working : ready}/>
                 </p>
 
             </div>
