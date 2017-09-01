@@ -11,4 +11,19 @@ export class Data {
         });
     }
 
+    static createTheme(
+        slug,
+        parent,
+        name,
+        author,
+        extra_files,
+        creds
+    ) {
+        return axios.post(`${rest_url}/create-theme`, {
+            slug, parent, name, author, extra_files, creds
+        }, {
+            headers: {'X-WP-Nonce': rest_nonce}
+        })
+    }
+
 }
