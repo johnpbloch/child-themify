@@ -152,6 +152,7 @@ class App extends Component {
     }
 
     render() {
+        const {ready, working} = i18n.create_button;
         return (
             <div className="App wrap">
                 <h1>{i18n.header}</h1>
@@ -172,7 +173,7 @@ class App extends Component {
                         className="button button-primary button-large"
                         disabled={(!this.state.theme || !this.state.childSlug || !this.state.validSlug)}
                         type="submit"
-                        value="Create Child Theme"/>
+                        value={ready}/>
                 </p>
 
             </div>

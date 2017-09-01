@@ -67,6 +67,10 @@ function child_themify_admin_page() {
 				'select_none'        => esc_html__( 'Select None', 'child-themify' ),
 				'author_label'       => esc_html__( 'Author Name', 'child-themify' ),
 				'invalid_theme'      => esc_html__( 'A theme %s already exists!', 'child-themify' ),
+				'create_button'      => array(
+					'ready'   => esc_html__( 'Create Child Theme', 'child-themify' ),
+					'working' => esc_html__( 'Creating Your Child Theme...', 'child-themify' ),
+				)
 			),
 			'creds'        => $permissions,
 		)

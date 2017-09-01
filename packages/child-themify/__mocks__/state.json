@@ -28,7 +28,11 @@
     "select_all": "Select All",
     "select_none": "Select None",
     "author_label": "Author Name",
-    "invalid_theme": "A theme %s already exists!"
+    "invalid_theme": "A theme %s already exists!",
+    "create_button": {
+      "ready": "Create Child Theme",
+      "working": "Creating Your Child Theme..."
+    }
   },
   "creds": {
     "auth": true
