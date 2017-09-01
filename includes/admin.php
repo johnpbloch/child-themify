@@ -1,9 +1,15 @@
 <?php
 
+/**
+ * Admin setup
+ */
 function child_themify_admin_init() {
 	add_action( 'admin_menu', 'child_themify_admin_menu' );
 }
 
+/**
+ * Create the admin menu page and hook into the loader to enqueue styles
+ */
 function child_themify_admin_menu() {
 	$hook = add_theme_page(
 		esc_html__( 'Create Child Theme', 'child-themify' ),
@@ -15,11 +21,21 @@ function child_themify_admin_menu() {
 	add_action( "load-$hook", 'child_themify_admin_page_load' );
 }
 
+/**
+ * Enqueue the stylesheet
+ */
 function child_themify_admin_page_load() {
 	wp_enqueue_style( 'child-themify', child_themify_css(), array(), child_themify_asset_version() );
 }
 
+/**
+ * Render the admin page
+ */
 function child_themify_admin_page() {
+	$permissions = child_themify_admin_ensure_write_permissions();
+	if ( empty( $permissions ) ) {
+		return;
+	}
 	?>
 	<div id="ctfAppRoot"></div>
 	<?php
@@ -52,6 +68,47 @@ function child_themify_admin_page() {
 				'author_label'       => esc_html__( 'Author Name', 'child-themify' ),
 				'invalid_theme'      => esc_html__( 'A theme %s already exists!', 'child-themify' ),
 			),
+			'creds'        => $permissions,
 		)
 	);
+}
+
+/**
+ * Make sure we can actually write to the filesystem before creating a theme
+ *
+ * If necessary, this will present a form to the user to collect credentials.
+ *
+ * @return mixed
+ */
+function child_themify_admin_ensure_write_permissions() {
+	ob_start();
+	$creds  = request_filesystem_credentials(
+		child_themify_get_admin_page(),
+		'',
+		false,
+		get_theme_root()
+	);
+	$output = ob_get_clean();
+	if ( $creds !== false ) {
+		$creds = is_array( $creds ) ? $creds : array();
+		if ( child_themify_get_fs_object( $creds ) ) {
+			return $creds + array( 'auth' => true );
+		}
+		ob_start();
+		request_filesystem_credentials(
+			child_themify_get_admin_page(),
+			'',
+			true,
+			get_theme_root()
+		);
+		$output = ob_get_clean();
+	}
+	?>
+	<div class="wrap">
+		<h1><?php esc_html_e( 'Before we get started...', 'child-themify' ); ?></h1>
+		<p><?php esc_html_e( 'Before we can create a child theme, it looks like you\'ll need to enter your credentials to create files on your hosting account.', 'child-themify' ); ?></p>
+		<?php echo $output; ?>
+	</div>
+	<?php
+	return false;
 }
