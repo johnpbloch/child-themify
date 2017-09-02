@@ -9,7 +9,7 @@
         </testsuite>
     </testsuites>
     <filter>
-        <whitelist>
+        <whitelist addUncoveredFilesFromWhitelist="true">
             <directory>./includes</directory>
         </whitelist>
     </filter>

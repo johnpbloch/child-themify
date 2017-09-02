@@ -19,5 +19,9 @@
 	"autoload-dev"     : {
 		"classmap": ["tests/phpunit/TestCase.php"]
 	},
-	"prefer-stable"    : true
+	"prefer-stable"    : true,
+	"scripts"          : {
+		"test": "phpunit",
+		"cov" : "phpunit --coverage-html coverage/php/html"
+	}
 }
