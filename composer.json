@@ -17,7 +17,7 @@
 		"antecedent/patchwork": "2.0.*"
 	},
 	"autoload-dev"     : {
-		"classmap": ["tests/phpunit/TestCase.php"]
+		"classmap": ["tests/phpunit/tools"]
 	},
 	"prefer-stable"    : true,
 	"scripts"          : {
