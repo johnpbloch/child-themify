@@ -74,6 +74,14 @@ function child_themify_admin_page() {
 				'success_message'    => esc_html__( 'Your theme has been created.', 'child-themify' ),
 				/* translators: "it" in this sentence refers to the child theme just created */
 				'success_link'       => esc_html__( 'Go check it out!', 'child-themify' ),
+				'errors'             => array(
+					/* translators: the placeholder is an error message from the API (translated elsewhere) */
+					'server_msg' => esc_html__( 'Oops! Something went wrong! Here\'s the message we got: %s', 'child-themify' ),
+					'server_gen' => esc_html__( 'Oops! Something went wrong! Please try again later.', 'child-themify' ),
+					/* translators: the placeholder is an error message from the API (translated elsewhere) */
+					'user_msg'   => esc_html__( 'Looks like something was wrong with the info you provided. Here\'s the message we got: %s', 'child-themify' ),
+					'user_gen'   => esc_html__( 'Looks like something was wrong with the info you provided. Please make sure your info is correct and try again.', 'child-themify' ),
+				),
 			),
 			'creds'        => $permissions,
 		)

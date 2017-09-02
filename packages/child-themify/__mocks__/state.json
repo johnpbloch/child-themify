@@ -34,7 +34,13 @@
       "working": "Creating Your Child Theme..."
     },
     "success_message": "Your theme has been created.",
-    "success_link": "Go check it out!"
+    "success_link": "Go check it out!",
+    "errors": {
+      "server_msg": "Oops! Something went wrong! Here's the message we got: %s",
+      "server_gen": "Oops! Something went wrong! Please try again later.",
+      "user_msg": "Looks like something was wrong with the info you provided. Here's the message we got: %s",
+      "user_gen": "Looks like something was wrong with the info you provided. Please make sure your info is correct and try again."
+    }
   },
   "creds": {
     "auth": true

@@ -157,6 +157,17 @@ class App extends Component {
                 );
                 this.setState({...App.getDefaultState(), showMessage: true});
             }, error => {
+                const status = error.response && error.response.status ? error.response.status : /* istanbul ignore next */ 500;
+                const errMsg = error.response && error.response.data.message ? error.response.data.message : false;
+                let message;
+                if (status >= 500) {
+                    message = errMsg ? sprintf(i18n.errors.server_msg, errMsg) : i18n.errors.server_gen;
+                } else {
+                    message = errMsg ? sprintf(i18n.errors.user_msg, errMsg) : i18n.errors.user_gen;
+                }
+                this.submitMessage = message;
+                this.error = true;
+                this.setState({...App.getDefaultState(), showMessage: true});
             })
             .catch(() => {
             });

@@ -161,8 +161,8 @@ describe('<App/> component tests', () => {
             });
     });
 
-    test('Error displays when create fails', () => {
-        expect.assertions(1);
+    test('Error displays when create fails: 400 w/ message', () => {
+        expect.assertions(2);
         const component = mount(<App themes={state.themes}/>);
         axiosMock.reset();
         axiosMock
@@ -193,6 +193,113 @@ describe('<App/> component tests', () => {
             })
             .then(() => {
                 expect(component.find('.notice-error').exists()).toBe(true);
+                expect(component.find('.notice-error').text())
+                    .toBe('Looks like something was wrong with the info you provided. Here\'s the message we got: Could not write to server! Please check your credentials and try again.');
+            });
+    });
+
+    test('Error displays when create fails: 400 w/out message', () => {
+        expect.assertions(2);
+        const component = mount(<App themes={state.themes}/>);
+        axiosMock.reset();
+        axiosMock
+            .onGet('http://ctf.dev/wp-json/child-themify/v1/theme-data/twentyseventeen')
+            .reply(200, twentyseventeen);
+        const instance = component.instance();
+        instance.checkChildSlug = instance.realCheckChildSlug;
+        instance.selectTheme({value: 'twentyseventeen'});
+        axiosMock
+            .onPost('http://ctf.dev/wp-json/child-themify/v1/create-theme')
+            .reply(400, {});
+
+        return Promise.resolve(1)
+            .then(() => {
+                return new Promise(resolve => {
+                    instance.updateThemeName('Test Theme');
+                    setTimeout(() => resolve(1));
+                });
+            })
+            .then(() => {
+                return new Promise(resolve => {
+                    component.find('.button-primary').simulate('click');
+                    setTimeout(() => resolve(1));
+                });
+            })
+            .then(() => {
+                expect(component.find('.notice-error').exists()).toBe(true);
+                expect(component.find('.notice-error').text())
+                    .toBe('Looks like something was wrong with the info you provided. Please make sure your info is correct and try again.');
+            });
+    });
+
+    test('Error displays when create fails: 500 w/ message', () => {
+        expect.assertions(2);
+        const component = mount(<App themes={state.themes}/>);
+        axiosMock.reset();
+        axiosMock
+            .onGet('http://ctf.dev/wp-json/child-themify/v1/theme-data/twentyseventeen')
+            .reply(200, twentyseventeen);
+        const instance = component.instance();
+        instance.checkChildSlug = instance.realCheckChildSlug;
+        instance.selectTheme({value: 'twentyseventeen'});
+        axiosMock
+            .onPost('http://ctf.dev/wp-json/child-themify/v1/create-theme')
+            .reply(500, {
+                code: 'ctf-no-create-dir',
+                message: 'Could not create new theme directory!'
+            });
+
+        return Promise.resolve(1)
+            .then(() => {
+                return new Promise(resolve => {
+                    instance.updateThemeName('Test Theme');
+                    setTimeout(() => resolve(1));
+                });
+            })
+            .then(() => {
+                return new Promise(resolve => {
+                    component.find('.button-primary').simulate('click');
+                    setTimeout(() => resolve(1));
+                });
+            })
+            .then(() => {
+                expect(component.find('.notice-error').exists()).toBe(true);
+                expect(component.find('.notice-error').text())
+                    .toBe('Oops! Something went wrong! Here\'s the message we got: Could not create new theme directory!');
+            });
+    });
+
+    test('Error displays when create fails: 500 w/out message', () => {
+        expect.assertions(2);
+        const component = mount(<App themes={state.themes}/>);
+        axiosMock.reset();
+        axiosMock
+            .onGet('http://ctf.dev/wp-json/child-themify/v1/theme-data/twentyseventeen')
+            .reply(200, twentyseventeen);
+        const instance = component.instance();
+        instance.checkChildSlug = instance.realCheckChildSlug;
+        instance.selectTheme({value: 'twentyseventeen'});
+        axiosMock
+            .onPost('http://ctf.dev/wp-json/child-themify/v1/create-theme')
+            .reply(500, {});
+
+        return Promise.resolve(1)
+            .then(() => {
+                return new Promise(resolve => {
+                    instance.updateThemeName('Test Theme');
+                    setTimeout(() => resolve(1));
+                });
+            })
+            .then(() => {
+                return new Promise(resolve => {
+                    component.find('.button-primary').simulate('click');
+                    setTimeout(() => resolve(1));
+                });
+            })
+            .then(() => {
+                expect(component.find('.notice-error').exists()).toBe(true);
+                expect(component.find('.notice-error').text())
+                    .toBe('Oops! Something went wrong! Please try again later.');
             });
     });
 });
