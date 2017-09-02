@@ -128,4 +128,36 @@ describe('<App/> component tests', () => {
                 expect(component.find('.dashicons-no').exists()).toBe(true);
             });
     });
+
+    test('Creating the theme works as expected', () => {
+        expect.assertions(1);
+        const component = mount(<App themes={state.themes}/>);
+        axiosMock.reset();
+        axiosMock
+            .onGet('http://ctf.dev/wp-json/child-themify/v1/theme-data/twentyseventeen')
+            .reply(200, twentyseventeen);
+        const instance = component.instance();
+        instance.checkChildSlug = instance.realCheckChildSlug;
+        instance.selectTheme({value: 'twentyseventeen'});
+        axiosMock
+            .onPost('http://ctf.dev/wp-json/child-themify/v1/create-theme')
+            .reply(201, {success: true});
+
+        return Promise.resolve(1)
+            .then(() => {
+                return new Promise(resolve => {
+                    instance.updateThemeName('Test Theme');
+                    setTimeout(() => resolve(1));
+                });
+            })
+            .then(() => {
+                return new Promise(resolve => {
+                    component.find('.button-primary').simulate('click');
+                    setTimeout(() => resolve(1));
+                });
+            })
+            .then(() => {
+                expect(component.find('.notice-success').exists()).toBe(true);
+            });
+    });
 });
