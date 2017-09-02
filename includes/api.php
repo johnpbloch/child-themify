@@ -110,7 +110,7 @@ function child_themify_api_create_theme( $request ) {
 
 	try {
 		child_themify_create_theme(
-			$request['theme'],
+			$request['slug'],
 			$parent,
 			$request['name'] ? $request['name'] : $request['slug'],
 			$request['author'],
