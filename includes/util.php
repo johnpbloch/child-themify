@@ -262,10 +262,10 @@ function child_themify_mkdir_p( $fs, $dir ) {
 		$dir = dirname( $dir );
 	}
 	foreach ( $new as $part ) {
-		if ( ! $fs->mkdir( trailingslashit( $dir ) . $part ) ) {
+		$dir = trailingslashit( $dir ) . $part;
+		if ( ! $fs->mkdir( $dir ) ) {
 			return false;
 		}
-		$dir = trailingslashit( $dir ) . $part;
 	}
 
 	return true;
