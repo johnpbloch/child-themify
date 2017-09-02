@@ -132,7 +132,10 @@ function child_themify_api_create_theme( $request ) {
 		return new WP_Error( $code, $e->getMessage(), compact( 'status' ) );
 	}
 
-	return rest_ensure_response( array( 'success' => true ) );
+	$response = rest_ensure_response( array( 'success' => true ) );
+	$response->set_status( 201 );
+
+	return $response;
 }
 
 /**
