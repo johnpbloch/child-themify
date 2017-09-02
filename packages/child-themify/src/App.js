@@ -187,22 +187,19 @@ class App extends Component {
         ) || this.state.creatingTheme);
     }
 
-    render() {
+    renderInner() {
         if (this.state.showMessage) {
             const noticeType = this.error ? 'error' : 'success';
             return (
-                <div className="App wrap">
-                    <h1>{i18n.header}</h1>
-                    <div className={`notice notice-${noticeType}`}>
-                        <p>{this.state.showMessage}</p>
-                    </div>
+                <div className={`notice notice-${noticeType}`}>
+                    <p>{this.state.showMessage}</p>
                 </div>
             );
         }
         const {ready, working} = i18n.create_button;
+
         return (
-            <div className="App wrap">
-                <h1>{i18n.header}</h1>
+            <div>
                 <ThemeSelector onChange={this.selectTheme} theme={this.state.theme} themes={this.props.themes}/>
                 {this.ifTheme(this.renderNameField)}
                 {this.ifTheme(this.renderShowAdvancedFieldsToggle)}
@@ -223,7 +220,15 @@ class App extends Component {
                         type="submit"
                         value={this.state.creatingTheme ? working : ready}/>
                 </p>
+            </div>
+        );
+    }
 
+    render() {
+        return (
+            <div className="App wrap">
+                <h1>{i18n.header}</h1>
+                {this.renderInner()}
             </div>
         );
     }
