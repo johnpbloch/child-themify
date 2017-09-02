@@ -12,7 +12,6 @@ class AdminTest extends TestCase {
 	}
 
 	public function testAdminMenu() {
-		Functions\when( 'esc_html__' )->returnArg( 1 );
 		$hook = 'child_themify-page' . rand( 0, 9 );
 		Functions\expect( 'add_theme_page' )
 			->once()
