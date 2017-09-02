@@ -160,4 +160,39 @@ describe('<App/> component tests', () => {
                 expect(component.find('.notice-success').exists()).toBe(true);
             });
     });
+
+    test('Error displays when create fails', () => {
+        expect.assertions(1);
+        const component = mount(<App themes={state.themes}/>);
+        axiosMock.reset();
+        axiosMock
+            .onGet('http://ctf.dev/wp-json/child-themify/v1/theme-data/twentyseventeen')
+            .reply(200, twentyseventeen);
+        const instance = component.instance();
+        instance.checkChildSlug = instance.realCheckChildSlug;
+        instance.selectTheme({value: 'twentyseventeen'});
+        axiosMock
+            .onPost('http://ctf.dev/wp-json/child-themify/v1/create-theme')
+            .reply(400, {
+                code: 'ctf_no_fs',
+                message: 'Could not write to server! Please check your credentials and try again.'
+            });
+
+        return Promise.resolve(1)
+            .then(() => {
+                return new Promise(resolve => {
+                    instance.updateThemeName('Test Theme');
+                    setTimeout(() => resolve(1));
+                });
+            })
+            .then(() => {
+                return new Promise(resolve => {
+                    component.find('.button-primary').simulate('click');
+                    setTimeout(() => resolve(1));
+                });
+            })
+            .then(() => {
+                expect(component.find('.notice-error').exists()).toBe(true);
+            });
+    });
 });
