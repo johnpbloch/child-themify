@@ -107,6 +107,7 @@ function child_themify_api_sanitize_theme( $maybe_theme ) {
 function child_themify_api_create_theme( $request ) {
 	$parent = $request['parent'];
 	$parent = $parent instanceof WP_Theme ? $parent : wp_get_theme( $parent );
+	require_once( ABSPATH . 'wp-admin/includes/file.php' );
 
 	try {
 		child_themify_create_theme(
