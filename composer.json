@@ -11,7 +11,9 @@
 		}
 	],
 	"require-dev"      : {
-		"johnpbloch/wordpress-core": ">=3.8"
+		"johnpbloch/wordpress-core": ">=3.8",
+		"phpunit/phpunit": "^5.7",
+		"brain/monkey": "^2.0"
 	},
 	"prefer-stable"    : true
 }
