@@ -70,7 +70,10 @@ function child_themify_admin_page() {
 				'create_button'      => array(
 					'ready'   => esc_html__( 'Create Child Theme', 'child-themify' ),
 					'working' => esc_html__( 'Creating Your Child Theme...', 'child-themify' ),
-				)
+				),
+				'success_message'    => esc_html__( 'Your theme has been created.', 'child-themify' ),
+				/* translators: "it" in this sentence refers to the child theme just created */
+				'success_link'       => esc_html__( 'Go check it out!', 'child-themify' ),
 			),
 			'creds'        => $permissions,
 		)

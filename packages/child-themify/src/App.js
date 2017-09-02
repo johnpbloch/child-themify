@@ -34,6 +34,7 @@ class App extends Component {
             childName: '',
             creatingTheme: false,
             dataLoading: false,
+            showMessage: false,
             theme: '',
             themeFiles: [],
             validSlug: null,
@@ -151,6 +152,9 @@ class App extends Component {
             settings.credentials
         )
             .then(() => {
+                this.submitMessage = (
+                    <span>{i18n.success_message} <a href="themes.php">{i18n.success_link}</a></span>
+                );
                 this.setState({...App.getDefaultState(), showMessage: true});
             }, error => {
             })
@@ -192,7 +196,7 @@ class App extends Component {
             const noticeType = this.error ? 'error' : 'success';
             return (
                 <div className={`notice notice-${noticeType}`}>
-                    <p>{this.state.showMessage}</p>
+                    <p>{this.submitMessage}</p>
                 </div>
             );
         }

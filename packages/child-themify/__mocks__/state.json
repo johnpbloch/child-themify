@@ -32,7 +32,9 @@
     "create_button": {
       "ready": "Create Child Theme",
       "working": "Creating Your Child Theme..."
-    }
+    },
+    "success_message": "Your theme has been created.",
+    "success_link": "Go check it out!"
   },
   "creds": {
     "auth": true
