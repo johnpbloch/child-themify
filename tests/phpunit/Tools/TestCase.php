@@ -7,9 +7,12 @@ use Brain\Monkey\Functions;
 
 abstract class TestCase extends BaseTestCase {
 
+	protected $__contentFilterCallback;
+
 	protected function setUp() {
 		\Brain\Monkey\setUp();
 		$this->boringPassthrus();
+		$this->setUpContentFiltering();
 	}
 
 	protected function tearDown() {
@@ -18,6 +21,33 @@ abstract class TestCase extends BaseTestCase {
 
 	public function assertConditionsMet( $message = '' ) {
 		$this->assertThat( null, new ExpectationsMetConstraint, $message );
+	}
+
+	public function expectOutputString( $expectedString ) {
+		if ( is_callable( $this->__contentFilterCallback ) ) {
+			$expectedString = call_user_func( $this->__contentFilterCallback, $expectedString );
+		}
+		parent::expectOutputString( $expectedString );
+	}
+
+	public function stripTabsAndNewlines( $content ) {
+		return str_replace( array( "\t", "\r", "\n" ), '', $content );
+	}
+
+	protected function setUpContentFiltering() {
+		$this->__contentFilterCallback = false;
+		$annotations                   = $this->getAnnotations();
+		if (
+			! isset( $annotations['stripTabsAndNewlinesFromOutput'] ) ||
+			$annotations['stripTabsAndNewlinesFromOutput'][0] !== 'disabled' ||
+			(
+				is_numeric( $annotations['stripTabsAndNewlinesFromOutput'][0] ) &&
+				(int) $annotations['stripTabsAndNewlinesFromOutput'][0] !== 0
+			)
+		) {
+			$this->__contentFilterCallback = array( $this, 'stripTabsAndNewlines' );
+			$this->setOutputCallback( $this->__contentFilterCallback );
+		}
 	}
 
 	protected function boringPassthrus() {

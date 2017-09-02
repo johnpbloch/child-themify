@@ -37,4 +37,68 @@ class AdminTest extends TestCase {
 		$this->assertConditionsMet();
 	}
 
+	public function testAdminPage_no_permission() {
+		$this->expectOutputString( '' );
+		Functions\when( 'child_themify_admin_ensure_write_permissions' )
+			->justReturn( false );
+		Functions\expect( 'wp_enqueue_script' )->never();
+		child_themify_admin_page();
+	}
+
+	public function testAdminPage() {
+		$this->expectOutputString( '<div id="ctfAppRoot"></div>' );
+		Functions\when( 'child_themify_admin_ensure_write_permissions' )
+			->justReturn( array( 'auth' => true ) );
+		Functions\when( 'child_themify_js' )->justReturn( 'js' );
+		Functions\when( 'child_themify_asset_version' )->justReturn( '1.0.0' );
+		Functions\expect( 'wp_enqueue_script' )
+			->once()
+			->with( 'child-themify', 'js', array(), '1.0.0', true );
+		Functions\expect( 'rest_url' )->once()->with( 'child-themify/v1' )->andReturn( 'rest_url' );
+		Functions\expect( 'wp_create_nonce' )->once()->with( 'wp_rest' )->andReturn( 'nonce' );
+		$themes = array(
+			array( 'value' => 'twentyfifteen', 'label' => 'Twenty Fifteen' ),
+			array( 'value' => 'twentysixteen', 'label' => 'Twenty Sixteen' ),
+			array( 'value' => 'twentyseventeen', 'label' => 'Twenty Seventeen' ),
+		);
+		Functions\when( 'child_themify_get_parent_themes_for_js' )->justReturn( $themes );
+		Functions\when( 'wp_get_current_user' )->justReturn( (object) array( 'display_name' => 'Test' ) );
+		Functions\expect( 'wp_localize_script' )
+			->once()
+			->with( 'child-themify', 'ChildThemify', array(
+				'rest'         => 'rest_url',
+				'nonce'        => 'nonce',
+				'themes'       => $themes,
+				'current_user' => 'Test',
+				'i18n'         => array(
+					'header'             => 'Create a Child Theme',
+					'theme_select_label' => 'Select a parent theme',
+					'theme_placeholder'  => 'Select a theme...',
+					'name_label'         => 'Name your child theme',
+					'show_advanced'      => 'Show advanced fields',
+					'hide_advanced'      => 'Hide advanced fields',
+					'files_label'        => 'Extra Theme Files',
+					'files_description'  => 'Select extra files that you want to copy into the child theme. style.css and functions.php are not in this list because they will always be created.',
+					'select_all'         => 'Select All',
+					'select_none'        => 'Select None',
+					'author_label'       => 'Author Name',
+					'invalid_theme'      => 'A theme %s already exists!',
+					'create_button'      => array(
+						'ready'   => 'Create Child Theme',
+						'working' => 'Creating Your Child Theme...',
+					),
+					'success_message'    => 'Your theme has been created.',
+					'success_link'       => 'Go check it out!',
+					'errors'             => array(
+						'server_msg' => 'Oops! Something went wrong! Here\'s the message we got: %s',
+						'server_gen' => 'Oops! Something went wrong! Please try again later.',
+						'user_msg'   => 'Looks like something was wrong with the info you provided. Here\'s the message we got: %s',
+						'user_gen'   => 'Looks like something was wrong with the info you provided. Please make sure your info is correct and try again.',
+					),
+				),
+				'creds'        => array( 'auth' => true ),
+			) );
+		child_themify_admin_page();
+	}
+
 }
