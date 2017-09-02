@@ -12,8 +12,12 @@
 	],
 	"require-dev"      : {
 		"johnpbloch/wordpress-core": ">=3.8",
-		"phpunit/phpunit": "^5.7",
-		"brain/monkey": "^2.0"
+		"phpunit/phpunit": "^6.3",
+		"brain/monkey": "^2.0",
+		"antecedent/patchwork": "2.0.*"
+	},
+	"autoload-dev"     : {
+		"classmap": ["tests/phpunit/TestCase.php"]
 	},
 	"prefer-stable"    : true
 }
