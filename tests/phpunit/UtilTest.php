@@ -57,4 +57,28 @@ class UtilTest extends TestCase {
 		);
 	}
 
+	public function test_get_admin_page() {
+		Functions\when( 'add_query_arg' )->alias( function ( $args, $url ) {
+			return $url . '?' . http_build_query( $args );
+		} );
+		Functions\expect( 'is_multisite' )->twice()->andReturn( false, true );
+		Functions\expect( 'admin_url' )
+			->once()
+			->with( 'themes.php' )
+			->andReturn( 'http://test.ctf.dev/wp-admin/themes.php' );
+		Functions\expect( 'network_admin_url' )
+			->once()
+			->with( 'themes.php' )
+			->andReturn( 'http://test.ctf.dev/wp-admin/network/themes.php' );
+
+		$this->assertEquals(
+			'http://test.ctf.dev/wp-admin/themes.php?page=child_themify',
+			child_themify_get_admin_page()
+		);
+		$this->assertEquals(
+			'http://test.ctf.dev/wp-admin/network/themes.php?page=child_themify',
+			child_themify_get_admin_page()
+		);
+	}
+
 }
