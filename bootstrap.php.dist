@@ -7,3 +7,13 @@ require_once __DIR__ . '/vendor/antecedent/patchwork/Patchwork.php';
 require_once __DIR__ . '/includes/util.php';
 require_once __DIR__ . '/includes/api.php';
 require_once __DIR__ . '/includes/admin.php';
+
+if ( ! defined( 'CTF_PATH' ) ) {
+	define( 'CTF_PATH', __DIR__ );
+}
+if ( ! defined( 'CTF_URL' ) ) {
+	define( 'CTF_URL', 'http://test.ctf.dev/wp-content/child-themify/' );
+}
+if ( ! defined( 'CTF_VERSION' ) ) {
+	define( 'CTF_VERSION', '2.0.0-test' );
+}
