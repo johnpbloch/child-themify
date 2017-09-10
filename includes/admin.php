@@ -4,7 +4,11 @@
  * Admin setup
  */
 function child_themify_admin_init() {
-	add_action( 'admin_menu', 'child_themify_admin_menu' );
+	$action = 'admin_menu';
+	if ( is_multisite() ) {
+		$action = "network_$action";
+	}
+	add_action( $action, 'child_themify_admin_menu' );
 }
 
 /**

@@ -7,8 +7,17 @@ use Brain\Monkey\Functions;
 class AdminTest extends TestCase {
 
 	public function testSetup() {
+		Functions\when( 'is_multisite' )->justReturn( false );
 		child_themify_admin_init();
 		$this->assertTrue( has_action( 'admin_menu', 'child_themify_admin_menu' ) );
+		$this->assertFalse( has_action( 'network_admin_menu', 'child_themify_admin_menu' ) );
+	}
+
+	public function testSetupMultisite() {
+		Functions\when( 'is_multisite' )->justReturn( true );
+		child_themify_admin_init();
+		$this->assertFalse( has_action( 'admin_menu', 'child_themify_admin_menu' ) );
+		$this->assertTrue( has_action( 'network_admin_menu', 'child_themify_admin_menu' ) );
 	}
 
 	public function testAdminMenu() {
