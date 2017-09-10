@@ -3,6 +3,7 @@
 namespace ChildThemify;
 
 use Brain\Monkey\Functions;
+use Mockery;
 
 class UtilTest extends TestCase {
 
@@ -29,6 +30,30 @@ class UtilTest extends TestCase {
 		$this->assertEquals(
 			CTF_URL . 'assets/css/' . $file,
 			child_themify_css( $file )
+		);
+	}
+
+	public function test_get_parent_themes_for_js() {
+		$theme1 = Mockery::mock( 'WP_Theme' );
+		$theme2 = Mockery::mock( 'WP_Theme' );
+		$theme3 = Mockery::mock( 'WP_Theme' );
+		$theme1->shouldReceive( 'parent' )->once()->andReturn( false );
+		$theme2->shouldReceive( 'parent' )->once()->andReturn( $theme1 );
+		$theme3->shouldReceive( 'parent' )->once()->andReturn( false );
+		$theme1->shouldReceive( 'get_stylesheet' )->once()->andReturn( 'theme1' );
+		$theme2->shouldReceive( 'get_stylesheet' )->never();
+		$theme3->shouldReceive( 'get_stylesheet' )->once()->andReturn( 'theme3' );
+		$theme1->shouldReceive( 'get' )->once()->with( 'Name' )->andReturn( 'Theme 1' );
+		$theme2->shouldReceive( 'get' )->never();
+		$theme3->shouldReceive( 'get' )->once()->with( 'Name' )->andReturn( 'Theme 3' );
+		Functions\when( 'wp_get_themes' )->justReturn( array( $theme1, $theme2, $theme3 ) );
+
+		$this->assertEquals(
+			array(
+				array( 'value' => 'theme1', 'label' => 'Theme 1' ),
+				array( 'value' => 'theme3', 'label' => 'Theme 3' ),
+			),
+			child_themify_get_parent_themes_for_js()
 		);
 	}
 
