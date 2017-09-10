@@ -4,6 +4,7 @@ namespace ChildThemify;
 
 use Brain\Monkey\Functions;
 use Mockery;
+use stdClass;
 
 class UtilTest extends TestCase {
 
@@ -79,6 +80,101 @@ class UtilTest extends TestCase {
 			'http://test.ctf.dev/wp-admin/network/themes.php?page=child_themify',
 			child_themify_get_admin_page()
 		);
+	}
+
+	public function test_get_fs_object_failure() {
+		Functions\when( 'get_theme_root' )->justReturn( '/srv/www/html/wp-content/themes' );
+		Functions\when( 'WP_Filesystem' )->justReturn( false );
+
+		$this->assertFalse( child_themify_get_fs_object( array() ) );
+	}
+
+	public function test_get_fs_object_bad_global() {
+		global $wp_filesystem;
+		$wp_filesystem = new stdClass();
+		Functions\when( 'get_theme_root' )->justReturn( '/srv/www/html/wp-content/themes' );
+		Functions\when( 'WP_Filesystem' )->justReturn( true );
+
+		$this->assertFalse( child_themify_get_fs_object( array() ) );
+	}
+
+	public function test_get_fs_object() {
+		global $wp_filesystem;
+		$fs = $wp_filesystem = Mockery::mock( 'WP_Filesystem_Base' );
+		Functions\when( 'get_theme_root' )->justReturn( '/srv/www/html/wp-content/themes' );
+		$creds = array(
+			'username' => 'foobar',
+			'password' => 'bazbat',
+		);
+		Functions\expect( 'WP_Filesystem' )
+			->once()
+			->with( $creds, '/srv/www/html/wp-content/themes' )
+			->andReturn( true );
+
+		$this->assertSame( $fs, child_themify_get_fs_object( $creds ) );
+	}
+
+	/**
+	 * @dataProvider data_relative_url
+	 */
+	public function test_relative_url( $from, $to, $expected ) {
+		$this->assertEquals( $expected, child_themify_relative_url( $from, $to ) );
+	}
+
+	public function data_relative_url() {
+		return array(
+			array(
+				'http://foo.bar/path/to/first/file.txt',
+				'http://foo.bar/path/to/second/file.txt',
+				'../second/file.txt',
+			),
+			array(
+				'http://foo.bar/path/to/dir',
+				'http://foo.bar/path/to/second/dir/',
+				'./second/dir',
+			),
+			array(
+				'http://foo.bar/path/to/dir/',
+				'http://foo.bar/path/to/second/dir/',
+				'../second/dir',
+			),
+		);
+	}
+
+	public function test_mkdir_p_already_exists() {
+		$fs  = Mockery::mock( 'WP_Filesystem_Base' );
+		$dir = '/srv/www/wp-content/themes/test-theme';
+		$fs->shouldReceive( 'exists' )->once()->with( $dir )->andReturn( true );
+		$fs->shouldReceive( 'mkdir' )->never();
+		/** @var \WP_Filesystem_Base $fs */
+		$this->assertTrue( child_themify_mkdir_p( $fs, $dir ) );
+		$this->assertConditionsMet();
+	}
+
+	public function test_mkdir_p_failure_condition() {
+		$fs  = Mockery::mock( 'WP_Filesystem_Base' );
+		$dir = '/srv/www/wp-content/themes/test-theme/test';
+		$fs->shouldReceive( 'exists' )->once()->with( $dir )->andReturn( false );
+		$fs->shouldReceive( 'exists' )->once()->with( dirname( $dir ) )->andReturn( false );
+		$fs->shouldReceive( 'exists' )->once()->with( dirname( dirname( $dir ) ) )->andReturn( true );
+		$fs->shouldReceive( 'mkdir' )->with( dirname( $dir ) )->once()->andReturn( false );
+		$fs->shouldReceive( 'mkdir' )->with( $dir )->never();
+		/** @var \WP_Filesystem_Base $fs */
+		$this->assertFalse( child_themify_mkdir_p( $fs, $dir ) );
+		$this->assertConditionsMet();
+	}
+
+	public function test_mkdir_p() {
+		$fs  = Mockery::mock( 'WP_Filesystem_Base' );
+		$dir = '/srv/www/wp-content/themes/test-theme/test';
+		$fs->shouldReceive( 'exists' )->once()->with( $dir )->andReturn( false );
+		$fs->shouldReceive( 'exists' )->once()->with( dirname( $dir ) )->andReturn( false );
+		$fs->shouldReceive( 'exists' )->once()->with( dirname( dirname( $dir ) ) )->andReturn( true );
+		$fs->shouldReceive( 'mkdir' )->with( dirname( $dir ) )->once()->andReturn( true );
+		$fs->shouldReceive( 'mkdir' )->with( $dir )->once()->andReturn( true );
+		/** @var \WP_Filesystem_Base $fs */
+		$this->assertTrue( child_themify_mkdir_p( $fs, $dir ) );
+		$this->assertConditionsMet();
 	}
 
 }
