@@ -16,7 +16,7 @@
     "watch": "^1.0.2"
   },
   "scripts": {
-    "clean": "rimraf assets/*.* && rimraf coverage && lerna clean --yes",
+    "clean": "rimraf assets/*.* && rimraf coverage && rimraf build/plugin && lerna clean --yes",
     "build:react": "cd packages/child-themify && yarn run prod",
     "build:react:dev": "cd packages/child-themify && yarn run dev",
     "setup": "lerna bootstrap"
