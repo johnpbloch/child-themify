@@ -1,6 +1,7 @@
 #!/bin/bash
 
 VER=$(git tag | sort -Vr | head -n1)
+REBUILD="yes"
 
 while [[ $# -gt 1 ]]
 do
@@ -11,6 +12,9 @@ case $key in
     VER="$2"
     shift
     ;;
+    -s|--short)
+    REBUILD="no"
+    ;;
 esac
 shift
 done
@@ -19,8 +23,10 @@ if [ ! -e build/svn ]; then
     svn co https://plugins.svn.wordpress.org/child-themify/ build/svn
 fi
 
-npm run clean
-npm run setup
+if [ "$REBUILD" == "yes" ]; then
+    npm run clean
+    npm run setup
+fi
 npm run build:react
 
 mkdir -p build/plugin/assets/js
