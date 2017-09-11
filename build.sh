@@ -53,3 +53,6 @@ if [ -e "build/svn/tags/$VER" ]; then
 fi
 
 cp -r build/svn/trunk "build/svn/tags/$VER"
+
+rm build/svn/assets/screenshot*
+cp assets/screenshots/* build/svn/assets/
