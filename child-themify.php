@@ -7,7 +7,6 @@
  * Author: John P. Bloch
  * License: GPL-2.0+
  * Text Domain: child-themify
- * Domain Path: /languages
  */
 
 define( 'CTF_PATH', __FILE__ );
