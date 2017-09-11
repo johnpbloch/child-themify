@@ -1,11 +1,12 @@
 === Child Themify ===
 Contributors: JohnPBloch
 Tags: themes, child, theme
-Requires at least: 3.4.2
+Requires at least: 4.7.0
 Tested up to: 4.8.9
-Stable tag: 1.2.0
+Stable tag: {{VERSION}}
 License: GPL-2.0+
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Network: true
 
 Create child themes at the click of a button.
 
