@@ -33,7 +33,11 @@ mkdir -p build/plugin/assets/js
 mkdir -p build/plugin/assets/css
 
 sed -e "s/{{VERSION}}/$VER/g" < child-themify.php > build/plugin/child-themify.php
-sed -e "s/{{VERSION}}/$VER/g" < readme.txt > build/plugin/readme.txt
+if [[ $VER =~ ^[vV]?[0-9]+(\.[0-9]+){1,3}$ ]]; then
+    sed -e "s/{{VERSION}}/$VER/g" < readme.txt > build/plugin/readme.txt
+else
+    cp build/svn/trunk/readme.txt build/plugin/readme.txt
+fi
 
 cp -r includes build/plugin/
 
