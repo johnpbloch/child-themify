@@ -96,4 +96,4 @@ I'd really prefer that you use [Github's issue tracker](https://github.com/johnp
 
 == Upgrade Notice ==
 
-Creates a blank functions.php file
+Overhaul of the whole plugin: new interface, more options when creating child theme
