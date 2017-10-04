@@ -50,7 +50,7 @@ I'd really prefer that you use [Github's issue tracker](https://github.com/johnp
 == Changelog ==
 
 = 2.0.0 =
-* Released: TBD
+* Released: 2017-10-04
 * Completely rebuilt the interface
 * Added controls to modify the Theme Author value
 * Added controls to select theme files that should get copied into the new theme
