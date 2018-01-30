@@ -10,12 +10,12 @@
  * Network: true
  */
 
-define( 'CTF_PATH', __FILE__ );
-define( 'CTF_URL', plugin_dir_url( CTF_PATH ) );
-define( 'CTF_VERSION', '{{VERSION}}' );
+define( 'JPB_CTF_PATH', __FILE__ );
+define( 'JPB_CTF_URL', plugin_dir_url( JPB_CTF_PATH ) );
+define( 'JPB_CTF_VERSION', '{{VERSION}}' );
 
 function ctf_plugins_loaded() {
-	$inc = plugin_dir_path( CTF_PATH ) . '/includes/';
+	$inc = plugin_dir_path( JPB_CTF_PATH ) . '/includes/';
 	require_once $inc . 'util.php';
 	require_once $inc . 'api.php';
 	child_themify_api_init();
